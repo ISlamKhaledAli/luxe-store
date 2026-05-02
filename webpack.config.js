@@ -10,6 +10,11 @@ module.exports = {
       './src/assets/css/theme.css'
     ]
   },
+  // Salla CLI wraps `webpack --watch` via execSync (no TTY stdin). Webpack 5 would
+  // otherwise exit as soon as stdin ends. See: https://webpack.js.org/configuration/watch/#watchoptionsstdin
+  watchOptions: {
+    stdin: false,
+  },
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'js/[name].js',

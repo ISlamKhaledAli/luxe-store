@@ -16,6 +16,7 @@
 ## This project
 
 - Run preview: `salla theme preview` (from this folder; commit when prompted).
+- If preview dies right after webpack compiles (“Command failed: pnpm run watch”), webpack was exiting because stdin closed under `execSync`. This theme sets `watchOptions.stdin: false` and `--no-watch-options-stdin` on the watch script — keep that intact.
 - Open these links in the browser: `npm run docs`
 - Watcher is patched (see `patches/` + `postinstall`): correct `salla theme sync` flags and safe handling when the design upload API errors.
 
