@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ThemeWatcher = require("@salla.sa/twilight/watcher.js");
 const CopyPlugin = require("copy-webpack-plugin");
+const { InitialTwigSyncPlugin } = require("./scripts/salla-theme-sync.js");
 const path = require("path");
 
 module.exports = {
@@ -29,6 +30,8 @@ module.exports = {
     ],
   },
   plugins: [
+    // First preview watch: push all Twig + twilight.json to draft so the store doesn’t keep showing Raed.
+    new InitialTwigSyncPlugin(),
     new ThemeWatcher(),
     new MiniCssExtractPlugin({
       filename: 'css/[name].css',

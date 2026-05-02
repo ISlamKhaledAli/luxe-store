@@ -1,8 +1,8 @@
 diff --git a/node_modules/@salla.sa/twilight/watcher.js b/node_modules/@salla.sa/twilight/watcher.js
-index 10e1a34..ecd325f 100644
+index 10e1a34..e70d013 100644
 --- a/node_modules/@salla.sa/twilight/watcher.js
 +++ b/node_modules/@salla.sa/twilight/watcher.js
-@@ -154,10 +154,14 @@ class WatcherPlugin {
+@@ -154,10 +154,16 @@ class WatcherPlugin {
      addToQ(file) {
          if (this.files[file]) clearTimeout(this.files[file]);
          this.files[file] = setTimeout(() => {
@@ -10,10 +10,12 @@ index 10e1a34..ecd325f 100644
 -            `${this.sallaCli} theme sync -f "${file}" -id ${this.theme_id}  -store_id ${this.store_id} -draft_id ${this.draft_id}  -upload_url ${this.upload_url}`,
 -            { stdio: "inherit" }
 -          );
++          const rel = path.relative(process.cwd(), file).replace(/\\/g, '/');
++          const cli = String(this.sallaCli || 'salla ').trim();
 +          try {
 +            execSync(
-+              `${this.sallaCli} theme sync -f "${file}" --theme_id ${this.theme_id} --store_id ${this.store_id} --draft_id ${this.draft_id} --upload_url ${this.upload_url}`,
-+              { stdio: "inherit" }
++              `${cli} theme sync -f "${rel}" --theme_id ${this.theme_id} --store_id ${this.store_id} --draft_id ${this.draft_id} --upload_url ${this.upload_url}`,
++              { stdio: "inherit", shell: this.isWin }
 +            );
 +          } catch (e) {
 +            console.log(color.yellow, `⚠ Twig sync failed for ${path.basename(file)} (Salla API returned an error). Webpack hot-reload still active for CSS/JS. Commit + push + re-run preview to apply Twig changes.`, color.normal);

@@ -8,6 +8,7 @@
     "prod": "webpack --mode production",
     "development": "webpack --mode development",
     "watch": "webpack --mode development --watch --no-watch-options-stdin",
+    "sync:twig": "node scripts/salla-theme-sync.js",
     "postinstall": "patch-package",
     "docs": "node scripts/open-salla-docs.js"
   },
