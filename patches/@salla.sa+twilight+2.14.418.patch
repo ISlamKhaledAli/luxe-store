@@ -1,0 +1,13 @@
+diff --git a/node_modules/@salla.sa/twilight/watcher.js b/node_modules/@salla.sa/twilight/watcher.js
+index 10e1a34..5672129 100644
+--- a/node_modules/@salla.sa/twilight/watcher.js
++++ b/node_modules/@salla.sa/twilight/watcher.js
+@@ -155,7 +155,7 @@ class WatcherPlugin {
+         if (this.files[file]) clearTimeout(this.files[file]);
+         this.files[file] = setTimeout(() => {
+           execSync(
+-            `${this.sallaCli} theme sync -f "${file}" -id ${this.theme_id}  -store_id ${this.store_id} -draft_id ${this.draft_id}  -upload_url ${this.upload_url}`,
++            `${this.sallaCli} theme sync -f "${file}" --theme_id ${this.theme_id} --store_id ${this.store_id} --draft_id ${this.draft_id} --upload_url ${this.upload_url}`,
+             { stdio: "inherit" }
+           );
+           delete this.files[file];
