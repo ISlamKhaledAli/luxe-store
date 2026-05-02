@@ -4,6 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+    initLuxeSplash();
+    initLuxeCursor();
     initHeaderScroll();
     initAnnouncementDismiss();
     initCartDrawer();
@@ -19,6 +21,86 @@ document.addEventListener('DOMContentLoaded', () => {
     initRevealAnimations();
     initProductTabs();
 });
+
+// =============================================================
+// ★ STANDOUT FEATURE: Premium Brand Splash Screen
+// Shows the Luxe Store wordmark on first visit per session.
+// =============================================================
+function initLuxeSplash() {
+    const splash = document.getElementById('luxeSplash');
+    if (!splash) return;
+
+    if (sessionStorage.getItem('luxe_splash_seen')) {
+        splash.remove();
+        return;
+    }
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const totalDuration = prefersReduced ? 200 : 2700;
+
+    setTimeout(() => {
+        splash.classList.add('is-out');
+        sessionStorage.setItem('luxe_splash_seen', '1');
+        splash.addEventListener('animationend', () => splash.remove(), { once: true });
+        setTimeout(() => splash.remove(), 1200);
+    }, totalDuration);
+
+    splash.addEventListener('click', () => {
+        splash.classList.add('is-out');
+        sessionStorage.setItem('luxe_splash_seen', '1');
+    });
+}
+
+// =============================================================
+// ★ STANDOUT FEATURE: Gold Cursor Follower (desktop only)
+// =============================================================
+function initLuxeCursor() {
+    const ring = document.getElementById('luxeCursor');
+    const dot  = document.getElementById('luxeCursorDot');
+    if (!ring || !dot) return;
+
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!isFinePointer || prefersReduced) {
+        ring.remove();
+        dot.remove();
+        return;
+    }
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let ringX = mouseX;
+    let ringY = mouseY;
+    const easing = 0.18;
+
+    document.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+    });
+
+    function animate() {
+        ringX += (mouseX - ringX) * easing;
+        ringY += (mouseY - ringY) * easing;
+        ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+    setTimeout(() => {
+        ring.classList.add('is-ready');
+        dot.classList.add('is-ready');
+    }, 100);
+
+    const hoverSelectors = 'a, button, .btn, [role="button"], salla-add-to-cart, .product-card, .luxe-crest';
+    document.addEventListener('mouseover', (e) => {
+        if (e.target.closest(hoverSelectors)) ring.classList.add('is-hover');
+    });
+    document.addEventListener('mouseout', (e) => {
+        if (e.target.closest(hoverSelectors)) ring.classList.remove('is-hover');
+    });
+}
 
 // --- Utility: Debounce ---
 function debounce(fn, delay) {

@@ -1,3 +1,6 @@
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/css/theme.css ***!
+  \****************************************************************************/
 /* 
   Luxe Store - Salla Theme CSS
   Pure Vanilla CSS with Logical Properties for RTL Support
@@ -74,12 +77,6 @@
   --z-drawer:    300;
   --z-modal:     400;
   --z-toast:     500;
-}
-
-/* Override tokens from merchant settings */
-:root {
-  --color-primary: {{ theme.settings.get('luxe_primary_color', '#0A0F2C') }};
-  --color-accent:  {{ theme.settings.get('luxe_accent_color',  '#C9A84C') }};
 }
 
 /* --- Base --- */
@@ -920,5 +917,803 @@ h3 { font-size: var(--font-size-2xl); }
 .luxe-parallax__content h2 {
   font-size: var(--font-size-4xl);
   margin-block-end: var(--space-6);
+}
+
+/* =====================================================================
+   MISSING UTILITIES (used across cart / listing / product pages)
+   These fill in for Tailwind-style classes referenced by templates.
+   ===================================================================== */
+
+/* Spacing utilities */
+.mt-1  { margin-block-start: var(--space-1); }
+.mt-2  { margin-block-start: var(--space-2); }
+.mt-3  { margin-block-start: var(--space-3); }
+.mt-4  { margin-block-start: var(--space-4); }
+.mt-6  { margin-block-start: var(--space-6); }
+.mt-8  { margin-block-start: var(--space-8); }
+.mt-10 { margin-block-start: var(--space-10); }
+.mt-12 { margin-block-start: var(--space-12); }
+.mt-16 { margin-block-start: var(--space-16); }
+.mt-20 { margin-block-start: var(--space-20); }
+
+.mb-1  { margin-block-end: var(--space-1); }
+.mb-2  { margin-block-end: var(--space-2); }
+.mb-4  { margin-block-end: var(--space-4); }
+.mb-6  { margin-block-end: var(--space-6); }
+.mb-8  { margin-block-end: var(--space-8); }
+.mb-12 { margin-block-end: var(--space-12); }
+
+.py-8  { padding-block: var(--space-8); }
+.py-12 { padding-block: var(--space-12); }
+.py-16 { padding-block: var(--space-16); }
+.py-20 { padding-block: var(--space-20); }
+
+.px-4  { padding-inline: var(--space-4); }
+.px-6  { padding-inline: var(--space-6); }
+.px-8  { padding-inline: var(--space-8); }
+
+/* Layout helpers */
+.flex          { display: flex; }
+.inline-flex   { display: inline-flex; }
+.items-center  { align-items: center; }
+.justify-center{ justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-2 { gap: var(--space-2); }
+.gap-4 { gap: var(--space-4); }
+.gap-6 { gap: var(--space-6); }
+
+/* Text helpers */
+.text-center { text-align: center; }
+.text-success { color: var(--color-success); }
+.text-danger  { color: var(--color-danger); }
+.text-muted   { color: var(--color-text-muted); }
+.font-arabic  { font-family: var(--font-arabic); }
+.font-english { font-family: var(--font-english); }
+
+/* Border helper for cart divider */
+.border-white\/10 { border-color: rgba(255, 255, 255, 0.10); }
+
+/* =====================================================================
+   MISSING LUXE-* COMPONENT STYLES
+   Components were referencing classes with no CSS rules. Adding them.
+   ===================================================================== */
+
+.luxe-section {
+  padding-block: var(--space-16);
+}
+
+.luxe-container {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+.luxe-section__head {
+  text-align: center;
+  margin-block-end: var(--space-10);
+}
+
+.luxe-section__head h2 {
+  position: relative;
+  display: inline-block;
+  padding-block-end: var(--space-3);
+}
+
+.luxe-section__head h2::after {
+  content: '';
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+}
+
+/* Brands grid */
+.luxe-brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--space-6);
+}
+
+/* Banner-grid layout variants */
+.luxe-banners__grid.grid-cols-1 { grid-template-columns: 1fr; }
+.luxe-banners__grid.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.luxe-banners__grid.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 768px) {
+  .luxe-banners__grid.grid-cols-2,
+  .luxe-banners__grid.grid-cols-3 { grid-template-columns: 1fr; }
+}
+
+.luxe-banner-item__title {
+  font-size: var(--font-size-2xl);
+  margin-block-end: var(--space-2);
+}
+
+.luxe-banner-item__desc {
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+}
+
+/* Testimonial card additions */
+.luxe-testimonial-card {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  margin-inline: var(--space-2);
+}
+
+.luxe-testimonial-card__content p {
+  font-size: var(--font-size-lg);
+  line-height: 1.7;
+  margin-block-end: var(--space-4);
+  font-style: italic;
+}
+
+.luxe-testimonial-card__meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.luxe-testimonial-card__meta strong {
+  color: var(--color-primary);
+}
+
+/* Feature item additions */
+.luxe-feature-item__text h3 {
+  font-size: var(--font-size-base);
+  margin-block-end: var(--space-1);
+}
+
+.luxe-feature-item__text p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+/* Products-bg section */
+.luxe-products-bg h3 {
+  font-size: var(--font-size-3xl);
+  margin-block-end: var(--space-3);
+  color: var(--color-white);
+}
+
+.luxe-products-bg p {
+  font-size: var(--font-size-lg);
+  opacity: 0.9;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+/* Slide content */
+.luxe-slide__text p {
+  font-size: var(--font-size-xl);
+  margin-block-end: var(--space-6);
+  opacity: 0.95;
+}
+
+.slide--one-sixth { width: auto; padding-inline: var(--space-2); }
+
+/* Quick-link entry icon */
+.luxe-cat-entry i {
+  font-size: 2rem;
+  color: var(--color-accent);
+}
+
+.luxe-cat-entry h2 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* =====================================================================
+   MOBILE SIDEBAR (was missing entirely)
+   ===================================================================== */
+.mobile-sidebar {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: 80%;
+  max-width: 320px;
+  background: var(--color-white);
+  z-index: var(--z-drawer);
+  transform: translateX(-100%);
+  transition: transform var(--transition-slow);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+}
+
+[dir="rtl"] .mobile-sidebar {
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  transform: translateX(100%);
+}
+
+.mobile-sidebar.open { transform: translateX(0); }
+
+.mobile-sidebar__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--space-6);
+  border-block-end: 1px solid var(--color-border);
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.mobile-sidebar__header .logo-small {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+}
+
+.mobile-sidebar__header button {
+  color: var(--color-white);
+  font-size: 1.4rem;
+}
+
+.mobile-nav { padding: var(--space-4) 0; flex: 1; overflow-y: auto; }
+
+.mobile-nav ul li a {
+  display: block;
+  padding: var(--space-3) var(--space-6);
+  font-weight: 600;
+  border-block-end: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.mobile-nav ul li a:hover {
+  background: var(--color-off-white);
+  color: var(--color-accent);
+}
+
+.mobile-sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: calc(var(--z-drawer) - 1);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-base);
+}
+
+.mobile-sidebar-overlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: var(--color-text);
+  padding: var(--space-2);
+}
+
+/* =====================================================================
+   MEGA MENU
+   ===================================================================== */
+.has-mega-menu { position: relative; }
+
+.mega-menu {
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline-start: 50%;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 600px;
+  background: var(--color-white);
+  box-shadow: var(--shadow-xl);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all var(--transition-base);
+  z-index: var(--z-dropdown);
+}
+
+[dir="rtl"] .mega-menu { transform: translateX(50%) translateY(10px); }
+
+.has-mega-menu.mega-visible .mega-menu {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+[dir="rtl"] .has-mega-menu.mega-visible .mega-menu {
+  transform: translateX(50%) translateY(0);
+}
+
+.mega-menu__content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+
+.mega-menu__column h4 {
+  margin-block-end: var(--space-3);
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
+}
+
+.mega-menu__column ul li {
+  margin-block-end: var(--space-2);
+}
+
+.mega-menu__column ul li a:hover {
+  color: var(--color-accent);
+}
+
+.mega-menu__column.featured img {
+  width: 100%;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  aspect-ratio: 4/3;
+}
+
+/* =====================================================================
+   NAVIGATION DESKTOP
+   ===================================================================== */
+.main-menu {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.main-menu li a {
+  font-weight: 600;
+  padding: var(--space-2) 0;
+  position: relative;
+}
+
+.main-menu li a:hover {
+  color: var(--color-accent);
+}
+
+.main-menu li a::after {
+  content: '';
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition-base);
+}
+
+.main-menu li a:hover::after {
+  width: 100%;
+}
+
+/* Header search button */
+.search-wrap salla-search {
+  --salla-search-color: var(--color-text);
+}
+
+/* =====================================================================
+   REVEAL ANIMATION (apply when [data-reveal] is observed)
+   ===================================================================== */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+[data-reveal].revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================================
+   EMPTY STATE (used by cart, listing)
+   ===================================================================== */
+.empty-state {
+  text-align: center;
+  padding: var(--space-20) var(--space-4);
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+}
+
+.empty-icon { font-size: 5rem; margin-block-end: var(--space-6); }
+
+/* =====================================================================
+   TOAST NOTIFICATIONS
+   ===================================================================== */
+.toast-container {
+  position: fixed;
+  inset-block-start: var(--space-6);
+  inset-inline-end: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  z-index: var(--z-toast);
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--color-white);
+  color: var(--color-text);
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  border-inline-start: 4px solid var(--color-accent);
+  min-width: 250px;
+  pointer-events: auto;
+  animation: slideInRight 0.3s ease;
+}
+
+.toast--success { border-inline-start-color: var(--color-success); }
+.toast--error { border-inline-start-color: var(--color-danger); }
+
+.toast.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(20px); }
+}
+
+/* =====================================================================
+   QUICK-VIEW & NEWSLETTER POPUPS
+   ===================================================================== */
+.quick-view-modal,
+.newsletter-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: var(--z-modal);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  backdrop-filter: blur(4px);
+}
+
+.quick-view-modal[style*="flex"],
+.newsletter-popup[style*="flex"] {
+  display: flex !important;
+}
+
+.quick-view-modal__inner,
+.newsletter-popup__box {
+  background: var(--color-white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.quick-view-modal__close,
+.newsletter-popup__close {
+  position: absolute;
+  inset-block-start: var(--space-3);
+  inset-inline-end: var(--space-3);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--color-off-white);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.qv-product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+@media (max-width: 600px) {
+  .qv-product { grid-template-columns: 1fr; }
+}
+
+.qv-product img {
+  border-radius: var(--radius-md);
+  aspect-ratio: 4/5;
+  object-fit: cover;
+}
+
+.qv-info h2 { margin-block-end: var(--space-3); }
+.qv-info .price {
+  font-size: var(--font-size-2xl);
+  color: var(--color-accent);
+  font-weight: 700;
+  margin-block-end: var(--space-4);
+}
+
+/* ========================================================================
+   ★ STANDOUT FEATURE #1: PREMIUM BRAND SPLASH SCREEN
+   Shown once per session (or until dismissed). Establishes the Luxe brand
+   the very moment a visitor arrives — luxury, sophistication, intentional.
+   ======================================================================== */
+.luxe-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(201, 168, 76, 0.18) 0%, transparent 50%),
+    linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--space-6);
+  pointer-events: all;
+  animation: luxeSplashOut 0.8s ease 1.8s forwards;
+  overflow: hidden;
+}
+
+.luxe-splash::before,
+.luxe-splash::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.25), transparent 70%);
+  filter: blur(60px);
+  animation: luxeBlobFloat 4s ease-in-out infinite;
+}
+.luxe-splash::before {
+  width: 500px; height: 500px;
+  inset-block-start: -150px; inset-inline-start: -150px;
+}
+.luxe-splash::after {
+  width: 400px; height: 400px;
+  inset-block-end: -120px; inset-inline-end: -120px;
+  animation-delay: -2s;
+}
+
+.luxe-splash__mark {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: luxeMarkIn 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+}
+
+.luxe-splash__brand {
+  font-family: var(--font-english);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--color-white);
+  background: linear-gradient(120deg, #C9A84C 0%, #E2C46E 50%, #C9A84C 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: luxeGoldShimmer 3s ease-in-out infinite;
+  margin: 0;
+  line-height: 1;
+}
+
+.luxe-splash__tagline {
+  font-family: var(--font-arabic);
+  font-size: var(--font-size-lg);
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.7);
+  margin-block-start: var(--space-4);
+  text-transform: uppercase;
+}
+
+.luxe-splash__rule {
+  width: 60px;
+  height: 1px;
+  background: var(--color-accent);
+  margin: var(--space-6) auto;
+  animation: luxeRuleGrow 1s ease 0.5s backwards;
+}
+
+.luxe-splash.is-out {
+  animation: luxeSplashOut 0.8s ease forwards;
+}
+
+@keyframes luxeMarkIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.95); }
+  to   { opacity: 1; transform: translateY(0)    scale(1); }
+}
+@keyframes luxeRuleGrow {
+  from { width: 0; opacity: 0; }
+  to   { width: 60px; opacity: 1; }
+}
+@keyframes luxeSplashOut {
+  to {
+    opacity: 0;
+    transform: scale(1.05);
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+@keyframes luxeGoldShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+@keyframes luxeBlobFloat {
+  0%, 100% { transform: translate(0, 0); }
+  50%      { transform: translate(20px, -20px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .luxe-splash,
+  .luxe-splash__brand,
+  .luxe-splash__mark,
+  .luxe-splash::before,
+  .luxe-splash::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ========================================================================
+   ★ STANDOUT FEATURE #2: GOLD CURSOR FOLLOWER (DESKTOP ONLY)
+   A subtle gold ring trails the cursor with a delicate inertia. Pure
+   luxe. Disabled on touch devices and when reduced-motion is preferred.
+   ======================================================================== */
+.luxe-cursor {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  mix-blend-mode: difference;
+  transition: width 0.2s, height 0.2s, background-color 0.2s, opacity 0.2s;
+  opacity: 0;
+  will-change: transform;
+}
+
+.luxe-cursor.is-ready { opacity: 1; }
+
+.luxe-cursor.is-hover {
+  width: 50px;
+  height: 50px;
+  background-color: rgba(201, 168, 76, 0.25);
+  mix-blend-mode: normal;
+}
+
+.luxe-cursor__dot {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  opacity: 0;
+  will-change: transform;
+}
+
+.luxe-cursor__dot.is-ready { opacity: 1; }
+
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .luxe-cursor,
+  .luxe-cursor__dot { display: none !important; }
+}
+
+/* ========================================================================
+   ★ STANDOUT FEATURE #3: BRANDED SCROLLBAR
+   Gold-on-navy scrollbar that signals premium across the whole site.
+   ======================================================================== */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent) var(--color-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-accent-light), var(--color-accent));
+  border-radius: 10px;
+  border: 2px solid var(--color-primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--color-accent), var(--color-accent-light));
+}
+
+/* ========================================================================
+   ★ STANDOUT FEATURE #4: MAGNETIC BUTTON HOVER
+   Adds a refined gold glow ring on hover for primary buttons.
+   ======================================================================== */
+.btn--primary {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn--primary::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--color-accent-light) 90deg,
+    transparent 180deg,
+    var(--color-accent-light) 270deg,
+    transparent 360deg
+  );
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  animation: luxeBtnSpin 4s linear infinite;
+}
+
+.btn--primary:hover::before {
+  opacity: 0.6;
+}
+
+@keyframes luxeBtnSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========================================================================
+   ★ STANDOUT FEATURE #5: FLOATING BRAND CREST
+   Persistent gold "Luxe" crest floating in the corner — always visible,
+   always on-brand. Acts as a subtle "scroll to top" too.
+   ======================================================================== */
+.luxe-crest {
+  position: fixed;
+  inset-block-end: var(--space-6);
+  inset-inline-end: calc(var(--space-6) + 60px); /* offset from WhatsApp */
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 35% 35%, var(--color-accent-light), var(--color-accent) 70%);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-english);
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: -0.05em;
+  box-shadow:
+    0 6px 20px rgba(201, 168, 76, 0.5),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.15),
+    inset 0 3px 6px rgba(255, 255, 255, 0.4);
+  z-index: var(--z-sticky);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
+  user-select: none;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.luxe-crest:hover {
+  transform: scale(1.1) rotate(8deg);
+  box-shadow:
+    0 10px 30px rgba(201, 168, 76, 0.7),
+    inset 0 -3px 8px rgba(0, 0, 0, 0.2),
+    inset 0 3px 6px rgba(255, 255, 255, 0.5);
+}
+
+@media (max-width: 600px) {
+  .luxe-crest {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+    inset-inline-end: calc(var(--space-4) + 56px);
+  }
 }
 
