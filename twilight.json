@@ -29,7 +29,7 @@
             "type": "static",
             "format": "title",
             "id": "luxe-section-title",
-            "value": "<div class='rounded-lg' style='background-color:#0A0F2C;color:#fff;padding:12px;text-align:center;font-weight:bold'>Luxe Store — إعدادات إضافية</div>",
+            "value": "<div class='rounded-lg' >Luxe Store — إعدادات إضافية</div>",
             "variant": "h6"
         },
         {
@@ -59,7 +59,7 @@
             "id": "luxe_hero_subtitle",
             "label": "النص الفرعي للبانر",
             "format": "textarea",
-            "value": ""
+            "value": null
         },
         {
             "type": "string",
@@ -80,7 +80,7 @@
             "id": "luxe_hero_cta_url",
             "label": "رابط زر البانر",
             "format": "text",
-            "value": ""
+            "value": null
         },
         {
             "type": "boolean",
@@ -358,12 +358,36 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "منتج", "key": "products", "value": "products" },
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "ماركة تجارية", "key": "brands", "value": "brands" },
-                                { "label": "صفحة تعريفية", "key": "pages", "value": "pages" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "منتج",
+                                    "key": "products",
+                                    "value": "products"
+                                },
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "ماركة تجارية",
+                                    "key": "brands",
+                                    "value": "brands"
+                                },
+                                {
+                                    "label": "صفحة تعريفية",
+                                    "key": "pages",
+                                    "value": "pages"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         }
                     ],
@@ -449,9 +473,21 @@
                     "searchable": true,
                     "source": "custom",
                     "sources": [
-                        { "label": "تصنيف", "key": "categories", "value": "categories" },
-                        { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                        { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
                     ]
                 }
             ]
@@ -504,9 +540,21 @@
                             "searchable": true,
                             "source": "custom",
                             "sources": [
-                                { "label": "تصنيف", "key": "categories", "value": "categories" },
-                                { "label": "التخفيضات", "key": "offers_link", "value": "offers_link" },
-                                { "label": "رابط خارجي", "key": "custom", "value": "custom" }
+                                {
+                                    "label": "تصنيف",
+                                    "key": "categories",
+                                    "value": "categories"
+                                },
+                                {
+                                    "label": "التخفيضات",
+                                    "key": "offers_link",
+                                    "value": "offers_link"
+                                },
+                                {
+                                    "label": "رابط خارجي",
+                                    "key": "custom",
+                                    "value": "custom"
+                                }
                             ]
                         },
                         {
@@ -595,16 +643,16 @@
                     "icon": "sicon-list-add",
                     "value": [
                         {
-                          "items.name": "أحمد العتيبي",
-                          "items.avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
-                          "items.stars": 5,
-                          "items.text": "تجربة شراء مذهلة، الجودة فوق التوقعات والتوصيل كان سريعاً جداً."
+                            "items.name": "أحمد العتيبي",
+                            "items.avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
+                            "items.stars": 5,
+                            "items.text": "تجربة شراء مذهلة، الجودة فوق التوقعات والتوصيل كان سريعاً جداً."
                         },
                         {
-                          "items.name": "سارة القحطاني",
-                          "items.avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
-                          "items.stars": 5,
-                          "items.text": "أفضل متجر تعاملت معه، خدمة العملاء متعاونة للغاية."
+                            "items.name": "سارة القحطاني",
+                            "items.avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
+                            "items.stars": 5,
+                            "items.text": "أفضل متجر تعاملت معه، خدمة العملاء متعاونة للغاية."
                         }
                     ],
                     "fields": [
@@ -659,51 +707,123 @@
             ]
         },
         {
-          "key": "store-features",
-          "title": { "ar": "مميزات المتجر", "en": "Store Features" },
-          "icon": "sicon-check-circle",
-          "path": "home.store-features",
-          "fields": [
-            {
-              "id": "items",
-              "type": "collection",
-              "format": "collection",
-              "label": "المميزات",
-              "item_label": "الميزة",
-              "value": [
-                { "items.title": "شحن سريع", "items.text": "توصيل خلال 24 ساعة لكافة المدن", "items.icon": "sicon-shipping" },
-                { "items.title": "دفع آمن", "items.text": "طرق دفع متعددة ومشفرة", "items.icon": "sicon-shield-check" },
-                { "items.title": "جودة مضمونة", "items.text": "أفضل الخامات المختارة بعناية", "items.icon": "sicon-award" }
-              ],
-              "fields": [
-                { "id": "items.title", "type": "string", "format": "text", "label": "العنوان" },
-                { "id": "items.text", "type": "string", "format": "textarea", "label": "الوصف" },
-                { "id": "items.icon", "type": "string", "format": "icon", "label": "الأيقونة" }
-              ]
-            }
-          ]
+            "key": "store-features",
+            "title": {
+                "ar": "مميزات المتجر",
+                "en": "Store Features"
+            },
+            "icon": "sicon-check-circle",
+            "path": "home.store-features",
+            "fields": [
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "المميزات",
+                    "item_label": "الميزة",
+                    "value": [
+                        {
+                            "items.title": "شحن سريع",
+                            "items.text": "توصيل خلال 24 ساعة لكافة المدن",
+                            "items.icon": "sicon-shipping"
+                        },
+                        {
+                            "items.title": "دفع آمن",
+                            "items.text": "طرق دفع متعددة ومشفرة",
+                            "items.icon": "sicon-shield-check"
+                        },
+                        {
+                            "items.title": "جودة مضمونة",
+                            "items.text": "أفضل الخامات المختارة بعناية",
+                            "items.icon": "sicon-award"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "items.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان"
+                        },
+                        {
+                            "id": "items.text",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الوصف"
+                        },
+                        {
+                            "id": "items.icon",
+                            "type": "string",
+                            "format": "icon",
+                            "label": "الأيقونة"
+                        }
+                    ]
+                }
+            ]
         },
         {
-          "key": "youtube-video",
-          "title": { "ar": "فيديو يوتيوب", "en": "YouTube Video" },
-          "icon": "sicon-video",
-          "path": "home.youtube",
-          "fields": [
-            { "id": "youtube_id", "type": "string", "format": "text", "label": "معرف الفيديو (YouTube ID)", "value": "dQw4w9WgXcQ" }
-          ]
+            "key": "youtube-video",
+            "title": {
+                "ar": "فيديو يوتيوب",
+                "en": "YouTube Video"
+            },
+            "icon": "sicon-video",
+            "path": "home.youtube",
+            "fields": [
+                {
+                    "id": "youtube_id",
+                    "type": "string",
+                    "format": "text",
+                    "label": "معرف الفيديو (YouTube ID)",
+                    "value": "dQw4w9WgXcQ"
+                }
+            ]
         },
         {
-          "key": "parallax-banner",
-          "title": { "ar": "بانر بارالاكس", "en": "Parallax Banner" },
-          "icon": "sicon-image",
-          "path": "home.parallax-background",
-          "fields": [
-            { "id": "title", "type": "string", "format": "text", "label": "العنوان", "value": "انضم إلى عالمنا" },
-            { "id": "image", "type": "string", "format": "image", "label": "الصورة", "value": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1920" },
-            { "id": "url", "type": "string", "format": "text", "label": "الرابط", "value": "/store" },
-            { "id": "link_text", "type": "string", "format": "text", "label": "نص الزر", "value": "تسوق المجموعة" },
-            { "id": "is_opacity", "type": "boolean", "format": "switch", "label": "تعتيم الخلفية", "value": true }
-          ]
+            "key": "parallax-banner",
+            "title": {
+                "ar": "بانر بارالاكس",
+                "en": "Parallax Banner"
+            },
+            "icon": "sicon-image",
+            "path": "home.parallax-background",
+            "fields": [
+                {
+                    "id": "title",
+                    "type": "string",
+                    "format": "text",
+                    "label": "العنوان",
+                    "value": "انضم إلى عالمنا"
+                },
+                {
+                    "id": "image",
+                    "type": "string",
+                    "format": "image",
+                    "label": "الصورة",
+                    "value": "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1920"
+                },
+                {
+                    "id": "url",
+                    "type": "string",
+                    "format": "text",
+                    "label": "الرابط",
+                    "value": "/store"
+                },
+                {
+                    "id": "link_text",
+                    "type": "string",
+                    "format": "text",
+                    "label": "نص الزر",
+                    "value": "تسوق المجموعة"
+                },
+                {
+                    "id": "is_opacity",
+                    "type": "boolean",
+                    "format": "switch",
+                    "label": "تعتيم الخلفية",
+                    "value": true
+                }
+            ]
         }
     ],
     "support_url": "https://salla.com/",
