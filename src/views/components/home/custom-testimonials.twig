@@ -1,0 +1,34 @@
+{#
+| Variable | Type | Description |
+|---|---|---|
+| component | object | Contains merchant settings for fields from twilight.json `component` section |
+| component.items | object[] | list of testimonials |
+| position | int | Sorting number start from zero |
+#}
+<section class="luxe-section luxe-section--testimonials">
+    <div class="luxe-container">
+        <div class="luxe-section__head">
+            <h2>{{ trans('blocks.home.testimonials') }}</h2>
+        </div>
+        <salla-slider id="custom-testimonials-{{ position }}" type="testimonials" auto-play>
+            <div slot="items">
+                {% for item in component.items %}
+                    <div class="swiper-slide">
+                        <div class="luxe-testimonial-card glass-card">
+                            <div class="luxe-testimonial-card__avatar">
+                                <img src="{{ item.avatar }}" alt="{{ item.name }}" loading="lazy">
+                            </div>
+                            <div class="luxe-testimonial-card__content">
+                                <p>"{{ item.text }}"</p>
+                                <div class="luxe-testimonial-card__meta">
+                                    <strong>{{ item.name }}</strong>
+                                    <salla-rating-stars value="{{ item.stars }}"></salla-rating-stars>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </salla-slider>
+    </div>
+</section>

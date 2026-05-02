@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="{{ store.language }}"
+      dir="{{ theme.is_rtl ? 'rtl' : 'ltr' }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} — {{ store.name }}</title>
+  <meta name="description" content="{{ page.description }}">
+
+  <!-- Preconnect fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+  <!-- Preload hero image on home page only -->
+  {% if page.type == 'index' %}
+  <link rel="preload" as="image"
+        href="{{ theme.settings.get('luxe_hero_image', '') }}">
+  {% endif %}
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+
+  <!-- Salla Web Components -->
+  <script type="module" src="https://cdn.salla.network/js/twilight.js"></script>
+
+  {% block head %}{% endblock %}
+</head>
+<body class="font-arabic">
+
+  {% component 'header.header' %}
+
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% component 'footer.footer' %}
+
+  <!-- Cart Drawer -->
+  <div class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true">
+    <div class="cart-drawer__header">
+      <h2>{{ 'cart.title' | trans }}</h2>
+      <button class="cart-drawer__close" id="cartDrawerClose"
+              aria-label="{{ 'general.close' | trans }}">✕</button>
+    </div>
+    <div class="cart-drawer__body">
+      <salla-cart-summary></salla-cart-summary>
+      <div class="cart-drawer__footer">
+        <a href="/cart" class="btn btn--primary btn--full">{{ 'cart.checkout' | trans }}</a>
+      </div>
+    </div>
+  </div>
+  <div class="cart-drawer__overlay" id="cartOverlay"></div>
+
+  <!-- Quick View Modal -->
+  <div class="quick-view-modal" id="quickViewModal" role="dialog" aria-modal="true" style="display:none;">
+    <div class="quick-view-modal__inner glass-card">
+      <button class="quick-view-modal__close" id="quickViewClose">✕</button>
+      <div class="quick-view-modal__content" id="quickViewContent">
+        <!-- Loaded via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Newsletter Popup -->
+  <div class="newsletter-popup" id="newsletterPopup" style="display:none;">
+    <div class="newsletter-popup__box glass-card">
+      <button class="newsletter-popup__close" id="newsletterClose">✕</button>
+      <h3>{{ 'newsletter.popup_title' | trans }}</h3>
+      <p>{{ 'newsletter.popup_subtitle' | trans }}</p>
+      <salla-newsletter></salla-newsletter>
+    </div>
+  </div>
+
+  <!-- Floating WhatsApp -->
+  <a class="whatsapp-float"
+     href="https://wa.me/{{ theme.settings.get('luxe_whatsapp_number', '966500000000') }}?text={{ theme.settings.get('luxe_whatsapp_message', 'Hello') | url_encode }}"
+     target="_blank" rel="noopener"
+     aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.531 5.847L.057 23.882l6.198-1.625A11.93 11.93 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.373l-.36-.213-3.68.965.981-3.595-.234-.369A9.818 9.818 0 1112 21.818z"/>
+    </svg>
+  </a>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">↑</button>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- Theme JS -->
+  <script defer src="{{ 'theme.js' | asset_url }}"></script>
+</body>
+</html>

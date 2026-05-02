@@ -1,0 +1,24 @@
+{#
+| Variable      | Type   | Description                                                      |
+|---------------|--------|------------------------------------------------------------------|
+| items[]       | array  | List of features                                                 |
+| items[].icon  | string | SallaIcons css class `sicon-*`                                   |
+| items[].title | string | Title of the feature                                             |
+| items[].text  | string | Subtitle for the feature                                         |
+| position      | Int    | Sorting number start from zero                                   |
+#}
+<section class="luxe-section luxe-section--features">
+    <div class="luxe-container luxe-features-grid">
+      {% for item in component.items %}
+          <div class="luxe-feature-item">
+            <div class="luxe-feature-item__icon">
+              <i class="{{ item.icon }}"></i>
+            </div>
+            <div class="luxe-feature-item__text">
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            </div>
+          </div>
+      {% endfor %}
+    </div>
+</section>

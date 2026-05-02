@@ -1,0 +1,109 @@
+{% extends 'layouts.master' %}
+
+{% block content %}
+<div class="container py-12">
+  <salla-breadcrumb></salla-breadcrumb>
+  
+  <div class="listing-header mt-8">
+    <h1 class="listing-title">{{ page.title }}</h1>
+    <div class="listing-toolbar glass-card">
+      <div class="results-count">
+        {{ products | length }} {{ 'category.results_count' | trans }}
+      </div>
+      <div class="sort-dropdown">
+        <salla-filters-sort></salla-filters-sort>
+      </div>
+    </div>
+  </div>
+
+  <div class="listing-layout mt-10">
+    <!-- SIDEBAR -->
+    <aside class="listing-sidebar">
+      <div class="sidebar-widget">
+        <h4>الأقسام</h4>
+        <ul class="sidebar-links">
+          {% for cat in categories %}
+            <li class="{% if cat.id == category.id %}active{% endif %}">
+              <a href="{{ cat.url }}">{{ cat.name }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="sidebar-widget">
+        <salla-filters product-id="{{ product.id }}"></salla-filters>
+      </div>
+    </aside>
+
+    <!-- GRID -->
+    <div class="listing-main">
+      {% if products is empty %}
+        <div class="empty-state">
+          <div class="empty-icon">🔍</div>
+          <h2>{{ 'category.no_products' | trans }}</h2>
+          <a href="/store" class="btn btn--primary mt-6">{{ 'cart.start_shopping' | trans }}</a>
+        </div>
+      {% else %}
+        <div class="products-grid">
+          {% for product in products %}
+            {% component 'product-card.product-card' with { product: product } %}
+          {% endfor %}
+        </div>
+
+        <div class="pagination-wrap mt-16">
+          <salla-pagination></salla-pagination>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+<style>
+.listing-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+}
+.listing-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-3) var(--space-6);
+}
+
+.listing-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-12);
+}
+@media (max-width: 1024px) {
+  .listing-layout { grid-template-columns: 1fr; }
+  .listing-sidebar { display: none; } /* On mobile usually a drawer/modal is used by Salla filters */
+}
+
+.sidebar-widget {
+  background-color: var(--color-white);
+  padding: var(--space-6);
+  border-radius: var(--radius-md);
+  margin-block-end: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-widget h4 { margin-block-end: var(--space-4); font-size: var(--font-size-lg); }
+
+.sidebar-links li { margin-block-end: var(--space-2); }
+.sidebar-links a { color: var(--color-text-muted); font-size: var(--font-size-sm); }
+.sidebar-links li.active a { color: var(--color-accent); font-weight: 700; }
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-20) var(--space-4);
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+}
+.empty-icon { font-size: 5rem; margin-block-end: var(--space-6); }
+
+.pagination-wrap { display: flex; justify-content: center; }
+</style>
+{% endblock %}

@@ -1,0 +1,217 @@
+{% extends 'layouts.master' %}
+
+{% block content %}
+<div class="container py-12">
+  <salla-breadcrumb></salla-breadcrumb>
+
+  <div class="product-detail-layout mt-8">
+    <!-- LEFT COLUMN: Images -->
+    <div class="product-gallery">
+      <salla-slider type="product-images" product-id="{{ product.id }}">
+      </salla-slider>
+      
+      <!-- Badges -->
+      {% if product.is_on_sale %}
+        <span class="badge badge--discount">-{{ product.discount_percent }}%</span>
+      {% endif %}
+      {% if product.label %}
+        <span class="badge badge--label">{{ product.label }}</span>
+      {% endif %}
+    </div>
+
+    <!-- RIGHT COLUMN: Info -->
+    <div class="product-info">
+      {% if product.brand.name %}
+        <a href="{{ product.brand.url }}" class="product-brand-link">{{ product.brand.name }}</a>
+      {% endif %}
+
+      <h1 class="product-main-title">{{ product.name }}</h1>
+
+      <div class="product-rating-wrap">
+        <salla-rating-stars rate="{{ product.rating }}"></salla-rating-stars>
+        <span class="reviews-count">({{ product.reviews_count }} {{ 'product.reviews' | trans }})</span>
+      </div>
+
+      <div class="product-price-block">
+        <span class="price-current large">{{ product.price.formatted }}</span>
+        {% if product.is_on_sale %}
+          <span class="price-compare">{{ product.compare_price.formatted }}</span>
+        {% endif %}
+      </div>
+
+      {% if product.short_description %}
+        <div class="product-short-desc">
+          {{ product.short_description | raw }}
+        </div>
+      {% endif %}
+
+      {% if product.quantity < 5 and product.quantity > 0 %}
+        <div class="scarcity-badge">
+          ⚡ {{ 'product.scarcity' | trans }}: باقي {{ product.quantity }} قطع فقط!
+        </div>
+      {% endif %}
+
+      <salla-scarcity product-id="{{ product.id }}"></salla-scarcity>
+
+      <div class="product-options-wrap">
+        <salla-product-options product-id="{{ product.id }}"></salla-product-options>
+      </div>
+
+      <div class="product-actions">
+        <div class="qty-and-atc">
+          <salla-quantity-input product-id="{{ product.id }}" max="{{ product.quantity }}"></salla-quantity-input>
+          <salla-add-to-cart product-id="{{ product.id }}" class="btn-atc-main"></salla-add-to-cart>
+        </div>
+        
+        <div class="wishlist-and-share">
+          <salla-button-wishlist product-id="{{ product.id }}"></salla-button-wishlist>
+          <salla-share></salla-share>
+        </div>
+      </div>
+
+      <div class="trust-micro-badges">
+        <div class="micro-badge"><span>🚚</span> شحن سريع</div>
+        <div class="micro-badge"><span>🔄</span> إرجاع 30 يوم</div>
+        <div class="micro-badge"><span>🛡️</span> دفع آمن</div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="product-tabs mt-12">
+        <div class="tabs-nav">
+          <button class="tab-link active" data-tab="desc">{{ 'product.description' | trans }}</button>
+          <button class="tab-link" data-tab="specs">{{ 'product.specs' | trans }}</button>
+          <button class="tab-link" data-tab="reviews">{{ 'product.reviews_tab' | trans }}</button>
+        </div>
+        <div class="tabs-content">
+          <div id="tab-desc" class="tab-panel active">{{ product.description | raw }}</div>
+          <div id="tab-specs" class="tab-panel">
+            {% if product.features %}
+              <ul class="specs-list">
+                {% for feature in product.features %}
+                  <li><strong>{{ feature.name }}:</strong> {{ feature.value }}</li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>لا توجد مواصفات فنية متوفرة.</p>
+            {% endif %}
+          </div>
+          <div id="tab-reviews" class="tab-panel">
+            <salla-rating-stars product-id="{{ product.id }}"></salla-rating-stars>
+            <salla-user-reviews product-id="{{ product.id }}"></salla-user-reviews>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Products -->
+  <section class="related-products mt-20">
+    <div class="section-title">
+      <h2>قد يعجبك أيضاً</h2>
+    </div>
+    <div class="products-grid">
+      {% for rel_product in related_products %}
+        {% component 'product-card.product-card' with { product: rel_product } %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<!-- Sticky Mobile ATC -->
+<div class="sticky-atc" id="stickyATC">
+  <div class="sticky-atc__info">
+    <span class="name">{{ product.name }}</span>
+    <span class="price">{{ product.price.formatted }}</span>
+  </div>
+  <salla-add-to-cart product-id="{{ product.id }}" show-qty="false"></salla-add-to-cart>
+</div>
+
+<style>
+.py-12 { padding-block: var(--space-12); }
+.product-detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-12);
+}
+@media (max-width: 768px) {
+  .product-detail-layout { grid-template-columns: 1fr; }
+}
+
+.product-gallery { position: sticky; top: 100px; height: fit-content; }
+.product-gallery .badge { z-index: 10; }
+
+.product-brand-link {
+  color: var(--color-accent);
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.product-main-title { margin-block: var(--space-2) var(--space-4); }
+
+.product-price-block { margin-block: var(--space-6); }
+.price-current.large { font-size: var(--font-size-3xl); }
+
+.scarcity-badge {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--color-danger);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-6);
+  font-weight: 700;
+}
+
+.qty-and-atc {
+  display: flex;
+  gap: var(--space-4);
+  margin-block: var(--space-8);
+}
+.btn-atc-main { flex: 1; }
+
+.wishlist-and-share {
+  display: flex;
+  gap: var(--space-4);
+  margin-block-end: var(--space-8);
+}
+
+.trust-micro-badges {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+.micro-badge { font-size: var(--font-size-xs); font-weight: 600; }
+
+.tabs-nav {
+  display: flex;
+  gap: var(--space-8);
+  border-block-end: 1px solid var(--color-border);
+  margin-block-end: var(--space-6);
+}
+.tab-link {
+  padding: var(--space-3) 0;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  position: relative;
+}
+.tab-link.active { color: var(--color-primary); }
+.tab-link.active::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -1px;
+  inset-inline: 0;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; animation: fadeIn 0.4s ease; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.sticky-atc__info { display: flex; flex-direction: column; }
+.sticky-atc__info .name { font-weight: 700; font-size: var(--font-size-sm); }
+.sticky-atc__info .price { color: var(--color-accent); font-weight: 700; }
+</style>
+{% endblock %}

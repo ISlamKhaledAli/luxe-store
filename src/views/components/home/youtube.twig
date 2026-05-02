@@ -1,0 +1,12 @@
+{#
+| Variable    | Type   | Description                                                      |
+| youtube_id  | string |                                                                  |
+| position    | Int    | Sorting number start from zero                                   |
+#}
+<section class="luxe-section luxe-section--video">
+  <div class="luxe-container">
+    <div class="luxe-video-wrapper">
+      <lite-youtube videoid="{{ component.youtube_id }}" params="rel=0"></lite-youtube>
+    </div>
+  </div>
+</section>

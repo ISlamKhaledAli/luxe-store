@@ -1,0 +1,19 @@
+<div class="mega-menu">
+  <div class="container mega-menu__inner glass-card">
+    <div class="mega-menu__content">
+      <div class="mega-menu__column">
+        <h4>{{ category.name }}</h4>
+        <ul>
+          {% for sub in category.children %}
+            <li><a href="{{ sub.url }}">{{ sub.name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="mega-menu__column featured">
+        {% if category.image %}
+          <img src="{{ category.image }}" alt="{{ category.name }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

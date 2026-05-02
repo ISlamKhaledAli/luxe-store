@@ -1,0 +1,102 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col about">
+        <a href="/" class="footer-logo">
+          {% if store.logo %}
+            <img src="{{ store.logo }}" alt="{{ store.name }}">
+          {% else %}
+            <h3>{{ store.name }}</h3>
+          {% endif %}
+        </a>
+        <p>{{ store.description }}</p>
+        <div class="social-links">
+          {% for social in store.socials %}
+            <a href="{{ social.url }}" target="_blank" rel="noopener">
+              <i class="salla-icon icon-{{ social.name }}"></i>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="footer-col links">
+        <h4>{{ 'footer.quick_links' | trans }}</h4>
+        <ul>
+          <li><a href="/">{{ 'general.home' | trans }}</a></li>
+          {% for page in store.pages %}
+            <li><a href="{{ page.url }}">{{ page.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="footer-col contact">
+        <h4>تواصل معنا</h4>
+        <ul>
+          {% if store.email %}
+            <li><a href="mailto:{{ store.email }}">{{ store.email }}</a></li>
+          {% endif %}
+          {% if store.mobile %}
+            <li><a href="tel:{{ store.mobile }}">{{ store.mobile }}</a></li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <div class="footer-col newsletter">
+        <h4>النشرة البريدية</h4>
+        <p>اشترك للحصول على آخر العروض</p>
+        <salla-newsletter></salla-newsletter>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; {{ "now"|date("Y") }} {{ store.name }}. {{ 'footer.rights' | trans }}</p>
+      <div class="payment-methods">
+        <!-- Salla automatically injects payment icons if configured -->
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  padding: var(--space-16) 0 var(--space-8);
+  margin-block-start: var(--space-20);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-10);
+  margin-block-end: var(--space-10);
+}
+.footer-col h4 {
+  margin-block-end: var(--space-6);
+  position: relative;
+}
+.footer-col h4::after {
+  content: '';
+  position: absolute;
+  inset-block-end: -8px;
+  inset-inline-start: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--color-accent);
+}
+.footer-col ul li {
+  margin-block-end: var(--space-3);
+}
+.footer-col ul li a:hover {
+  color: var(--color-accent);
+  padding-inline-start: var(--space-2);
+}
+.footer-bottom {
+  border-block-start: 1px solid rgba(255,255,255,0.1);
+  padding-block-start: var(--space-8);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+</style>

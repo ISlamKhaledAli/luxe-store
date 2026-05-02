@@ -1,0 +1,28 @@
+{
+  "name": "luxe-store",
+  "version": "1.0.0",
+  "description": "Luxe Store — Salla theme",
+  "license": "MIT",
+  "scripts": {
+    "production": "webpack --mode production",
+    "prod": "webpack --mode production",
+    "development": "webpack --mode development",
+    "watch": "webpack --mode development --watch"
+  },
+  "author": "Luxe Store",
+  "dependencies": {
+    "animejs": "^3.2.1",
+    "lite-youtube-embed": "^0.3.3"
+  },
+  "devDependencies": {
+    "@salla.sa/twilight": "^2.14.414",
+    "@salla.sa/twilight-components": "^2.14.414",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^6.5.0",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "glob": "^11.1.0",
+    "mini-css-extract-plugin": "^2.10.0",
+    "webpack": "^5.103.0",
+    "webpack-cli": "^5.0.1"
+  }
+}

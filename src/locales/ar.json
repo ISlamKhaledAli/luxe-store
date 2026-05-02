@@ -1,0 +1,50 @@
+{
+  "general": {
+    "close": "إغلاق",
+    "search": "بحث...",
+    "loading": "جاري التحميل...",
+    "show_more": "عرض المزيد"
+  },
+  "cart": {
+    "title": "سلة المشتريات",
+    "empty": "سلة المشتريات فارغة",
+    "start_shopping": "ابدأ التسوق",
+    "subtotal": "المجموع الفرعي",
+    "checkout": "إتمام الطلب",
+    "coupon": "كود الخصم",
+    "count": "منتجات"
+  },
+  "product": {
+    "add_to_cart": "إضافة للسلة",
+    "quick_view": "عرض سريع",
+    "out_of_stock": "نفذت الكمية",
+    "rating": "التقييم",
+    "reviews": "تقييم",
+    "share": "مشاركة",
+    "description": "الوصف",
+    "specs": "المواصفات",
+    "reviews_tab": "التقييمات",
+    "wishlist": "المفضلة",
+    "scarcity": "عجل! الكمية محدودة",
+    "bestseller": "الأكثر مبيعاً"
+  },
+  "category": {
+    "all_products": "كل المنتجات",
+    "sort": "ترتيب حسب",
+    "filter": "تصفية",
+    "no_products": "لا توجد منتجات تطابق بحثك",
+    "results_count": "منتج"
+  },
+  "newsletter": {
+    "popup_title": "اشترك في نشرتنا الإخبارية",
+    "popup_subtitle": "احصل على آخر العروض والخصومات مباشرة في بريدك"
+  },
+  "header": {
+    "menu": "القائمة",
+    "close_menu": "إغلاق القائمة"
+  },
+  "footer": {
+    "rights": "جميع الحقوق محفوظة",
+    "quick_links": "روابط سريعة"
+  }
+}

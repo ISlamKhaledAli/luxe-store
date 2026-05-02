@@ -1,0 +1,82 @@
+<article class="product-card" data-id="{{ product.id }}">
+  <div class="product-card__image-wrap">
+    <a href="{{ product.url }}">
+      <img class="product-card__img"
+           src="{{ product.image.url }}"
+           alt="{{ product.name }}"
+           loading="lazy"
+           decoding="async">
+    </a>
+
+    <!-- Badges -->
+    {% if product.is_on_sale %}
+    <span class="badge badge--discount">
+      -{{ product.discount_percent }}%
+    </span>
+    {% endif %}
+    {% if product.label %}
+    <span class="badge badge--label">{{ product.label }}</span>
+    {% endif %}
+
+    <!-- Quick actions overlay (appears on hover) -->
+    <div class="product-card__overlay">
+      <salla-add-to-cart product-id="{{ product.id }}"
+                         show-qty="false">
+      </salla-add-to-cart>
+      <button class="btn-quick-view glass-card"
+              data-product-id="{{ product.id }}"
+              aria-label="{{ 'product.quick_view' | trans }}">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      </button>
+      <salla-button-wishlist product-id="{{ product.id }}">
+      </salla-button-wishlist>
+    </div>
+  </div>
+
+  <div class="product-card__info">
+    {% if product.brand.name %}
+    <span class="product-card__brand">{{ product.brand.name }}</span>
+    {% endif %}
+
+    <h3 class="product-card__name">
+      <a href="{{ product.url }}">{{ product.name }}</a>
+    </h3>
+
+    <salla-rating-stars rate="{{ product.rating }}">
+    </salla-rating-stars>
+
+    <div class="product-card__price">
+      <span class="price-current">{{ product.price.formatted }}</span>
+      {% if product.is_on_sale %}
+      <span class="price-compare">
+        {{ product.compare_price.formatted }}
+      </span>
+      {% endif %}
+    </div>
+
+    {% if not product.is_available %}
+    <span class="badge badge--sold-out">{{ 'product.out_of_stock' | trans }}</span>
+    {% endif %}
+  </div>
+</article>
+
+<style>
+/* Local component overrides/additions */
+.btn-quick-view {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-white);
+  transition: var(--transition-base);
+}
+.btn-quick-view:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+</style>

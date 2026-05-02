@@ -1,0 +1,153 @@
+{% extends 'layouts.master' %}
+
+{% block content %}
+<div class="container py-16">
+  <div class="section-title">
+    <h1>{{ 'cart.title' | trans }}</h1>
+  </div>
+
+  {% if cart.items is empty %}
+    <div class="empty-state">
+      <div class="empty-icon">🛒</div>
+      <h2>{{ 'cart.empty' | trans }}</h2>
+      <p class="mt-4">يبدو أنك لم تضف أي شيء لسلتك بعد.</p>
+      <a href="/store" class="btn btn--primary mt-8">{{ 'cart.start_shopping' | trans }}</a>
+    </div>
+  {% else %}
+    <div class="cart-layout">
+      <!-- LEFT: Items -->
+      <div class="cart-main">
+        <div class="cart-items-table glass-card">
+          {% for item in cart.items %}
+            <div class="cart-item" data-item-id="{{ item.id }}">
+              <div class="item-thumb">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+              </div>
+              <div class="item-info">
+                <h3><a href="{{ item.product.url }}">{{ item.product.name }}</a></h3>
+                <p class="item-price">{{ item.price.formatted }}</p>
+                {% if item.options %}
+                  <div class="item-options">
+                    {% for option in item.options %}
+                      <span>{{ option.name }}: {{ option.value }}</span>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+              <div class="item-qty">
+                <salla-quantity-input item-id="{{ item.id }}" quantity="{{ item.quantity }}"></salla-quantity-input>
+              </div>
+              <div class="item-total">
+                <strong>{{ (item.price.amount * item.quantity) | money }}</strong>
+              </div>
+              <button class="btn-remove-item" onclick="salla.cart.deleteItem({{ item.id }})">✕</button>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- RIGHT: Summary -->
+      <aside class="cart-sidebar">
+        <div class="order-summary glass-card">
+          <h3>ملخص الطلب</h3>
+          <div class="summary-row">
+            <span>{{ 'cart.subtotal' | trans }}</span>
+            <strong>{{ cart.total.formatted }}</strong>
+          </div>
+          <div class="summary-row">
+            <span>الشحن</span>
+            <span class="text-success">محسوب عند الدفع</span>
+          </div>
+          
+          <div class="coupon-wrap mt-6">
+            <salla-coupon></salla-coupon>
+          </div>
+
+          <hr class="mt-8 mb-8 border-white/10">
+
+          <div class="summary-row total">
+            <span>الإجمالي</span>
+            <span class="total-price">{{ cart.total.formatted }}</span>
+          </div>
+
+          <a href="/checkout" class="btn btn--primary btn--full mt-8">{{ 'cart.checkout' | trans }}</a>
+          
+          <div class="trust-badges-mini mt-8">
+            <div class="mini-badge">🛡️ دفع آمن وموثوق</div>
+            <div class="mini-badge">🚚 شحن سريع لكافة المناطق</div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  {% endif %}
+</div>
+
+<style>
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-10);
+  align-items: start;
+}
+@media (max-width: 1024px) {
+  .cart-layout { grid-template-columns: 1fr; }
+}
+
+.cart-items-table {
+  padding: var(--space-6);
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px 100px 40px;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-6);
+  border-block-end: 1px solid var(--glass-border);
+}
+.cart-item:last-child { border-block-end: none; }
+
+.item-thumb img {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.item-info h3 { font-size: var(--font-size-base); margin-block-end: var(--space-2); }
+.item-price { color: var(--color-accent); font-weight: 700; }
+.item-options { font-size: 12px; color: var(--color-text-muted); display: flex; gap: var(--space-4); }
+
+.btn-remove-item {
+  color: var(--color-danger);
+  font-size: 1.2rem;
+}
+
+.order-summary {
+  padding: var(--space-8);
+  position: sticky;
+  top: 100px;
+}
+.order-summary h3 { margin-block-end: var(--space-8); }
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-block-end: var(--space-4);
+}
+.summary-row.total {
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.btn--full { width: 100%; text-align: center; }
+
+.mini-badge {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-block-end: var(--space-2);
+}
+</style>
+{% endblock %}

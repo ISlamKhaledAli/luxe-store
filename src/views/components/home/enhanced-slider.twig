@@ -1,0 +1,33 @@
+{#
+| Variable                       | Type     | Description                                                                  |
+|--------------------------------|----------|------------------------------------------------------------------------------|
+| component                      | object   | Contains merchant settings for fields from twilight.json `component` section |
+| component.slides[].image       | string   | Image url                                                                    |
+| component.slides[].title       | ?string  |                                                                              |
+| component.slides[].description | ?string  |                                                                              |
+| component.slides               | object[] | list of slides                                                               |
+| position                       | int      | Sorting number start from zero                                               |
+#}
+<section class="luxe-hero-slider" data-luxe-reveal>
+    <salla-slider
+      id="main-slider-{{ position }}"
+      auto-play
+      static-when-single
+      {{ component.slides|length > 1 ? '' : 'show-controls="false"' }}
+      type="fullwidth">
+        <div slot="items">
+            {% for slide in component.slides %}
+                <div class="swiper-slide luxe-slide">
+                    <div style="background-image: url({{ slide.image }});"
+                         class="{{ slide.without_overlay ? '' : 'luxe-slide__overlay' }} luxe-slide__bg"></div>
+                    <div class="luxe-slide__content">
+                        <div class="luxe-slide__text">
+                            <h2 data-swiper-parallax="-500">{{ slide.title }}</h2>
+                            <p data-swiper-parallax="-300">{{ slide.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </salla-slider>
+</section>

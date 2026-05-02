@@ -1,0 +1,24 @@
+{#
+| Variable                       | Type    | Description                                                                  |
+|--------------------------------|---------|------------------------------------------------------------------------------|
+| component                      | object  | Contains merchant settings for fields from twilight.json `component` section |
+| component.brands               | Brand[] | list of selected brands @see views/pages/brands/single.twig                  |
+| position                       | int     | Sorting number start from zero                                               |
+#}
+<section class="luxe-section luxe-section--brands">
+    <div class="luxe-container">
+        {% if component.title %}
+          <div class="luxe-section__head">
+            <h2>{{ component.title }}</h2>
+          </div>
+        {% endif %}
+
+        <div class="luxe-brands-grid">
+            {% for brand in component.brands %}
+                <a href="{{ brand.url }}" class="luxe-brand-card">
+                    <img loading="lazy" src="{{ brand.logo }}" alt="{{ brand.name }}"/>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>

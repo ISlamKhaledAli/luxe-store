@@ -1,0 +1,100 @@
+{% extends "layouts.master" %}
+
+{% set hero_t = theme.settings.get('luxe_hero_title', 'اكتشف أحدث التشكيلات') %}
+{% set hero_s = theme.settings.get('luxe_hero_subtitle', 'تسوق بأفضل الأسعار مع ضمان الجودة') %}
+{% set hero_img = theme.settings.get('luxe_hero_image', 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&q=80&w=1920') %}
+{% set hero_cta = theme.settings.get('luxe_hero_cta_text', 'تسوق الآن') %}
+{% set hero_url = theme.settings.get('luxe_hero_cta_url', '/store') %}
+
+{% block content %}
+<article>
+  <!-- ① HERO SECTION -->
+  <section class="hero" style="background-image: url('{{ hero_img }}')">
+    <div class="hero-content">
+      <h1>{{ hero_t }}</h1>
+      {% if hero_s %}
+        <p>{{ hero_s }}</p>
+      {% endif %}
+      <div class="hero-btns">
+        <a href="{{ hero_url }}" class="btn btn--primary">{{ hero_cta }}</a>
+        <a href="/store" class="btn btn--secondary">اكتشف المزيد</a>
+      </div>
+    </div>
+    <div class="hero-shape shape-1"></div>
+    <div class="hero-shape shape-2"></div>
+  </section>
+
+  <!-- ② DYNAMIC COMPONENTS (Salla Theme Builder) -->
+  {# 
+     This loop renders sections that the merchant adds via the Salla Dashboard.
+     If no components are added, this will be empty.
+  #}
+  <div class="luxe-dynamic-sections">
+    {% for component in page.components %}
+        {% component component.path with { component: component, position: loop.index0 } %}
+    {% endfor %}
+  </div>
+
+  <!-- ③ DEFAULT SECTIONS (Fallback/Fixed) -->
+  {# 
+     If the merchant hasn't added dynamic components, we show some default sections.
+     Or we can keep these as fixed parts of the design.
+  #}
+  {% if page.components|length == 0 %}
+    <section class="featured-categories container">
+      <div class="section-title">
+        <h2>تسوق حسب الفئة</h2>
+      </div>
+      <div class="categories-grid">
+        {% for category in categories | slice(0, 8) %}
+          <a href="{{ category.url }}" class="category-card" data-reveal>
+            <div class="category-card__image">
+              <img loading="lazy" src="{{ category.image.url }}" alt="{{ category.name }}">
+            </div>
+            <span class="category-card__name">{{ category.name }}</span>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+
+    <section class="featured-products container">
+      <div class="section-title">
+        <h2>منتجاتنا المختارة</h2>
+        <p>أرقى التشكيلات التي تناسب ذوقك الرفيع</p>
+      </div>
+      <div class="products-grid">
+        {% for product in products | slice(0, 8) %}
+          {% component 'product-card.product-card' with { product: product } %}
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- ④ RECENTLY VIEWED -->
+  <section class="recently-viewed container" id="recentlyViewedSection" style="display:none;">
+    <div class="section-title">
+      <h2>شاهدتها مؤخراً</h2>
+    </div>
+    <div class="products-grid" id="recentlyViewedContainer"></div>
+  </section>
+</article>
+
+<style>
+/* Local styles for index-specific shapes */
+.hero-shape {
+  position: absolute;
+  background: var(--glass-bg);
+  backdrop-filter: blur(5px);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  z-index: 0;
+  animation: float 10s infinite ease-in-out;
+}
+.shape-1 { width: 200px; height: 200px; top: 10%; left: 5%; }
+.shape-2 { width: 150px; height: 150px; bottom: 15%; right: 10%; animation-delay: -2s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+</style>
+{% endblock %}

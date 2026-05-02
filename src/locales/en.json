@@ -1,0 +1,50 @@
+{
+  "general": {
+    "close": "Close",
+    "search": "Search...",
+    "loading": "Loading...",
+    "show_more": "Show More"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "empty": "Your cart is empty",
+    "start_shopping": "Start Shopping",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "coupon": "Discount Code",
+    "count": "items"
+  },
+  "product": {
+    "add_to_cart": "Add to Cart",
+    "quick_view": "Quick View",
+    "out_of_stock": "Out of Stock",
+    "rating": "Rating",
+    "reviews": "Reviews",
+    "share": "Share",
+    "description": "Description",
+    "specs": "Specifications",
+    "reviews_tab": "Reviews",
+    "wishlist": "Wishlist",
+    "scarcity": "Hurry! Limited stock",
+    "bestseller": "Bestseller"
+  },
+  "category": {
+    "all_products": "All Products",
+    "sort": "Sort By",
+    "filter": "Filter",
+    "no_products": "No products match your search",
+    "results_count": "products"
+  },
+  "newsletter": {
+    "popup_title": "Subscribe to our Newsletter",
+    "popup_subtitle": "Get latest offers and discounts directly in your inbox"
+  },
+  "header": {
+    "menu": "Menu",
+    "close_menu": "Close Menu"
+  },
+  "footer": {
+    "rights": "All rights reserved",
+    "quick_links": "Quick Links"
+  }
+}

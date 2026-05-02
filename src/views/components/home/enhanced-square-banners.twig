@@ -1,0 +1,24 @@
+{#
+| Variable                        | Type     | Description                                                                  |
+|---------------------------------|----------|------------------------------------------------------------------------------|
+| component                       | object   | Contains merchant settings for fields from twilight.json `component` section |
+| component.banners               | object[] | list of banners                                                              |
+| component.banners[].image       | string   |                                                                              |
+| component.banners[].url         | string   |                                                                              |
+| component.banners[].title       | ?string  |                                                                              |
+| component.banners[].description | ?string  |                                                                              |
+| position                        | int      | Sorting number start from zero                                               |
+#}
+
+<section class="luxe-section container luxe-banners">
+    <div class="luxe-banners__grid {{ component.banners|length <= 3 ? 'grid-cols-' ~ component.banners|length : 'grid-cols-3' }}">
+        {% for index, banner in component.banners %}
+            <a href="{{ banner.url }}" class="luxe-banner-item" style="background-image: url('{{ banner.image }}')">
+                <article class="luxe-banner-item__content">
+                    <h3 class="luxe-banner-item__title">{{ banner.title }}</h3>
+                    <p class="luxe-banner-item__desc">{{ banner.description }}</p>
+                </article>
+            </a>
+        {% endfor %}
+    </div>
+</section>
