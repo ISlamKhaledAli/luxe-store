@@ -1,7 +1,7 @@
 {
     "name": {
-        "ar": "Luxe Store",
-        "en": "Luxe Store"
+        "ar": "لُكس — عطور",
+        "en": "Luxe Parfum"
     },
     "repository": "https://github.com/ISlamKhaledAli/luxe-store",
     "author_email": "khaledislam9003@gmail.com",
@@ -22,7 +22,7 @@
             "type": "static",
             "format": "title",
             "id": "luxe-section-title",
-            "value": "<div class='rounded-lg' >Luxe Store — إعدادات إضافية</div>",
+            "value": "<div class='rounded-lg' >Luxe — إعدادات متجر العطور</div>",
             "variant": "h6"
         },
         {
@@ -142,8 +142,8 @@
         {
             "key": "186b3f4f-25cf-4d3c-abca-cef7eed6f0ab",
             "title": {
-                "en": "Enhanced Hero Slider",
-                "ar": "سلايدر صور (محسن)"
+                "en": "Perfume Spotlight Slider",
+                "ar": "سلايدر عرض العطور — Luxe"
             },
             "icon": "sicon-image-carousel",
             "path": "home.enhanced-slider",
@@ -160,14 +160,14 @@
                     "item_label": "صورة",
                     "value": [
                         {
-                            "slides.title": "أهلاً بك في متجرنا",
-                            "slides.description": "اكتشف مجموعتنا الجديدة من الملابس والأحذية الفاخرة",
-                            "slides.image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1920"
+                            "slides.title": "أهلاً بك في عالم العطور",
+                            "slides.description": "تشكيلة مختارة من أرقى الروائح والإكسسوارات الفاخرة",
+                            "slides.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&q=85&w=1920"
                         },
                         {
-                            "slides.title": "أحدث التشكيلات",
-                            "slides.description": "تصاميم عصرية تناسب جميع الأذواق",
-                            "slides.image": "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&q=80&w=1920"
+                            "slides.title": "إصدارات موسمية حصرية",
+                            "slides.description": "اكتشف الجديد: نفحات دافئة وباردة لتناسب كل أوقاتك",
+                            "slides.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=85&w=1920"
                         }
                     ],
                     "fields": [
@@ -225,8 +225,8 @@
         {
             "key": "2b1b130b-5b37-422a-9683-e0fd367460c0",
             "title": {
-                "en": "Quick Links",
-                "ar": "روابط سريعة"
+                "en": "Fragrance Quick Destinations",
+                "ar": "اختصارات أقسام العطور — Luxe"
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.main-links",
@@ -306,17 +306,17 @@
                     "value": [
                         {
                             "links.icon": "sicon-packed-box",
-                            "links.title": "منتج جاهز",
+                            "links.title": "عطور نسائية",
                             "links.url__type": "offers_link"
                         },
                         {
                             "links.icon": "sicon-fabric-swatch",
-                            "links.title": "خدمة حسب الطلب",
+                            "links.title": "عطور رجالية",
                             "links.url__type": "offers_link"
                         },
                         {
                             "links.icon": "sicon-cake",
-                            "links.title": "أكل ومشروبات",
+                            "links.title": "عينات وتجارب",
                             "links.url__type": "offers_link"
                         }
                     ],
@@ -399,8 +399,8 @@
         {
             "key": "9a758d20-2ce4-4782-91fe-c04466464588",
             "title": {
-                "en": "Products with Background",
-                "ar": "منتجات متحركة مع خلفية"
+                "en": "Curated Scents with Backdrop",
+                "ar": "عطور مختارة بخلفية فخمة — Luxe"
             },
             "icon": "sicon-list-play",
             "path": "home.slider-products-with-header",
@@ -409,7 +409,7 @@
                 {
                     "type": "string",
                     "icon": "sicon-image",
-                    "value": "https://images.unsplash.com/photo-1469334031218-e382a71b716b?auto=format&fit=crop&q=80&w=1920",
+                    "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&q=85&w=1920",
                     "label": "صورة الخلفية",
                     "id": "background",
                     "format": "image",
@@ -491,8 +491,8 @@
         {
             "key": "b89edc4a-ce0b-468f-8323-2da48147bb32",
             "title": {
-                "en": "Square Banners",
-                "ar": "صور مربعة (محسنة)"
+                "en": "Signature Scent Square Banners",
+                "ar": "بانرات عطور مربعة — Luxe"
             },
             "icon": "sicon-image",
             "path": "home.enhanced-square-banners",
@@ -511,8 +511,8 @@
                         {
                             "banners.image": "",
                             "banners.url": null,
-                            "banners.title": "تصفَّح حسب التصنيف",
-                            "banners.description": "سهِّل تجربة التسوُّق والوصول لمنتجاتك"
+                            "banners.title": "روائح تترك أثراً",
+                            "banners.description": "اختَر من مجموعاتنا المنسّقة للنساء والرجال"
                         }
                     ],
                     "fields": [
@@ -585,8 +585,8 @@
         {
             "key": "25f6cf26-a53f-4954-9b32-739b311b32c7",
             "title": {
-                "en": "Brands",
-                "ar": "الماركات التجارية"
+                "en": "Haute Perfume Houses",
+                "ar": "بيوت العطور العالمية — Luxe"
             },
             "icon": "sicon-award-ribbon",
             "path": "home.brands",
@@ -604,8 +604,8 @@
                     "minLength": 0,
                     "maxLength": 200,
                     "value": {
-                        "ar": "تصفح من خلال العلامات التجارية",
-                        "en": "Browse All Brands"
+                        "ar": "تصفّح دور العطور الشريكة",
+                        "en": "Browse Perfume Houses"
                     }
                 },
                 {
@@ -626,8 +626,8 @@
         {
             "key": "541cc423-90c7-4230-8a33-a0342cfde4ad",
             "title": {
-                "en": "Custom Testimonials",
-                "ar": "آراء عملاء مخصصة"
+                "en": "Fragrance Lovers' Reviews",
+                "ar": "آراء عشاق الروائح — Luxe"
             },
             "icon": "sicon-chat-bubbles",
             "path": "home.custom-testimonials",
@@ -645,13 +645,13 @@
                             "items.name": "أحمد العتيبي",
                             "items.avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200",
                             "items.stars": 5,
-                            "items.text": "تجربة شراء مذهلة، الجودة فوق التوقعات والتوصيل كان سريعاً جداً."
+                            "items.text": "العطر وصل مغلفاً برفاهية، ثبات الرائحة فاق التوقع. متجر يفهم ذوق محبي العطور."
                         },
                         {
-                            "items.name": "سارة القحطاني",
+                            "items.name": "نورة الدوسري",
                             "items.avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200",
                             "items.stars": 5,
-                            "items.text": "أفضل متجر تعاملت معه، خدمة العملاء متعاونة للغاية."
+                            "items.text": "تشكيلة متنوعة وأسعار شفافة، والاستشارة ساعدتني أختار عطر مناسب للمناسبات."
                         }
                     ],
                     "fields": [
@@ -708,7 +708,7 @@
     ],
     "support_url": "https://salla.com/",
     "description": {
-        "ar": "مجموعة كبيرة من المزايا لدعم تجارتك وتقديم تجربة تسوق مثيرة لعملائك",
-        "en": "A wide range of features to support your business and provide an exciting shopping experience for your customers"
+        "ar": "ثيم فاخر لمتاجر العطور: روائح، ماركات، وعناصر صفحة رئيسية تناسب تجربة تسوّق راقية.",
+        "en": "A luxury theme crafted for perfume stores—scents, houses, and homepage blocks for a refined shopping experience."
     }
 }
