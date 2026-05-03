@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "description": "Luxe Store — Salla theme",
   "license": "MIT",
+  "type": "git",
+  "url": "git+https://github.com/ISlamKhaledAli/luxe-store.git",
   "scripts": {
     "production": "webpack --mode production",
     "prod": "webpack --mode production",
