@@ -1,30 +1,37 @@
 {#
 | معرض صور — يعادل «معرض الصور» في الدليل |
+| بيانات اللوحة قد تصل كـ cell.image أو cells.image (مثل enhanced-slider) |
 #}
+{% set gallery_cells = component.cells|default([]) %}
+{% set four_col = component.use_four_columns|default(component['use_four_columns']|default(false)) %}
 <section class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
     <header class="luxe-section__head">
-      <h2>{{ component.heading }}</h2>
+      <h2>{{ component.heading|default('') }}</h2>
     </header>
-    <div class="luxe-gallery-block__grid {% if component.use_four_columns %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
-      {% for cell in component.cells %}
-        {% set link = cell.url | default('') %}
+    <div class="luxe-gallery-block__grid {% if four_col %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
+      {% for cell in gallery_cells %}
+        {% set img = cell.image|default(cell['cells.image']|default('')) %}
+        {% set cap = cell.caption|default(cell['cells.caption']|default('')) %}
+        {% set link = cell.url|default(cell['cells.url']|default(''))|trim %}
+        {% if img %}
         {% if link %}
           <a href="{{ link }}" class="luxe-gallery-block__cell" data-reveal>
         {% else %}
           <div class="luxe-gallery-block__cell" data-reveal>
         {% endif %}
         <div class="luxe-gallery-block__media">
-          <img src="{{ cell.image }}" alt="{{ cell.caption | default('') }}" loading="lazy" width="600" height="600">
+          <img src="{{ img }}" alt="{{ cap }}" loading="lazy" width="600" height="600">
           <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
         </div>
-        {% if cell.caption %}
-          <span class="luxe-gallery-block__cap">{{ cell.caption }}</span>
+        {% if cap %}
+          <span class="luxe-gallery-block__cap">{{ cap }}</span>
         {% endif %}
         {% if link %}
           </a>
         {% else %}
           </div>
+        {% endif %}
         {% endif %}
       {% endfor %}
     </div>
