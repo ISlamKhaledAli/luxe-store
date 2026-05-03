@@ -1371,21 +1371,18 @@ h3 { font-size: var(--font-size-2xl); }
 }
 
 /* =====================================================================
-   REVEAL ANIMATION (apply when [data-reveal] is observed)
+   REVEAL — معطّل: كان opacity:0 حتى IntersectionObserver؛ قد يخفي محتوى في معاينة سلة.
    ===================================================================== */
-[data-reveal] {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
+[data-reveal],
 [data-reveal].revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] {
+  [data-reveal],
+  [data-reveal].revealed {
     opacity: 1;
     transform: none;
     transition: none;

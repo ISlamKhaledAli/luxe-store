@@ -1,23 +1,24 @@
 {#
 | معرض صور — Luxe
-| نفس نمط «آراء عشاق الروائح»: component.items + items.image / items.caption / items.url
+| نفس نمط سلايدر الصفحة الرئيسية: مجموعة بمعرّف gallery وحقول gallery.* (مثل slides / slides.image)
+| احتياطي لبيانات قديمة: items.* و cells.*
 #}
-{% set gallery_items = component.items|default(component.cells|default([])) %}
+{% set rows = component.gallery|default(component.items|default(component.cells|default([]))) %}
 {% set four_col = component.use_four_columns|default(false) %}
-<section class="luxe-section luxe-gallery-block" data-reveal>
+<section class="luxe-section luxe-gallery-block">
   <div class="luxe-container">
     <header class="luxe-section__head">
       <h2>{{ component.heading|default('') }}</h2>
     </header>
     <div class="luxe-gallery-block__grid {% if four_col %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
-      {% for item in gallery_items %}
-        {% set img = item.image|default(item['items.image']|default(item['cells.image']|default(''))) %}
-        {% set cap_raw = item.caption|default(item['items.caption']|default(item['cells.caption']|default(''))) %}
+      {% for item in rows %}
+        {% set img = item.image|default(item['gallery.image']|default(item['items.image']|default(item['cells.image']|default('')))) %}
+        {% set cap_raw = item.caption|default(item['gallery.caption']|default(item['items.caption']|default(item['cells.caption']|default('')))) %}
         {% set cap = cap_raw %}
         {% if cap_raw and (cap_raw.ar is defined or cap_raw.en is defined) %}
           {% set cap = attribute(cap_raw, store.language)|default(cap_raw.ar|default(cap_raw.en|default(''))) %}
         {% endif %}
-        {% set link_raw = item.url|default(item['items.url']|default(item['cells.url']|default(''))) %}
+        {% set link_raw = item.url|default(item['gallery.url']|default(item['items.url']|default(item['cells.url']|default('')))) %}
         {% set link = link_raw %}
         {% if link_raw and (link_raw.ar is defined or link_raw.en is defined) %}
           {% set link = attribute(link_raw, store.language)|default(link_raw.ar|default(link_raw.en|default(''))) %}
@@ -25,9 +26,9 @@
         {% set link = link|trim %}
         {% if img %}
         {% if link %}
-          <a href="{{ link }}" class="luxe-gallery-block__cell" data-reveal>
+          <a href="{{ link }}" class="luxe-gallery-block__cell">
         {% else %}
-          <div class="luxe-gallery-block__cell" data-reveal>
+          <div class="luxe-gallery-block__cell">
         {% endif %}
         <div class="luxe-gallery-block__media">
           <img src="{{ img }}" alt="{{ cap }}" loading="lazy" width="600" height="600">
