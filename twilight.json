@@ -136,6 +136,37 @@
             "selected": true
         },
         {
+            "type": "static",
+            "id": "luxe-header-section",
+            "format": "title",
+            "value": "<div class='rounded-lg'>الهيدر — عناصر شريط التنقّل</div>",
+            "variant": "h6"
+        },
+        {
+            "type": "boolean",
+            "id": "luxe_header_show_search",
+            "label": "إظهار البحث في الهيدر",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "luxe_header_show_wishlist",
+            "label": "إظهار أيقونة قائمة الأمنيات",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
+            "type": "boolean",
+            "id": "luxe_header_show_account",
+            "label": "إظهار زر الحساب / تسجيل الدخول",
+            "format": "switch",
+            "value": true,
+            "selected": true
+        },
+        {
             "type": "boolean",
             "icon": "sicon-toggle-off",
             "label": "الوضع الداكن للفوتر",

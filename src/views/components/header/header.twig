@@ -8,7 +8,7 @@
 </div>
 {% endif %}
 
-<header class="site-header">
+<header class="site-header{% if not theme.settings.get('header_is_sticky', true) %} site-header--static{% endif %}">
   <div class="container header-inner">
     <!-- Hamburger for mobile -->
     <button class="hamburger" id="mobileMenuBtn" aria-label="{{ 'header.menu' | trans }}">
@@ -30,22 +30,30 @@
 
     <!-- Navigation Desktop: من «قوائم Header» في تخصيص الثيم، أو تصنيفات المتجر كاحتياطي -->
     <nav class="nav-desktop">
+      {% hook 'component:header.menu.start' %}
       {% component 'header.menu' %}
+      {% hook 'component:header.menu.end' %}
     </nav>
 
     <!-- Header Actions -->
     <div class="header-actions">
+      {% if theme.settings.get('luxe_header_show_search', true) %}
       <div class="search-wrap">
         <salla-search></salla-search>
       </div>
+      {% endif %}
       
+      {% if theme.settings.get('luxe_header_show_account', true) %}
       <salla-login-button></salla-login-button>
+      {% endif %}
 
+      {% if theme.settings.get('luxe_header_show_wishlist', true) %}
       <a href="/wishlist" class="action-btn" aria-label="{{ 'product.wishlist' | trans }}">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l8.78-8.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
         </svg>
       </a>
+      {% endif %}
 
       <button class="action-btn cart-toggle" id="cartToggleBtn" aria-label="{{ 'cart.title' | trans }}">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

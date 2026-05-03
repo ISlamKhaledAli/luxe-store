@@ -34,15 +34,9 @@
   </section>
   {% endif %}
 
-  <!-- ② DYNAMIC COMPONENTS (Salla Theme Builder) -->
-  {# 
-     This loop renders sections that the merchant adds via the Salla Dashboard.
-     If no components are added, this will be empty.
-  #}
+  <!-- ② الصفحة الرئيسية من مُنشِّئ سلة — يجب استخدام {% component home %} حتى تُعرض العناصر التي تضيفها من لوحة الثيم -->
   <div class="luxe-dynamic-sections">
-    {% for section in page.components %}
-        {% component section.path with { component: section, position: loop.index0 } %}
-    {% endfor %}
+    {% component home %}
   </div>
 
   <!-- ③ DEFAULT SECTIONS (Fallback/Fixed) -->

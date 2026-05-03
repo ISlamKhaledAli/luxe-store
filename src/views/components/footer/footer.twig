@@ -1,4 +1,4 @@
-<footer class="site-footer site-footer--luxe">
+<footer class="site-footer site-footer--luxe{% if theme.settings.get('footer_is_dark', false) %} site-footer--dark{% endif %}">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-col about">
@@ -63,6 +63,13 @@
   color: var(--color-white);
   padding: var(--space-16) 0 var(--space-8);
   margin-block-start: var(--space-20);
+}
+.site-footer.site-footer--dark {
+  background-color: #0c0c0f;
+  color: rgba(255, 255, 255, 0.92);
+}
+.site-footer.site-footer--dark .about p {
+  color: rgba(255, 255, 255, 0.65);
 }
 .footer-grid {
   display: grid;

@@ -216,6 +216,11 @@ h3 { font-size: var(--font-size-2xl); }
   color: var(--color-text);
 }
 
+.site-header.site-header--static {
+  position: relative;
+  inset-block-start: auto;
+}
+
 .header-inner {
   display: flex;
   align-items: center;

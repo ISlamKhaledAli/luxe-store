@@ -7,6 +7,9 @@
   <title>{{ page.title }} — {{ store.name }}</title>
   <meta name="description" content="{{ page.description }}">
 
+  {% hook 'head:start' %}
+  {% hook 'head' %}
+
   <!-- Preconnect fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,8 +29,12 @@
   <script type="module" src="https://cdn.salla.network/js/twilight.js"></script>
 
   {% block head %}{% endblock %}
+
+  {% hook 'head:end' %}
 </head>
 <body class="font-arabic">
+
+  {% hook 'body:start' %}
 
   {# ★ Luxe Brand Splash — shown once per session, fades out automatically #}
   <div class="luxe-splash" id="luxeSplash" role="presentation" aria-hidden="true">
@@ -108,5 +115,7 @@
 
   <!-- Theme JS -->
   <script defer src="{{ 'theme.js' | asset_url }}"></script>
+
+  {% hook 'body:end' %}
 </body>
 </html>

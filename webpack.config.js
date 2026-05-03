@@ -4,6 +4,9 @@ const CopyPlugin = require("copy-webpack-plugin");
 const { InitialTwigSyncPlugin } = require("./scripts/salla-theme-sync.js");
 const path = require("path");
 
+const isWin = process.platform === "win32";
+const isWatch = process.argv.includes("--watch");
+
 module.exports = {
   entry: {
     theme: [
@@ -16,11 +19,17 @@ module.exports = {
   // otherwise exit as soon as stdin ends. See: https://webpack.js.org/configuration/watch/#watchoptionsstdin
   watchOptions: {
     stdin: false,
+    // OneDrive / cloud-synced folders on Windows often break native file watchers; webpack
+    // can exit right after the first successful build and Salla CLI then reports
+    // "Command failed: pnpm run watch". Polling avoids that.
+    // OneDrive: slower poll can be more stable than native watchers + rapid clean cycles
+    ...(isWin ? { poll: 2000 } : {}),
   },
   output: {
     path: path.resolve(__dirname, 'assets'),
     filename: 'js/[name].js',
-    clean: true,
+    // Avoid deleting/rebuilding the whole output folder on every watch tick (often trips OneDrive / AV locks).
+    clean: !isWatch,
   },
   module: {
     rules: [
