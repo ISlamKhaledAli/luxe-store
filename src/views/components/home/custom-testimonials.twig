@@ -16,13 +16,13 @@
                     <div class="swiper-slide">
                         <div class="luxe-testimonial-card glass-card">
                             <div class="luxe-testimonial-card__avatar">
-                                <img src="{{ item.avatar }}" alt="{{ item.name }}" loading="lazy">
+                                <img src="{{ item.avatar|default(item['items.avatar']|default('')) }}" alt="{{ item.name|default(item['items.name']|default('')) }}" loading="lazy">
                             </div>
                             <div class="luxe-testimonial-card__content">
-                                <p>"{{ item.text }}"</p>
+                                <p>"{{ item.text|default(item['items.text']|default('')) }}"</p>
                                 <div class="luxe-testimonial-card__meta">
-                                    <strong>{{ item.name }}</strong>
-                                    <salla-rating-stars value="{{ item.stars }}"></salla-rating-stars>
+                                    <strong>{{ item.name|default(item['items.name']|default('')) }}</strong>
+                                    <salla-rating-stars value="{{ item.stars|default(item['items.stars']|default(5)) }}"></salla-rating-stars>
                                 </div>
                             </div>
                         </div>

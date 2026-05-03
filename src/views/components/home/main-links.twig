@@ -25,10 +25,12 @@
                 {% for cat in component.categories %}
                     <div class="swiper-slide slide--one-sixth">
                         <a href="{{ cat.url }}" class="luxe-cat-entry">
-                            {% if cat.image %}
-                              <img src="{{ cat.image }}" class="luxe-cat-entry__img" width="64" height="64" alt="{{ cat.name }}"/>
+                            {% set raw = cat.image %}
+                            {% set cimg = raw and raw.url is defined ? raw.url : raw %}
+                            {% if cimg %}
+                              <img src="{{ cimg }}" class="luxe-cat-entry__img" width="64" height="64" alt="{{ cat.name }}"/>
                             {% else %}
-                              <i class="{{ cat.icon }}"></i>
+                              <i class="{{ cat.icon|default('sicon-layout-grid-rearrange') }}"></i>
                             {% endif %}
                             <h2>{{ cat.name }}</h2>
                         </a>

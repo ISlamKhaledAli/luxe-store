@@ -11,15 +11,18 @@
     </header>
     <div class="luxe-instagram__grid">
       {% for tile in component.tiles %}
-        {% set href = tile.url|default('')|trim %}
+        {% set href = tile.url|default(tile['tiles.url']|default(''))|trim %}
+        {% set timg = tile.image|default(tile['tiles.image']|default('')) %}
+        {% if timg %}
         {% if href %}
           <a href="{{ href }}" class="luxe-instagram__cell" target="_blank" rel="noopener noreferrer">
-            <img src="{{ tile.image }}" alt="" loading="lazy" width="400" height="400">
+            <img src="{{ timg }}" alt="" loading="lazy" width="400" height="400">
           </a>
         {% else %}
           <span class="luxe-instagram__cell luxe-instagram__cell--static">
-            <img src="{{ tile.image }}" alt="" loading="lazy" width="400" height="400">
+            <img src="{{ timg }}" alt="" loading="lazy" width="400" height="400">
           </span>
+        {% endif %}
         {% endif %}
       {% endfor %}
     </div>

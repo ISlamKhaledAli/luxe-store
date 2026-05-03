@@ -11,12 +11,15 @@
     </header>
     <div class="luxe-why__grid">
       {% for item in component.pillars %}
+        {% set ic = item.icon|default(item['pillars.icon']|default('sicon-star')) %}
+        {% set ttl = item.title|default(item['pillars.title']|default('')) %}
+        {% set body = item.text|default(item['pillars.text']|default('')) %}
         <article class="luxe-why__card glass-card" data-reveal>
           <div class="luxe-why__icon" aria-hidden="true">
-            <i class="{{ item.icon }}"></i>
+            <i class="{{ ic }}"></i>
           </div>
-          <h3>{{ item.title }}</h3>
-          <p>{{ item.text }}</p>
+          <h3>{{ ttl }}</h3>
+          <p>{{ body }}</p>
         </article>
       {% endfor %}
     </div>

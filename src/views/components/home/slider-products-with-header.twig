@@ -17,13 +17,16 @@
     </div>
 
     {% set display_all = component.display_all_url %}
+    {% if display_all is iterable %}
+      {% set display_all = '' %}
+    {% endif %}
     <div class="luxe-container">
         <salla-products-slider
             {% if component.products|length %}
               source="selected"
               source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"
             {% endif %}
-            {% if display_all != '' and display_all != '#' %}
+            {% if display_all and display_all != '' and display_all != '#' %}
                 display-all-url="{{ display_all }}"
             {% endif %}
             block-title=" "

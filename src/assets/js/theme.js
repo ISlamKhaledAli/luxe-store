@@ -440,16 +440,44 @@ function initRecentlyViewed() {
 // --- ⑮ Intersection Reveal Animations ---
 function initRevealAnimations() {
     const reveals = document.querySelectorAll('[data-reveal]');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
+    if (!reveals.length) return;
 
-    reveals.forEach(el => observer.observe(el));
+    const revealEl = (el) => {
+        el.classList.add('revealed');
+    };
+
+    const isAlreadyVisible = (el) => {
+        const rect = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top < vh - 8 && rect.bottom > 8;
+    };
+
+    reveals.forEach((el) => {
+        if (isAlreadyVisible(el)) revealEl(el);
+    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    revealEl(entry.target);
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { root: null, rootMargin: '0px 0px 12% 0px', threshold: 0 }
+    );
+
+    reveals.forEach((el) => {
+        if (!el.classList.contains('revealed')) observer.observe(el);
+    });
+
+    // Preview / IO edge cases: never leave sections permanently invisible
+    window.setTimeout(() => {
+        reveals.forEach((el) => {
+            if (!el.classList.contains('revealed')) revealEl(el);
+        });
+    }, 3500);
 }
 
 // --- Luxe FAQ accordion (perfume & other blocks) ---
