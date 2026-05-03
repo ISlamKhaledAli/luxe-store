@@ -1,19 +1,35 @@
 {#
-| شبكة منتجات مميزة — اختيار يدوي من المتجر |
-| component.products Product[] |
+| شبكة منتجات مميزة — اختيار يدوي من المتجر
+| component.products Product[]
 #}
+
 {% set display_all = component.display_all_url %}
-{% if display_all is iterable %}
-  {% set display_all = '' %}
+{# Salla handles variable-list/items source differently, we need to extract the URL safely #}
+{% if display_all is iterable and display_all|length > 0 %}
+    {% set display_all = display_all|first.url|default(display_all|first) %}
 {% endif %}
+{% if display_all is iterable %}{% set display_all = '' %}{% endif %}
+
 <section class="luxe-section luxe-feat-grid" data-reveal>
   <div class="luxe-container">
     <header class="luxe-section__head">
-      <h2>{{ component.heading }}</h2>
-      {% if component.subheading %}
-        <p class="luxe-feat-grid__lead">{{ component.subheading }}</p>
+      {# Safe handling for multilanguage heading #}
+      {% set heading = component.heading %}
+      {% if heading is iterable %}
+        {% set heading = heading.ar|default(heading.en|default('')) %}
+      {% endif %}
+      <h2>{{ heading|default(trans('blocks.home.featured_products')) }}</h2>
+
+      {# Safe handling for multilanguage subheading #}
+      {% set subheading = component.subheading %}
+      {% if subheading is iterable %}
+        {% set subheading = subheading.ar|default(subheading.en|default('')) %}
+      {% endif %}
+      {% if subheading %}
+        <p class="luxe-feat-grid__lead">{{ subheading }}</p>
       {% endif %}
     </header>
+
     {% if component.products|default([])|length %}
       <div class="luxe-feat-grid__products products-grid">
         {% for product in component.products %}
@@ -22,6 +38,7 @@
       </div>
     {% else %}
       <div class="luxe-feat-grid__slider">
+        {# fallback if no products selected: show latest #}
         <salla-products-slider
           source="latest"
           block-title=" "
@@ -29,6 +46,7 @@
         ></salla-products-slider>
       </div>
     {% endif %}
+
     {% if display_all and display_all != '' and display_all != '#' %}
       <div class="luxe-feat-grid__actions">
         <a href="{{ display_all }}" class="btn btn--secondary">عرض الكل</a>

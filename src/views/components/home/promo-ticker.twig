@@ -1,21 +1,32 @@
 {# Horizontally scrolling promo lines — duplicate row for seamless CSS loop #}
-{% if component.lines|default([])|length > 0 %}
+{% set lines = component.lines|default([]) %}
+{% if lines|length > 0 %}
 <div class="luxe-ticker" data-reveal aria-label="تنبيهات المتجر">
   <div class="luxe-ticker__mask">
     <div class="luxe-ticker__track">
       <div class="luxe-ticker__row">
-        {% for line in component.lines %}
+        {% for line in lines %}
           {% set txt = line.text|default(line['lines.text']|default('')) %}
+          {# Handle multilanguage object #}
+          {% if txt is iterable %}
+            {% set txt = txt.ar|default(txt.en|default('')) %}
+          {% endif %}
+          
           {% if txt|trim %}
-          <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ txt }}</span>
+            <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ txt }}</span>
           {% endif %}
         {% endfor %}
       </div>
       <div class="luxe-ticker__row" aria-hidden="true">
-        {% for line in component.lines %}
+        {% for line in lines %}
           {% set txt = line.text|default(line['lines.text']|default('')) %}
+          {# Handle multilanguage object #}
+          {% if txt is iterable %}
+            {% set txt = txt.ar|default(txt.en|default('')) %}
+          {% endif %}
+          
           {% if txt|trim %}
-          <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ txt }}</span>
+            <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ txt }}</span>
           {% endif %}
         {% endfor %}
       </div>
