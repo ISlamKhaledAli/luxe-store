@@ -1,0 +1,19 @@
+{#
+| Horizontally scrolling promo lines — duplicate row for seamless CSS loop |
+#}
+<div class="luxe-ticker" data-reveal aria-label="تنبيهات المتجر">
+  <div class="luxe-ticker__mask">
+    <div class="luxe-ticker__track">
+      <div class="luxe-ticker__row">
+        {% for line in component.lines %}
+          <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ line.text }}</span>
+        {% endfor %}
+      </div>
+      <div class="luxe-ticker__row" aria-hidden="true">
+        {% for line in component.lines %}
+          <span class="luxe-ticker__item"><span class="luxe-ticker__dot">✦</span> {{ line.text }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

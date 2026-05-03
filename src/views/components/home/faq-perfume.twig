@@ -1,0 +1,34 @@
+{#
+| Variable        | Description                    |
+|-----------------|--------------------------------|
+| component       | Schema fields from twilight    |
+| position        | Block index on home page       |
+#}
+<section class="luxe-section luxe-faq luxe-faq--perfume" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{% if component.heading %}{{ component.heading }}{% else %}أسئلة تهم عشاق العطور{% endif %}</h2>
+    </header>
+    <div class="luxe-faq__list" role="list">
+      {% for item in component.items %}
+        <div class="luxe-faq__item" data-reveal role="listitem">
+          <button type="button"
+                  class="luxe-faq__q"
+                  aria-expanded="false"
+                  id="faq-q-{{ position }}-{{ loop.index0 }}"
+                  aria-controls="faq-a-{{ position }}-{{ loop.index0 }}">
+            <span>{{ item.question }}</span>
+            <span class="luxe-faq__chev" aria-hidden="true"></span>
+          </button>
+          <div class="luxe-faq__a"
+               id="faq-a-{{ position }}-{{ loop.index0 }}"
+               role="region"
+               hidden
+               aria-labelledby="faq-q-{{ position }}-{{ loop.index0 }}">
+            <p>{{ item.answer }}</p>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

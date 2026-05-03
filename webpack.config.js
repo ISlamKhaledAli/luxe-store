@@ -8,7 +8,8 @@ module.exports = {
   entry: {
     theme: [
       './src/assets/js/theme.js',
-      './src/assets/css/theme.css'
+      './src/assets/css/theme.css',
+      './src/assets/css/luxe-perfume-blocks.css'
     ]
   },
   // Salla CLI wraps `webpack --watch` via execSync (no TTY stdin). Webpack 5 would

@@ -1,0 +1,24 @@
+{#
+| Pillars: icon, title, text |
+#}
+<section class="luxe-section luxe-why" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{{ component.heading }}</h2>
+      {% if component.subheading %}
+        <p class="luxe-why__lead">{{ component.subheading }}</p>
+      {% endif %}
+    </header>
+    <div class="luxe-why__grid">
+      {% for item in component.pillars %}
+        <article class="luxe-why__card glass-card" data-reveal>
+          <div class="luxe-why__icon" aria-hidden="true">
+            <i class="{{ item.icon }}"></i>
+          </div>
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.text }}</p>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

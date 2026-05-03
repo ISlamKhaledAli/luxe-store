@@ -1,8 +1,8 @@
 {% extends "layouts.master" %}
 
-{% set hero_t = theme.settings.get('luxe_hero_title', 'اكتشف أحدث التشكيلات') %}
-{% set hero_s = theme.settings.get('luxe_hero_subtitle', 'تسوق بأفضل الأسعار مع ضمان الجودة') %}
-{% set hero_img = theme.settings.get('luxe_hero_image', 'https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&q=80&w=1920') %}
+{% set hero_t = theme.settings.get('luxe_hero_title', 'روائح تروي قصتك') %}
+{% set hero_s = theme.settings.get('luxe_hero_subtitle', 'تشكيلة مختارة من أرقى بيوت العطور — ثبات وأناقة في كل رشة') %}
+{% set hero_img = theme.settings.get('luxe_hero_image', 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&q=85&w=1920') %}
 {% set hero_cta = theme.settings.get('luxe_hero_cta_text', 'تسوق الآن') %}
 {% set hero_url = theme.settings.get('luxe_hero_cta_url', '/store') %}
 
@@ -17,7 +17,7 @@
       {% endif %}
       <div class="hero-btns">
         <a href="{{ hero_url }}" class="btn btn--primary">{{ hero_cta }}</a>
-        <a href="/store" class="btn btn--secondary">اكتشف المزيد</a>
+        <a href="/store" class="btn btn--secondary">استكشف العطور</a>
       </div>
     </div>
     <div class="hero-shape shape-1"></div>

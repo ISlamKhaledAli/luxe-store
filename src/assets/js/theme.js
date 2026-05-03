@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRecentlyViewed();
     initRevealAnimations();
     initProductTabs();
+    initLuxeFaqAccordion();
 });
 
 // =============================================================
@@ -93,7 +94,7 @@ function initLuxeCursor() {
         dot.classList.add('is-ready');
     }, 100);
 
-    const hoverSelectors = 'a, button, .btn, [role="button"], salla-add-to-cart, .product-card, .luxe-crest';
+    const hoverSelectors = 'a, button, .btn, [role="button"], salla-add-to-cart, .product-card, .luxe-crest, .luxe-faq__q, .luxe-journal__card';
     document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverSelectors)) ring.classList.add('is-hover');
     });
@@ -414,6 +415,30 @@ function initRevealAnimations() {
     }, { threshold: 0.1 });
 
     reveals.forEach(el => observer.observe(el));
+}
+
+// --- Luxe FAQ accordion (perfume & other blocks) ---
+function initLuxeFaqAccordion() {
+    document.querySelectorAll('.luxe-faq__q').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.luxe-faq__item');
+            if (!item) return;
+            const ans = item.querySelector('.luxe-faq__a');
+            const open = !item.classList.contains('is-open');
+            item.parentElement.querySelectorAll('.luxe-faq__item.is-open').forEach((o) => {
+                if (o !== item) {
+                    o.classList.remove('is-open');
+                    const b = o.querySelector('.luxe-faq__q');
+                    const a = o.querySelector('.luxe-faq__a');
+                    if (b) b.setAttribute('aria-expanded', 'false');
+                    if (a) a.hidden = true;
+                }
+            });
+            item.classList.toggle('is-open', open);
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            if (ans) ans.hidden = !open;
+        });
+    });
 }
 
 // --- ⑯ Product Tabs ---

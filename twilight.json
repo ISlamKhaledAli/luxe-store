@@ -38,35 +38,35 @@
             "id": "luxe_topbar_text",
             "label": "نص الشريط العلوي",
             "format": "text",
-            "value": "🎉 شحن مجاني للطلبات فوق 200 ريال"
+            "value": "عطور أصلية — شحن سريع — تغليف هدايا فاخر 🌸"
         },
         {
             "type": "string",
             "id": "luxe_hero_title",
             "label": "عنوان البانر الرئيسي",
             "format": "text",
-            "value": "اكتشف أحدث التشكيلات"
+            "value": "روائح تروي قصتك"
         },
         {
             "type": "string",
             "id": "luxe_hero_subtitle",
             "label": "النص الفرعي للبانر",
             "format": "textarea",
-            "value": null
+            "value": "تشكيلة مختارة من أرقى بيوت العطور — ثبات وأناقة في كل رشة"
         },
         {
             "type": "string",
             "id": "luxe_hero_image",
             "label": "صورة البانر الرئيسي (رابط)",
             "format": "image",
-            "value": "https://images.unsplash.com/photo-1541976844346-f18aeac57b06?auto=format&fit=crop&q=80&w=1920"
+            "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&q=85&w=1920"
         },
         {
             "type": "string",
             "id": "luxe_hero_cta_text",
             "label": "نص زر البانر",
             "format": "text",
-            "value": "تسوق الآن"
+            "value": "تسوق العطور"
         },
         {
             "type": "string",
@@ -702,6 +702,257 @@
                     "required": false,
                     "minLength": 1,
                     "maxLength": 30
+                }
+            ]
+        },
+        {
+            "key": "97833237-290b-4261-9d5c-2b31e892c8d0",
+            "title": {
+                "en": "Fragrance FAQ Accordion",
+                "ar": "أسئلة شائعة — عالم العطور — Luxe"
+            },
+            "icon": "sicon-help-circle",
+            "path": "home.faq-perfume",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "أسئلة تهم عشاق العطور"
+                },
+                {
+                    "id": "items",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الأسئلة والأجوبة",
+                    "item_label": "سؤال",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 20,
+                    "value": [
+                        {
+                            "items.question": "كيف أختار عطراً يناسبني؟",
+                            "items.answer": "ابدأ بالموسم والمناسبة، ثم جرّب العينة على معصمك وانتظر ما لا يقل عن ٣٠ دقيقة لمعرفة مراحل العطر."
+                        },
+                        {
+                            "items.question": "هل العطور لديكم أصلية؟",
+                            "items.answer": "نعم، نتعامل مع موزعين معتمدين ونخزّن العبوات بعيداً عن الحرارة والرطوبة."
+                        },
+                        {
+                            "items.question": "ما مدة الشحن؟",
+                            "items.answer": "معظم الطلبات تُسلَّم خلال ٢–٥ أيام عمل حسب المدينة."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "items.question",
+                            "type": "string",
+                            "format": "text",
+                            "label": "السؤال"
+                        },
+                        {
+                            "id": "items.answer",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الإجابة"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "b256c9d5-403f-471d-a6fa-c118311ccb91",
+            "title": {
+                "en": "Why Choose Us",
+                "ar": "لماذا نحن — Luxe"
+            },
+            "icon": "sicon-star",
+            "path": "home.why-luxe",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "ثلاثة أسباب لتتألق تجربتك"
+                },
+                {
+                    "type": "string",
+                    "id": "subheading",
+                    "format": "textarea",
+                    "label": "نص تعريفي قصير",
+                    "value": "نختار بعناية لنمنحك ثباتاً وأناقة في كل رشة."
+                },
+                {
+                    "id": "pillars",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "مربعات المميزات",
+                    "item_label": "بطاقة",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "value": [
+                        {
+                            "pillars.icon": "sicon-shield-check",
+                            "pillars.title": "أصالة مضمونة",
+                            "pillars.text": "توريد من جهات موثوقة مع التزام بمعايير التخزين."
+                        },
+                        {
+                            "pillars.icon": "sicon-gift",
+                            "pillars.title": "تغليف هدايا فاخر",
+                            "pillars.text": "صناديق أنيقة تناسب أغلى المناسبات."
+                        },
+                        {
+                            "pillars.icon": "sicon-chat-bubbles",
+                            "pillars.title": "استشارة رائحة",
+                            "pillars.text": "نساعدك تختار التركيبة التي تعبّر عنك."
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "pillars.icon",
+                            "type": "string",
+                            "format": "icon",
+                            "label": "أيقونة"
+                        },
+                        {
+                            "id": "pillars.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان",
+                            "multilanguage": true
+                        },
+                        {
+                            "id": "pillars.text",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "الوصف",
+                            "multilanguage": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "c8ce9665-a7b9-4da5-8828-774df2c56f4d",
+            "title": {
+                "en": "Scrolling Promo Ticker",
+                "ar": "شريط عروض متحرك — Luxe"
+            },
+            "icon": "sicon-text",
+            "path": "home.promo-ticker",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "id": "lines",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "جُمل الشريط",
+                    "item_label": "جملة",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 12,
+                    "value": [
+                        {
+                            "lines.text": "شحن سريع إلى كافة المدن"
+                        },
+                        {
+                            "lines.text": "عينات حصرية للأعضاء المميزين"
+                        },
+                        {
+                            "lines.text": "لمسة فاخرة في كل طلب"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "lines.text",
+                            "type": "string",
+                            "format": "text",
+                            "label": "النص",
+                            "multilanguage": true
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "a541f687-980d-45af-8f6f-114067bdacb6",
+            "title": {
+                "en": "Fragrance Journal",
+                "ar": "مجلة العطور — Luxe"
+            },
+            "icon": "sicon-book",
+            "path": "home.fragrance-journal",
+            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "من عالم الروائح"
+                },
+                {
+                    "id": "posts",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "المقالات",
+                    "item_label": "مقال",
+                    "required": true,
+                    "minLength": 1,
+                    "maxLength": 6,
+                    "value": [
+                        {
+                            "posts.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85",
+                            "posts.title": "كيف يتطور العطر على البشرة؟",
+                            "posts.excerpt": "رحلة من الرأس إلى القاعدة ولماذا يلاحظ البعض اختلاف الرائحة.",
+                            "posts.url": "/blog"
+                        },
+                        {
+                            "posts.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",
+                            "posts.title": "دليل هدايا لعشاق العطور",
+                            "posts.excerpt": "أفكار تغليف وتركيبات مرنة لكل ميزانية.",
+                            "posts.url": "/blog"
+                        },
+                        {
+                            "posts.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85",
+                            "posts.title": "الفرق بين ماء العطر والأو دو تواليت",
+                            "posts.excerpt": "نِسَب التركيز باختصار ثم أيهما يناسب يومك.",
+                            "posts.url": "/blog"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "posts.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "صورة الغلاف"
+                        },
+                        {
+                            "id": "posts.title",
+                            "type": "string",
+                            "format": "text",
+                            "label": "العنوان",
+                            "multilanguage": true
+                        },
+                        {
+                            "id": "posts.excerpt",
+                            "type": "string",
+                            "format": "textarea",
+                            "label": "مقتطف",
+                            "multilanguage": true
+                        },
+                        {
+                            "id": "posts.url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط المقال"
+                        }
+                    ]
                 }
             ]
         }

@@ -205,8 +205,8 @@ h3 { font-size: var(--font-size-2xl); }
   position: sticky;
   inset-block-start: 0;
   z-index: var(--z-sticky);
-  transition: var(--transition-base);
-  padding: var(--space-4) 0;
+  transition: padding 0.35s ease, background-color 0.35s ease, box-shadow 0.35s ease, color 0.25s ease;
+  padding: clamp(var(--space-2), 1.25vw, var(--space-4)) 0;
 }
 
 .site-header.scrolled {
@@ -220,11 +220,14 @@ h3 { font-size: var(--font-size-2xl); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-4);
+  gap: clamp(var(--space-2), 2vw, var(--space-4));
+  min-height: 52px;
 }
 
 .logo img {
-  height: 45px;
+  height: clamp(36px, 3.6vw, 46px);
+  width: auto;
+  object-fit: contain;
 }
 
 .nav-desktop {
@@ -259,8 +262,8 @@ h3 { font-size: var(--font-size-2xl); }
 
 /* --- Hero Section --- */
 .hero {
-  height: 100vh;
-  min-height: 600px;
+  min-height: clamp(420px, 78vh, 780px);
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -270,7 +273,8 @@ h3 { font-size: var(--font-size-2xl); }
   background-position: center;
   position: relative;
   overflow: hidden;
-  margin-block-start: -90px; /* Offset for transparent header */
+  margin-block-start: calc(-1 * clamp(64px, 10vw, 88px));
+  padding-block: calc(clamp(64px, 10vw, 88px) + var(--space-8)) var(--space-16);
 }
 
 .hero::before {
@@ -288,13 +292,13 @@ h3 { font-size: var(--font-size-2xl); }
 }
 
 .hero h1 {
-  font-size: var(--font-size-5xl);
+  font-size: clamp(var(--font-size-2xl), 4.5vw, var(--font-size-5xl));
   margin-block-end: var(--space-4);
   animation: fadeInUp 0.8s ease backwards;
 }
 
 .hero p {
-  font-size: var(--font-size-xl);
+  font-size: clamp(var(--font-size-base), 2vw, var(--font-size-xl));
   margin-block-end: var(--space-8);
   animation: fadeInUp 0.8s ease 0.2s backwards;
 }
