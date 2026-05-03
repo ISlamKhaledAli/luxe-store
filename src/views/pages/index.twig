@@ -40,8 +40,8 @@
      If no components are added, this will be empty.
   #}
   <div class="luxe-dynamic-sections">
-    {% for component in page.components %}
-        {% component component.path with { component: component, position: loop.index0 } %}
+    {% for section in page.components %}
+        {% component section.path with { component: section, position: loop.index0 } %}
     {% endfor %}
   </div>
 

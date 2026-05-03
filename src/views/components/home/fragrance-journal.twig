@@ -1,24 +1,41 @@
 {#
 | Magazine-style cards: image, title, excerpt, url |
+| يدعم مفاتيح سلة المسورة posts.* والمسطّحة post.* |
 #}
-<section class="luxe-section luxe-journal" data-reveal>
+<section class="luxe-section luxe-journal">
   <div class="luxe-container">
     <header class="luxe-section__head">
-      <h2>{{ component.heading }}</h2>
+      {% if component.heading %}
+        <h2>{{ component.heading }}</h2>
+      {% endif %}
     </header>
     <div class="luxe-journal__grid">
-      {% for post in component.posts %}
-        <a href="{{ post.url }}" class="luxe-journal__card" data-reveal>
-          <div class="luxe-journal__media">
-            <img src="{{ post.image }}" alt="{{ post.title }}" loading="lazy" width="640" height="427">
-            <span class="luxe-journal__shine" aria-hidden="true"></span>
+      {% for post in component.posts|default([]) %}
+        {% set img = post.image|default(post['posts.image']|default('')) %}
+        {% set ttl = post.title|default(post['posts.title']|default('')) %}
+        {% set exc = post.excerpt|default(post['posts.excerpt']|default('')) %}
+        {% set u = post.url|default(post['posts.url']|default('')) %}
+        {% if img %}
+          {% if u %}
+          <a href="{{ u }}" class="luxe-journal__card">
+          {% else %}
+          <div class="luxe-journal__card">
+          {% endif %}
+            <div class="luxe-journal__media">
+              <img src="{{ img }}" alt="{{ ttl }}" loading="lazy" width="640" height="427">
+              <span class="luxe-journal__shine" aria-hidden="true"></span>
+            </div>
+            <div class="luxe-journal__body">
+              <h3>{{ ttl }}</h3>
+              {% if exc %}<p>{{ exc }}</p>{% endif %}
+              <span class="luxe-journal__more">اقرأ المزيد ←</span>
+            </div>
+          {% if u %}
+          </a>
+          {% else %}
           </div>
-          <div class="luxe-journal__body">
-            <h3>{{ post.title }}</h3>
-            <p>{{ post.excerpt }}</p>
-            <span class="luxe-journal__more">اقرأ المزيد ←</span>
-          </div>
-        </a>
+          {% endif %}
+        {% endif %}
       {% endfor %}
     </div>
   </div>
