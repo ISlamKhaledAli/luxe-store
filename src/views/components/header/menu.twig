@@ -1,0 +1,59 @@
+{#
+| القائمة الرئيسية — تُملأ من «قوائم Header» في تخصيص الثيم (متغير menus)
+| بدون قائمة من اللوحة: نفس سلوك Luxe السابق (الرئيسية + أوّل 5 تصنيفات + ميجا من التصنيف الأوّل)
+#}
+{% if menus is defined and menus|length > 0 %}
+  <ul class="main-menu">
+    {% for menu in menus %}
+      {% set _mega = menu.has_children or (menu.mega_menu is defined and menu.mega_menu|length) %}
+      <li class="{% if _mega %}has-mega-menu{% endif %}" {{ menu.attrs|default('')|raw }}>
+        <a {{ menu.link_attrs|default('')|raw }} href="{{ menu.url }}">{{ menu.title }}</a>
+        {% if _mega %}
+          {% set _both = menu.has_children and menu.mega_menu is defined and menu.mega_menu|length %}
+          <div class="mega-menu" aria-hidden="true">
+            <div class="container mega-menu__inner glass-card">
+              <div class="mega-menu__content{% if not _both %} mega-menu__content--single{% endif %}">
+                {% if menu.has_children %}
+                <div class="mega-menu__column">
+                  <h4>{{ menu.title }}</h4>
+                  <ul>
+                    {% for submenu in menu.children %}
+                      <li>
+                        <a {{ submenu.link_attrs|default('')|raw }} href="{{ submenu.url }}">{{ submenu.title }}</a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+                {% endif %}
+                {% if menu.mega_menu is defined and menu.mega_menu|length %}
+                <div class="mega-menu__column mega-menu__column--products">
+                  {% for product in menu.mega_menu|slice(0, 4) %}
+                    <a href="{{ product.url }}" class="mega-menu__product">
+                      {% if product.image %}
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy" width="100" height="100">
+                      {% endif %}
+                      <span class="mega-menu__product-name">{{ product.name }}</span>
+                    </a>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <ul class="main-menu">
+    <li><a href="/">{{ 'general.home' | trans }}</a></li>
+    {% for category in categories | slice(0, 5) %}
+      <li class="has-mega-menu">
+        <a href="{{ category.url }}">{{ category.name }}</a>
+        {% if loop.first %}
+          {% include 'components.header.mega-menu' with { category: category } %}
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}

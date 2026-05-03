@@ -28,19 +28,9 @@
       {% endif %}
     </a>
 
-    <!-- Navigation Desktop -->
+    <!-- Navigation Desktop: من «قوائم Header» في تخصيص الثيم، أو تصنيفات المتجر كاحتياطي -->
     <nav class="nav-desktop">
-      <ul class="main-menu">
-        <li><a href="/">{{ 'general.home' | trans }}</a></li>
-        {% for category in categories | slice(0, 5) %}
-          <li class="has-mega-menu">
-            <a href="{{ category.url }}">{{ category.name }}</a>
-            {% if loop.first %}
-              {% include 'components.header.mega-menu' with { category: category } %}
-            {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+      {% component 'header.menu' %}
     </nav>
 
     <!-- Header Actions -->
@@ -77,9 +67,26 @@
   </div>
   <nav class="mobile-nav">
     <ul>
-      {% for category in categories %}
-        <li><a href="{{ category.url }}">{{ category.name }}</a></li>
-      {% endfor %}
+      {% if menus is defined and menus|length > 0 %}
+        <li><a href="/">{{ 'general.home' | trans }}</a></li>
+        {% for menu in menus %}
+          <li>
+            <a href="{{ menu.url }}">{{ menu.title }}</a>
+          </li>
+          {% if menu.has_children %}
+            {% for submenu in menu.children %}
+              <li class="mobile-nav__sub">
+                <a href="{{ submenu.url }}">{{ submenu.title }}</a>
+              </li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        <li><a href="/">{{ 'general.home' | trans }}</a></li>
+        {% for category in categories %}
+          <li><a href="{{ category.url }}">{{ category.name }}</a></li>
+        {% endfor %}
+      {% endif %}
     </ul>
   </nav>
 </div>

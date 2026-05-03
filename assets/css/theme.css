@@ -1,3 +1,6 @@
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/css/theme.css ***!
+  \****************************************************************************/
 /* 
   Luxe Store - Salla Theme CSS
   Pure Vanilla CSS with Logical Properties for RTL Support
@@ -1269,6 +1272,39 @@ h3 { font-size: var(--font-size-2xl); }
   gap: var(--space-6);
 }
 
+.mega-menu__content--single {
+  grid-template-columns: 1fr;
+}
+
+.mega-menu__column--products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.mega-menu__product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.mega-menu__product img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
+.mega-menu__product-name {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
 .mega-menu__column h4 {
   margin-block-end: var(--space-3);
   color: var(--color-primary);
@@ -1762,6 +1798,9 @@ html {
   }
 }
 
+/*!******************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/css/luxe-perfume-blocks.css ***!
+  \******************************************************************************************/
 /* Perfume-focused homepage blocks + motion (imported via theme.css append) */
 
 .luxe-section {
