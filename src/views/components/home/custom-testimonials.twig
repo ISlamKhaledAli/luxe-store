@@ -2,8 +2,6 @@
 | Variable | Type | Description |
 |---|---|---|
 | component | object | Contains merchant settings for fields from twilight.json `component` section |
-| component.heading | string | Section heading text |
-| component.items | object[] | list of testimonials |
 | position | int | Sorting number start from zero |
 #}
 {% set rows = component.items|default([]) %}
@@ -11,32 +9,38 @@
 <section class="luxe-section luxe-section--testimonials">
     <div class="luxe-container">
         <div class="luxe-section__head">
-            <h2>{{ component.heading|default(trans('blocks.home.testimonials'))|default('آراء عملائنا') }}</h2>
+            {% set h = component.heading %}
+            {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
+            <h2>{{ h|default('آراء عملائنا') }}</h2>
         </div>
         <salla-slider
-          id="custom-testimonials-{{ position }}"
+          id="testimonials-{{ position }}"
           type="carousel"
           auto-play
           loop
-          slides-per-view="auto"
-          show-controls="{{ rows|length > 1 ? 'true' : 'false' }}">
+          slides-per-view="auto">
             <div slot="items">
                 {% for item in rows %}
+                    {# Salla sometimes flattens the keys or keeps them with the prefix #}
                     {% set avatar = item.avatar|default(item['items.avatar']|default('')) %}
                     {% set name   = item.name|default(item['items.name']|default('')) %}
                     {% set text   = item.text|default(item['items.text']|default('')) %}
                     {% set stars  = item.stars|default(item['items.stars']|default(5)) %}
+                    
+                    {% if text is iterable %}{% set text = text.ar|default(text.en|default('')) %}{% endif %}
+                    {% if name is iterable %}{% set name = name.ar|default(name.en|default('')) %}{% endif %}
+
                     <div class="swiper-slide">
                         <div class="luxe-testimonial-card glass-card">
                             {% if avatar %}
                             <div class="luxe-testimonial-card__avatar">
-                                <img src="{{ avatar }}" alt="{{ name }}" loading="lazy" width="68" height="68">
+                                <img src="{{ avatar }}" alt="{{ name }}" loading="lazy">
                             </div>
                             {% endif %}
                             <div class="luxe-testimonial-card__content">
-                                {% if text %}<p>"{{ text }}"</p>{% endif %}
+                                <p>"{{ text }}"</p>
                                 <div class="luxe-testimonial-card__meta">
-                                    {% if name %}<strong>{{ name }}</strong>{% endif %}
+                                    <strong>{{ name }}</strong>
                                     <salla-rating-stars value="{{ stars }}"></salla-rating-stars>
                                 </div>
                             </div>

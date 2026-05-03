@@ -1,50 +1,50 @@
 {#
 | معرض صور — Luxe
-| مجموعة بمعرّف gallery وحقول gallery.image / gallery.caption / gallery.url
 #}
-{% set rows = component.gallery|default(component.items|default(component.cells|default([]))) %}
+{% set rows = component.gallery|default(component.items|default([])) %}
 {% set four_col = component.use_four_columns|default(false) %}
+
 {% if rows|length > 0 %}
 <section class="luxe-section luxe-gallery-block">
   <div class="luxe-container">
+    {% set h = component.heading %}
+    {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
+    {% if h %}
     <header class="luxe-section__head">
-      <h2>{{ component.heading|default('') }}</h2>
+      <h2>{{ h }}</h2>
     </header>
-    <div class="luxe-gallery-block__grid {% if four_col %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
+    {% endif %}
+    
+    <div class="luxe-gallery-block__grid {{ four_col ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set img = item.image|default(item['gallery.image']|default(item['items.image']|default(item['cells.image']|default('')))) %}
-        {% set cap = item.caption|default(item['gallery.caption']|default(item['items.caption']|default(item['cells.caption']|default('')))) %}
-        {% set link = item.url|default(item['gallery.url']|default(item['items.url']|default(item['cells.url']|default('')))) %}
+        {% set img = item.image|default(item['gallery.image']|default('')) %}
+        {% set cap = item.caption|default(item['gallery.caption']|default('')) %}
+        {% set link = item.url|default(item['gallery.url']|default('')) %}
 
-        {# Handle multilanguage objects safely #}
-        {% if cap is iterable and cap is not empty and (cap.ar is defined or cap.en is defined) %}
-          {% set cap = cap.ar|default(cap.en|default('')) %}
-        {% endif %}
-        {% if link is iterable and link is not empty and (link.ar is defined or link.en is defined) %}
-          {% set link = link.ar|default(link.en|default('')) %}
-        {% endif %}
-
-        {% if link is iterable %}{% set link = '' %}{% endif %}
-        {% if cap is iterable %}{% set cap = '' %}{% endif %}
+        {% if cap is iterable %}{% set cap = cap.ar|default(cap.en|default('')) %}{% endif %}
+        {% if link is iterable %}{% set link = link.ar|default(link.en|default('')) %}{% endif %}
 
         {% if img %}
-        {% if link|trim %}
-          <a href="{{ link|trim }}" class="luxe-gallery-block__cell">
-        {% else %}
-          <div class="luxe-gallery-block__cell">
-        {% endif %}
-        <div class="luxe-gallery-block__media">
-          <img src="{{ img }}" alt="{{ cap }}" loading="lazy" width="600" height="600">
-          <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
-        </div>
-        {% if cap %}
-          <span class="luxe-gallery-block__cap">{{ cap }}</span>
-        {% endif %}
-        {% if link|trim %}
-          </a>
-        {% else %}
+          {% if link %}
+            <a href="{{ link }}" class="luxe-gallery-block__cell">
+          {% else %}
+            <div class="luxe-gallery-block__cell">
+          {% endif %}
+          
+          <div class="luxe-gallery-block__media">
+            <img src="{{ img }}" alt="{{ cap }}" loading="lazy">
+            <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
           </div>
-        {% endif %}
+          
+          {% if cap %}
+            <span class="luxe-gallery-block__cap">{{ cap }}</span>
+          {% endif %}
+          
+          {% if link %}
+            </a>
+          {% else %}
+            </div>
+          {% endif %}
         {% endif %}
       {% endfor %}
     </div>

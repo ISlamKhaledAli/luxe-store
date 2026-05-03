@@ -1,55 +1,43 @@
 {#
 | شبكة منتجات مميزة — اختيار يدوي من المتجر
-| component.products Product[]
 #}
 
-{% set display_all = component.display_all_url %}
-{# Salla handles variable-list/items source differently, we need to extract the URL safely #}
-{% if display_all is iterable and display_all|length > 0 %}
-    {% set display_all = display_all|first.url|default(display_all|first) %}
-{% endif %}
-{% if display_all is iterable %}{% set display_all = '' %}{% endif %}
+{% set products = component.products|default([]) %}
+{% set heading = component.heading %}
+{% if heading is iterable %}{% set heading = heading.ar|default(heading.en|default('')) %}{% endif %}
 
 <section class="luxe-section luxe-feat-grid" data-reveal>
   <div class="luxe-container">
     <header class="luxe-section__head">
-      {# Safe handling for multilanguage heading #}
-      {% set heading = component.heading %}
-      {% if heading is iterable %}
-        {% set heading = heading.ar|default(heading.en|default('')) %}
-      {% endif %}
-      <h2>{{ heading|default(trans('blocks.home.featured_products')) }}</h2>
-
-      {# Safe handling for multilanguage subheading #}
-      {% set subheading = component.subheading %}
-      {% if subheading is iterable %}
-        {% set subheading = subheading.ar|default(subheading.en|default('')) %}
-      {% endif %}
-      {% if subheading %}
-        <p class="luxe-feat-grid__lead">{{ subheading }}</p>
+      <h2>{{ heading|default('منتجات مختارة') }}</h2>
+      
+      {% set sub = component.subheading %}
+      {% if sub is iterable %}{% set sub = sub.ar|default(sub.en|default('')) %}{% endif %}
+      {% if sub %}
+        <p class="luxe-feat-grid__lead">{{ sub }}</p>
       {% endif %}
     </header>
 
-    {% if component.products|default([])|length %}
+    {% if products|length %}
       <div class="luxe-feat-grid__products products-grid">
-        {% for product in component.products %}
+        {% for product in products %}
           {% component 'product-card.product-card' with { product: product } %}
         {% endfor %}
       </div>
     {% else %}
       <div class="luxe-feat-grid__slider">
-        {# fallback if no products selected: show latest #}
-        <salla-products-slider
-          source="latest"
-          block-title=" "
-          slider-id="luxe-feat-fallback-{{ position }}"
-        ></salla-products-slider>
+        {# Fallback: If no products, show latest products using Salla component #}
+        <salla-products-slider source="latest" block-title=" " slider-id="fallback-{{ position }}"></salla-products-slider>
       </div>
     {% endif %}
 
-    {% if display_all and display_all != '' and display_all != '#' %}
+    {% set url = component.display_all_url %}
+    {% if url is iterable and url|length > 0 %}{% set url = url|first.url|default(url|first) %}{% endif %}
+    {% if url is iterable %}{% set url = '' %}{% endif %}
+
+    {% if url and url != '#' %}
       <div class="luxe-feat-grid__actions">
-        <a href="{{ display_all }}" class="btn btn--secondary">عرض الكل</a>
+        <a href="{{ url }}" class="btn btn--secondary">عرض الكل</a>
       </div>
     {% endif %}
   </div>
