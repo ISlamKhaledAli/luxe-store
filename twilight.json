@@ -673,6 +673,14 @@
             "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "آراء عشاق الروائح",
+                    "multilanguage": true
+                },
+                {
                     "id": "items",
                     "type": "collection",
                     "format": "collection",

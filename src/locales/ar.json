@@ -46,5 +46,13 @@
   "footer": {
     "rights": "جميع الحقوق محفوظة",
     "quick_links": "روابط سريعة"
+  },
+  "blocks": {
+    "home": {
+      "testimonials": "آراء عملائنا",
+      "featured_products": "منتجات مميزة",
+      "categories": "تسوق حسب الفئة",
+      "gallery": "معرض الصور"
+    }
   }
 }

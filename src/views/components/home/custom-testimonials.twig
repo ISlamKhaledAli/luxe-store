@@ -2,27 +2,42 @@
 | Variable | Type | Description |
 |---|---|---|
 | component | object | Contains merchant settings for fields from twilight.json `component` section |
+| component.heading | string | Section heading text |
 | component.items | object[] | list of testimonials |
 | position | int | Sorting number start from zero |
 #}
+{% set rows = component.items|default([]) %}
+{% if rows|length > 0 %}
 <section class="luxe-section luxe-section--testimonials">
     <div class="luxe-container">
         <div class="luxe-section__head">
-            <h2>{{ trans('blocks.home.testimonials') }}</h2>
+            <h2>{{ component.heading|default(trans('blocks.home.testimonials'))|default('آراء عملائنا') }}</h2>
         </div>
-        <salla-slider id="custom-testimonials-{{ position }}" type="testimonials" auto-play>
+        <salla-slider
+          id="custom-testimonials-{{ position }}"
+          type="carousel"
+          auto-play
+          loop
+          slides-per-view="auto"
+          show-controls="{{ rows|length > 1 ? 'true' : 'false' }}">
             <div slot="items">
-                {% for item in component.items %}
+                {% for item in rows %}
+                    {% set avatar = item.avatar|default(item['items.avatar']|default('')) %}
+                    {% set name   = item.name|default(item['items.name']|default('')) %}
+                    {% set text   = item.text|default(item['items.text']|default('')) %}
+                    {% set stars  = item.stars|default(item['items.stars']|default(5)) %}
                     <div class="swiper-slide">
                         <div class="luxe-testimonial-card glass-card">
+                            {% if avatar %}
                             <div class="luxe-testimonial-card__avatar">
-                                <img src="{{ item.avatar|default(item['items.avatar']|default('')) }}" alt="{{ item.name|default(item['items.name']|default('')) }}" loading="lazy">
+                                <img src="{{ avatar }}" alt="{{ name }}" loading="lazy" width="68" height="68">
                             </div>
+                            {% endif %}
                             <div class="luxe-testimonial-card__content">
-                                <p>"{{ item.text|default(item['items.text']|default('')) }}"</p>
+                                {% if text %}<p>"{{ text }}"</p>{% endif %}
                                 <div class="luxe-testimonial-card__meta">
-                                    <strong>{{ item.name|default(item['items.name']|default('')) }}</strong>
-                                    <salla-rating-stars value="{{ item.stars|default(item['items.stars']|default(5)) }}"></salla-rating-stars>
+                                    {% if name %}<strong>{{ name }}</strong>{% endif %}
+                                    <salla-rating-stars value="{{ stars }}"></salla-rating-stars>
                                 </div>
                             </div>
                         </div>
@@ -32,3 +47,4 @@
         </salla-slider>
     </div>
 </section>
+{% endif %}

@@ -46,5 +46,13 @@
   "footer": {
     "rights": "All rights reserved",
     "quick_links": "Quick Links"
+  },
+  "blocks": {
+    "home": {
+      "testimonials": "Customer Reviews",
+      "featured_products": "Featured Products",
+      "categories": "Shop by Category",
+      "gallery": "Gallery"
+    }
   }
 }
