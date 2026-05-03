@@ -1,5 +1,5 @@
 {# Horizontally scrolling promo lines — duplicate row for seamless CSS loop #}
-{% if component.lines|length > 0 %}
+{% if component.lines|default([])|length > 0 %}
 <div class="luxe-ticker" data-reveal aria-label="تنبيهات المتجر">
   <div class="luxe-ticker__mask">
     <div class="luxe-ticker__track">

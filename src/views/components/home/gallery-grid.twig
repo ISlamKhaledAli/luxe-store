@@ -1,10 +1,10 @@
 {#
 | معرض صور — Luxe
-| نفس نمط سلايدر الصفحة الرئيسية: مجموعة بمعرّف gallery وحقول gallery.* (مثل slides / slides.image)
-| احتياطي لبيانات قديمة: items.* و cells.*
+| مجموعة بمعرّف gallery وحقول gallery.image / gallery.caption / gallery.url
 #}
 {% set rows = component.gallery|default(component.items|default(component.cells|default([]))) %}
 {% set four_col = component.use_four_columns|default(false) %}
+{% if rows|length > 0 %}
 <section class="luxe-section luxe-gallery-block">
   <div class="luxe-container">
     <header class="luxe-section__head">
@@ -13,20 +13,23 @@
     <div class="luxe-gallery-block__grid {% if four_col %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
       {% for item in rows %}
         {% set img = item.image|default(item['gallery.image']|default(item['items.image']|default(item['cells.image']|default('')))) %}
-        {% set cap_raw = item.caption|default(item['gallery.caption']|default(item['items.caption']|default(item['cells.caption']|default('')))) %}
-        {% set cap = cap_raw %}
-        {% if cap_raw and (cap_raw.ar is defined or cap_raw.en is defined) %}
-          {% set cap = attribute(cap_raw, store.language)|default(cap_raw.ar|default(cap_raw.en|default(''))) %}
+        {% set cap = item.caption|default(item['gallery.caption']|default(item['items.caption']|default(item['cells.caption']|default('')))) %}
+        {% set link = item.url|default(item['gallery.url']|default(item['items.url']|default(item['cells.url']|default('')))) %}
+
+        {# Handle multilanguage objects safely #}
+        {% if cap is iterable and cap is not empty and (cap.ar is defined or cap.en is defined) %}
+          {% set cap = cap.ar|default(cap.en|default('')) %}
         {% endif %}
-        {% set link_raw = item.url|default(item['gallery.url']|default(item['items.url']|default(item['cells.url']|default('')))) %}
-        {% set link = link_raw %}
-        {% if link_raw and (link_raw.ar is defined or link_raw.en is defined) %}
-          {% set link = attribute(link_raw, store.language)|default(link_raw.ar|default(link_raw.en|default(''))) %}
+        {% if link is iterable and link is not empty and (link.ar is defined or link.en is defined) %}
+          {% set link = link.ar|default(link.en|default('')) %}
         {% endif %}
-        {% set link = link|trim %}
+
+        {% if link is iterable %}{% set link = '' %}{% endif %}
+        {% if cap is iterable %}{% set cap = '' %}{% endif %}
+
         {% if img %}
-        {% if link %}
-          <a href="{{ link }}" class="luxe-gallery-block__cell">
+        {% if link|trim %}
+          <a href="{{ link|trim }}" class="luxe-gallery-block__cell">
         {% else %}
           <div class="luxe-gallery-block__cell">
         {% endif %}
@@ -37,7 +40,7 @@
         {% if cap %}
           <span class="luxe-gallery-block__cap">{{ cap }}</span>
         {% endif %}
-        {% if link %}
+        {% if link|trim %}
           </a>
         {% else %}
           </div>
@@ -47,3 +50,4 @@
     </div>
   </div>
 </section>
+{% endif %}
