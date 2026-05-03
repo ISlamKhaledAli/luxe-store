@@ -147,7 +147,7 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.enhanced-slider",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/images-slider-enhancement.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "id": "slides",
@@ -230,7 +230,7 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.main-links",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/main-links.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -404,7 +404,7 @@
             },
             "icon": "sicon-list-play",
             "path": "home.slider-products-with-header",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/slider-products-with-bg.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=1200&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -496,7 +496,7 @@
             },
             "icon": "sicon-image",
             "path": "home.enhanced-square-banners",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=800&q=85",
             "fields": [
                 {
                     "id": "banners",
@@ -590,7 +590,7 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.brands",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/brands.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -631,7 +631,7 @@
             },
             "icon": "sicon-chat-bubbles",
             "path": "home.custom-testimonials",
-            "image": "https://cdn.salla.network/images/themes/raed/preview-images/custom-testimonials.png?v=1.1",
+            "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "id": "items",
