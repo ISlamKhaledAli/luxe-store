@@ -77,6 +77,14 @@
         },
         {
             "type": "boolean",
+            "id": "luxe_force_home_static_hero",
+            "label": "إظهار البانر الثابت حتى لو كان أول عنصر «سلايدر عطور» (لتكرار متعمّد)",
+            "format": "switch",
+            "value": false,
+            "selected": false
+        },
+        {
+            "type": "boolean",
             "id": "luxe_show_flash_sale",
             "label": "إظهار قسم العروض السريعة",
             "format": "switch",
@@ -238,7 +246,7 @@
                     "label": "العنوان",
                     "multilanguage": true,
                     "id": "title",
-                    "value": null,
+                    "value": "اختصارات مسارك للعطور",
                     "required": false,
                     "format": "text",
                     "placeholder": "أدخل العنوان هنا...",
@@ -422,7 +430,7 @@
                     "label": "عنوان رئيسي",
                     "multilanguage": true,
                     "id": "title",
-                    "value": null,
+                    "value": "عطور مختارة، بروعة لا تُقاوم",
                     "required": false,
                     "format": "text",
                     "placeholder": "يمكنك إضافة العنوان الرئيسي هنا...",
@@ -435,9 +443,9 @@
                     "label": "نص توضيحي",
                     "multilanguage": true,
                     "id": "description",
-                    "value": null,
-                    "format": "textarea",
+                    "value": "لمسة من أرقى البيوت — إن لم تختر منتجات يدوياً يُعرض أحدث ما لدى المتجر تلقائياً.",
                     "required": false,
+                    "format": "textarea",
                     "placeholder": "يمكنك إضافة وصف لهذا القسم هنا...",
                     "minLength": 0,
                     "maxLength": 256
@@ -450,12 +458,12 @@
                     "format": "dropdown-list",
                     "selected": [],
                     "options": [],
-                    "required": true,
+                    "required": false,
                     "multichoice": true,
                     "source": "products",
                     "searchable": true,
                     "maxLength": 8,
-                    "minLength": 1,
+                    "minLength": 0,
                     "value": []
                 },
                 {
@@ -988,11 +996,11 @@
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
                     "options": [],
-                    "required": true,
+                    "required": false,
                     "multichoice": true,
                     "searchable": true,
                     "source": "categories",
-                    "minLength": 1,
+                    "minLength": 0,
                     "maxLength": 12,
                     "value": []
                 }
@@ -1276,12 +1284,12 @@
                     "format": "dropdown-list",
                     "selected": [],
                     "options": [],
-                    "required": true,
+                    "required": false,
                     "multichoice": true,
                     "source": "products",
                     "searchable": true,
                     "maxLength": 12,
-                    "minLength": 1,
+                    "minLength": 0,
                     "value": []
                 },
                 {
@@ -1540,12 +1548,12 @@
                     "format": "dropdown-list",
                     "selected": [],
                     "options": [],
-                    "required": true,
+                    "required": false,
                     "multichoice": false,
                     "source": "products",
                     "searchable": true,
                     "maxLength": 1,
-                    "minLength": 1,
+                    "minLength": 0,
                     "value": []
                 },
                 {
@@ -1652,11 +1660,11 @@
                     "icon": "sicon-keyboard_arrow_down",
                     "selected": [],
                     "options": [],
-                    "required": true,
+                    "required": false,
                     "multichoice": true,
                     "searchable": true,
                     "source": "categories",
-                    "minLength": 1,
+                    "minLength": 0,
                     "maxLength": 8,
                     "value": []
                 }

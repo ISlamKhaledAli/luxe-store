@@ -22,7 +22,8 @@
         id="main-links-{{ position }}">
           <div slot="items">
               {% if component.show_cats %}
-                {% for cat in component.categories %}
+                {% set _cats = component.categories|length ? component.categories : categories|slice(0, 12) %}
+                {% for cat in _cats %}
                     <div class="swiper-slide slide--one-sixth">
                         <a href="{{ cat.url }}" class="luxe-cat-entry">
                             {% set raw = cat.image %}
@@ -38,11 +39,15 @@
                 {% endfor %}
               {% else %}
                 {% for link in component.links %}
-                  {% if link.title %}
+                  {% set ltitle = link.title|default(link['links.title']|default('')) %}
+                  {% set lhref = link.url|default(link['links.url']|default('/store')) %}
+                  {% set licon = link.icon|default(link['links.icon']|default('sicon-store2')) %}
+                  {% if lhref is iterable %}{% set lhref = '/store' %}{% endif %}
+                  {% if ltitle|trim %}
                     <div class="swiper-slide slide--one-sixth">
-                        <a href="{{ link.url }}" class="luxe-cat-entry">
-                            <i class="{{ link.icon }}"></i>
-                            <h2>{{ link.title }}</h2>
+                        <a href="{{ lhref }}" class="luxe-cat-entry">
+                            <i class="{{ licon }}"></i>
+                            <h2>{{ ltitle }}</h2>
                         </a>
                     </div>
                   {% endif %}

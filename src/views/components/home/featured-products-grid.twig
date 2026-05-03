@@ -20,11 +20,19 @@
           {% component 'product-card.product-card' with { product: product } %}
         {% endfor %}
       </div>
-      {% if display_all and display_all != '' and display_all != '#' %}
-        <div class="luxe-feat-grid__actions">
-          <a href="{{ display_all }}" class="btn btn--secondary">عرض الكل</a>
-        </div>
-      {% endif %}
+    {% else %}
+      <div class="luxe-feat-grid__slider">
+        <salla-products-slider
+          source="latest"
+          block-title=" "
+          slider-id="luxe-feat-fallback-{{ position }}"
+        ></salla-products-slider>
+      </div>
+    {% endif %}
+    {% if display_all and display_all != '' and display_all != '#' %}
+      <div class="luxe-feat-grid__actions">
+        <a href="{{ display_all }}" class="btn btn--secondary">عرض الكل</a>
+      </div>
     {% endif %}
   </div>
 </section>

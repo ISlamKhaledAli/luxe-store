@@ -11,8 +11,12 @@
 <section class="luxe-section luxe-section--products-bg">
     <div class="luxe-products-bg" style="background-image: url('{{ component.background }}');">
         <div class="luxe-container">
+            {% if component.title %}
             <h3>{{ component.title }}</h3>
+            {% endif %}
+            {% if component.description %}
             <p>{{ component.description }}</p>
+            {% endif %}
         </div>
     </div>
 
@@ -20,11 +24,13 @@
     {% if display_all is iterable %}
       {% set display_all = '' %}
     {% endif %}
-    <div class="luxe-container">
+    <div class="luxe-container luxe-products-bg-slider">
         <salla-products-slider
             {% if component.products|length %}
               source="selected"
               source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"
+            {% else %}
+              source="latest"
             {% endif %}
             {% if display_all and display_all != '' and display_all != '#' %}
                 display-all-url="{{ display_all }}"

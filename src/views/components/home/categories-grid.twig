@@ -10,8 +10,9 @@
         <p class="luxe-catgrid__lead">{{ component.subheading }}</p>
       {% endif %}
     </header>
+    {% set grid_cats = component.categories|length ? component.categories : categories|slice(0, 12) %}
     <div class="luxe-catgrid__grid">
-      {% for cat in component.categories %}
+      {% for cat in grid_cats %}
         {% set raw = cat.image %}
         {% set cimg = raw ? (raw.url is defined ? raw.url : raw) : '' %}
         <a href="{{ cat.url }}" class="luxe-catgrid__card" data-reveal>
