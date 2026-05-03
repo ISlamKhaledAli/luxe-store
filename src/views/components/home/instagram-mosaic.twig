@@ -1,0 +1,32 @@
+{#
+| شبكة صور بأسلوب إنستغرام — صور وروابط يدوية |
+#}
+<section class="luxe-section luxe-instagram" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{{ component.heading }}</h2>
+      {% if component.subheading %}
+        <p class="luxe-instagram__lead">{{ component.subheading }}</p>
+      {% endif %}
+    </header>
+    <div class="luxe-instagram__grid">
+      {% for tile in component.tiles %}
+        {% set href = tile.url|default('')|trim %}
+        {% if href %}
+          <a href="{{ href }}" class="luxe-instagram__cell" target="_blank" rel="noopener noreferrer">
+            <img src="{{ tile.image }}" alt="" loading="lazy" width="400" height="400">
+          </a>
+        {% else %}
+          <span class="luxe-instagram__cell luxe-instagram__cell--static">
+            <img src="{{ tile.image }}" alt="" loading="lazy" width="400" height="400">
+          </span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    {% if component.profile_url and component.profile_cta %}
+      <p class="luxe-instagram__cta-wrap">
+        <a href="{{ component.profile_url }}" class="btn btn--secondary luxe-instagram__profile-btn" target="_blank" rel="noopener noreferrer">{{ component.profile_cta }}</a>
+      </p>
+    {% endif %}
+  </div>
+</section>

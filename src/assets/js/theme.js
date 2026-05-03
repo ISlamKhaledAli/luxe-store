@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRevealAnimations();
     initProductTabs();
     initLuxeFaqAccordion();
+    initLuxeCampaignTimers();
 });
 
 // =============================================================
@@ -94,7 +95,7 @@ function initLuxeCursor() {
         dot.classList.add('is-ready');
     }, 100);
 
-    const hoverSelectors = 'a, button, .btn, [role="button"], salla-add-to-cart, .product-card, .luxe-crest, .luxe-faq__q, .luxe-journal__card';
+    const hoverSelectors = 'a, button, .btn, [role="button"], salla-add-to-cart, .product-card, .luxe-crest, .luxe-faq__q, .luxe-journal__card, .luxe-instagram__cell, .luxe-spotlight__details, .luxe-catbanner__promo-link';
     document.addEventListener('mouseover', (e) => {
         if (e.target.closest(hoverSelectors)) ring.classList.add('is-hover');
     });
@@ -213,6 +214,40 @@ function initMegaMenu() {
 }
 
 // --- ⑥ Flash Sale Countdown ---
+function initLuxeCampaignTimers() {
+    const roots = document.querySelectorAll('[data-luxe-campaign-end]');
+    if (!roots.length) return;
+
+    const pad = (n) => String(n).padStart(2, '0');
+
+    const tick = () => {
+        const now = Date.now();
+        roots.forEach((root) => {
+            const end = new Date(root.getAttribute('data-luxe-campaign-end')).getTime();
+            const distance = end - now;
+            if (!Number.isFinite(end) || !Number.isFinite(distance) || distance < 0) {
+                root.setAttribute('hidden', '');
+                return;
+            }
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            const d = root.querySelector('[data-part="d"]');
+            const h = root.querySelector('[data-part="h"]');
+            const m = root.querySelector('[data-part="m"]');
+            const s = root.querySelector('[data-part="s"]');
+            if (d) d.textContent = pad(days);
+            if (h) h.textContent = pad(hours);
+            if (m) m.textContent = pad(minutes);
+            if (s) s.textContent = pad(seconds);
+        });
+    };
+
+    setInterval(tick, 1000);
+    tick();
+}
+
 function initFlashSaleTimer() {
     const countdownEl = document.getElementById('flashCountdown');
     if (!countdownEl) return;

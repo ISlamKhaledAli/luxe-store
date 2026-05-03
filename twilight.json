@@ -1240,6 +1240,427 @@
                     "value": "/pages/about-us"
                 }
             ]
+        },
+        {
+            "key": "c4d8f1a2-9b3e-4c7d-8e5f-2a1b3c4d5e6f",
+            "title": {
+                "en": "Featured Products Grid",
+                "ar": "عرض منتجات مميز (شبكة) — Luxe"
+            },
+            "icon": "sicon-award-ribbon",
+            "path": "home.featured-products-grid",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "منتجات يختارها خبراء العطور",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "subheading",
+                    "format": "textarea",
+                    "label": "نص فرعي",
+                    "value": "تشكيلة مختارة يدوياً — ثبات ولمعان في كل زجاجة.",
+                    "multilanguage": true,
+                    "required": false
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "المنتجات",
+                    "id": "products",
+                    "format": "dropdown-list",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "source": "products",
+                    "searchable": true,
+                    "maxLength": 12,
+                    "minLength": 1,
+                    "value": []
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "label": "رابط عرض الكل",
+                    "id": "display_all_url",
+                    "value": [],
+                    "required": false,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "d5e9f2b3-ac4f-4d8e-9f60-3b2c4d5e6f7a",
+            "title": {
+                "en": "Promotional Campaign + Countdown",
+                "ar": "حملة ترويجية مع عدّاد — Luxe"
+            },
+            "icon": "sicon-star",
+            "path": "home.campaign-countdown",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=1200&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "image",
+                    "format": "image",
+                    "label": "صورة الخلفية",
+                    "value": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=85&w=1920",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "id": "badge",
+                    "format": "text",
+                    "label": "شارة صغيرة (مثلاً: عرض محدود)",
+                    "value": "حملة محدودة"
+                },
+                {
+                    "type": "string",
+                    "id": "title",
+                    "format": "text",
+                    "label": "العنوان",
+                    "value": "خصم على مجموعات مختارة",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "subtitle",
+                    "format": "textarea",
+                    "label": "الوصف",
+                    "value": "استفد قبل انتهاء العدّاد — شحن وسياسة إرجاع واضحة.",
+                    "multilanguage": true
+                },
+                {
+                    "type": "boolean",
+                    "id": "show_countdown",
+                    "format": "switch",
+                    "label": "إظهار العدّاد التنازلي",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "id": "end_at",
+                    "format": "text",
+                    "label": "تاريخ ووقت انتهاء الحملة (ISO مثال 2026-12-31T23:59:59)",
+                    "value": "2026-12-31T23:59:59"
+                },
+                {
+                    "type": "string",
+                    "id": "btn_text",
+                    "format": "text",
+                    "label": "نص الزر",
+                    "value": "تسوّق العروض"
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "label": "رابط الزر",
+                    "id": "btn_url",
+                    "value": [],
+                    "required": false,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "offers_link",
+                    "sources": [
+                        {
+                            "label": "صفحة العروض",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
+                },
+                {
+                    "type": "boolean",
+                    "id": "is_compact",
+                    "format": "switch",
+                    "label": "ارتفاع أقل",
+                    "value": false,
+                    "selected": false
+                }
+            ]
+        },
+        {
+            "key": "e6f0a3c4-bd50-4e9f-a071-4c3d5e6f7a8b",
+            "title": {
+                "en": "Instagram-Style Mosaic",
+                "ar": "شبكة إنستغرام (صور يدوية) — Luxe"
+            },
+            "icon": "sicon-image-carousel",
+            "path": "home.instagram-mosaic",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "العنوان",
+                    "value": "من يوميات متجرنا"
+                },
+                {
+                    "type": "string",
+                    "id": "subheading",
+                    "format": "textarea",
+                    "label": "نص فرعي",
+                    "value": "لقطات من العبوات، البوتيك، والتجارب — تابعنا على إنستغرام.",
+                    "required": false
+                },
+                {
+                    "id": "tiles",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "صور الشبكة",
+                    "item_label": "صورة",
+                    "required": true,
+                    "minLength": 4,
+                    "maxLength": 12,
+                    "value": [
+                        {
+                            "tiles.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=600&q=85",
+                            "tiles.url": ""
+                        },
+                        {
+                            "tiles.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=85",
+                            "tiles.url": ""
+                        },
+                        {
+                            "tiles.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=600&q=85",
+                            "tiles.url": ""
+                        },
+                        {
+                            "tiles.image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=600&q=85",
+                            "tiles.url": ""
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "tiles.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "الصورة"
+                        },
+                        {
+                            "id": "tiles.url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط المنشور (اختياري)"
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "id": "profile_cta",
+                    "format": "text",
+                    "label": "نص زر الملف",
+                    "value": "تابعنا على إنستغرام"
+                },
+                {
+                    "type": "string",
+                    "id": "profile_url",
+                    "format": "text",
+                    "label": "رابط حساب إنستغرام",
+                    "value": "https://www.instagram.com/"
+                }
+            ]
+        },
+        {
+            "key": "f7a1b4d5-ce61-4f0a-b182-5d4e6f7a8b9c",
+            "title": {
+                "en": "Featured Product Spotlight",
+                "ar": "تفاصيل منتج مميز — Luxe"
+            },
+            "icon": "sicon-store2",
+            "path": "home.featured-product-spotlight",
+            "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "eyebrow",
+                    "format": "text",
+                    "label": "نص فوق العنوان",
+                    "value": "اختيار الأسبوع"
+                },
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "قطعة تُكمل مجموعتك",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "description_extra",
+                    "format": "textarea",
+                    "label": "نص إضافي تحت وصف المنتج (اختياري)",
+                    "value": "",
+                    "multilanguage": true,
+                    "required": false
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "label": "المنتج المميز",
+                    "id": "spotlight_product",
+                    "format": "dropdown-list",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": false,
+                    "source": "products",
+                    "searchable": true,
+                    "maxLength": 1,
+                    "minLength": 1,
+                    "value": []
+                },
+                {
+                    "type": "boolean",
+                    "id": "image_on_left",
+                    "format": "switch",
+                    "label": "الصورة على اليسار (LTR)",
+                    "value": true,
+                    "selected": true
+                }
+            ]
+        },
+        {
+            "key": "a8b2c5e6-df72-401b-c293-6e5f7a8b9c0d",
+            "title": {
+                "en": "Categories + Side Banner",
+                "ar": "تصنيفات مميزة مع بانر جانبي — Luxe"
+            },
+            "icon": "sicon-layout",
+            "path": "home.categories-with-banner",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "تسوّق حسب التصنيف"
+                },
+                {
+                    "type": "string",
+                    "id": "subheading",
+                    "format": "textarea",
+                    "label": "نص فرعي",
+                    "value": "جانب بصري قوي مع شبكة تصنيفات سريعة.",
+                    "required": false
+                },
+                {
+                    "type": "string",
+                    "id": "banner_image",
+                    "format": "image",
+                    "label": "صورة البانر الجانبي",
+                    "value": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=85&w=900",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "id": "banner_title",
+                    "format": "text",
+                    "label": "عنوان على البانر",
+                    "value": "اكتشف المجموعة الجديدة",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "banner_subtitle",
+                    "format": "textarea",
+                    "label": "وصف قصير على البانر",
+                    "value": "عطور مختارة بعناية مع عينات هدايا.",
+                    "multilanguage": true,
+                    "required": false
+                },
+                {
+                    "type": "items",
+                    "icon": "sicon-link",
+                    "label": "رابط البانر",
+                    "id": "banner_url",
+                    "value": [],
+                    "required": false,
+                    "format": "variable-list",
+                    "searchable": true,
+                    "source": "custom",
+                    "sources": [
+                        {
+                            "label": "تصنيف",
+                            "key": "categories",
+                            "value": "categories"
+                        },
+                        {
+                            "label": "التخفيضات",
+                            "key": "offers_link",
+                            "value": "offers_link"
+                        },
+                        {
+                            "label": "رابط خارجي",
+                            "key": "custom",
+                            "value": "custom"
+                        }
+                    ]
+                },
+                {
+                    "type": "boolean",
+                    "id": "banner_first",
+                    "format": "switch",
+                    "label": "البانر على اليمين (في الوضع RTL يظهر أولاً بصرياً)",
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "items",
+                    "id": "categories",
+                    "format": "dropdown-list",
+                    "label": "التصنيفات",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "searchable": true,
+                    "source": "categories",
+                    "minLength": 1,
+                    "maxLength": 8,
+                    "value": []
+                }
+            ]
         }
     ],
     "support_url": "https://salla.com/",

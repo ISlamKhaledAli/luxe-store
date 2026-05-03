@@ -1,0 +1,58 @@
+{#
+| منتج واحد مميز — تفاصيل مختصرة وشراء سريع |
+#}
+{% set sp = component.spotlight_product %}
+{% if sp is iterable %}
+  {% set p = sp|first %}
+{% else %}
+  {% set p = sp %}
+{% endif %}
+{% if p and p.id %}
+<section class="luxe-section luxe-spotlight" data-reveal>
+  <div class="luxe-container">
+    {% if component.heading or component.eyebrow %}
+      <header class="luxe-spotlight__head">
+        {% if component.eyebrow %}
+          <p class="luxe-spotlight__eyebrow">{{ component.eyebrow }}</p>
+        {% endif %}
+        {% if component.heading %}
+          <h2>{{ component.heading }}</h2>
+        {% endif %}
+      </header>
+    {% endif %}
+    <div class="luxe-spotlight__grid {% if not component.image_on_left %}luxe-spotlight__grid--img-end{% endif %}">
+      <figure class="luxe-spotlight__fig">
+        <a href="{{ p.url }}">
+          <img src="{{ p.image.url }}" alt="{{ p.name }}" loading="lazy" width="640" height="800">
+        </a>
+      </figure>
+      <div class="luxe-spotlight__body">
+        {% if p.brand.name %}
+          <span class="luxe-spotlight__brand">{{ p.brand.name }}</span>
+        {% endif %}
+        <h3 class="luxe-spotlight__title"><a href="{{ p.url }}">{{ p.name }}</a></h3>
+        <salla-rating-stars rate="{{ p.rating }}"></salla-rating-stars>
+        <div class="luxe-spotlight__price">
+          <span class="price-current">{{ p.price.formatted }}</span>
+          {% if p.is_on_sale %}
+            <span class="price-compare">{{ p.compare_price.formatted }}</span>
+          {% endif %}
+        </div>
+        {% set plain = p.description|default('')|striptags %}
+        {% if plain %}
+          <p class="luxe-spotlight__desc">{{ plain|length > 280 ? plain|slice(0, 277) ~ '…' : plain }}</p>
+        {% endif %}
+        {% if component.description_extra %}
+          <p class="luxe-spotlight__extra">{{ component.description_extra }}</p>
+        {% endif %}
+        <div class="luxe-spotlight__actions">
+          {% if p.is_available %}
+            <salla-add-to-cart product-id="{{ p.id }}" class="luxe-spotlight__atc"></salla-add-to-cart>
+          {% endif %}
+          <a href="{{ p.url }}" class="btn btn--secondary luxe-spotlight__details">{{ 'product.view_product'|trans|default('تفاصيل المنتج') }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}

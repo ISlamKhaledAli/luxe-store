@@ -1,0 +1,59 @@
+{#
+| تصنيفات مختارة + بانر جانبي قابل للربط |
+#}
+{% set burl = component.banner_url %}
+{% if burl is iterable %}
+  {% set burl = '' %}
+{% endif %}
+<section class="luxe-section luxe-catbanner" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{{ component.heading }}</h2>
+      {% if component.subheading %}
+        <p class="luxe-catbanner__lead">{{ component.subheading }}</p>
+      {% endif %}
+    </header>
+    <div class="luxe-catbanner__layout {% if component.banner_first %}luxe-catbanner__layout--banner-right{% endif %}">
+      <div class="luxe-catbanner__cats">
+        <div class="luxe-catgrid__grid">
+          {% for cat in component.categories %}
+            {% set raw = cat.image %}
+            {% set cimg = raw ? (raw.url is defined ? raw.url : raw) : '' %}
+            <a href="{{ cat.url }}" class="luxe-catgrid__card" data-reveal>
+              <div class="luxe-catgrid__media">
+                {% if cimg %}
+                  <img src="{{ cimg }}" alt="{{ cat.name }}" loading="lazy" width="400" height="400">
+                {% else %}
+                  <div class="luxe-catgrid__placeholder" aria-hidden="true">✦</div>
+                {% endif %}
+              </div>
+              <span class="luxe-catgrid__name">{{ cat.name }}</span>
+            </a>
+          {% endfor %}
+        </div>
+      </div>
+      {% set promo_tag = burl and burl != '' and burl != '#' ? 'a' : 'div' %}
+      <aside class="luxe-catbanner__promo">
+        {% if promo_tag == 'a' %}
+        <a href="{{ burl }}" class="luxe-catbanner__promo-link">
+        {% else %}
+        <div class="luxe-catbanner__promo-link luxe-catbanner__promo-link--static">
+        {% endif %}
+          <div class="luxe-catbanner__promo-media" style="background-image: url('{{ component.banner_image|e('html_attr') }}');"></div>
+          <div class="luxe-catbanner__promo-text">
+            {% if component.banner_title %}
+              <h3>{{ component.banner_title }}</h3>
+            {% endif %}
+            {% if component.banner_subtitle %}
+              <p>{{ component.banner_subtitle }}</p>
+            {% endif %}
+          </div>
+        {% if promo_tag == 'a' %}
+        </a>
+        {% else %}
+        </div>
+        {% endif %}
+      </aside>
+    </div>
+  </div>
+</section>
