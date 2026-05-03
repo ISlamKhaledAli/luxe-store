@@ -955,6 +955,291 @@
                     ]
                 }
             ]
+        },
+        {
+            "key": "4e286d17-8123-4ca9-9f23-d8641714be2f",
+            "title": {
+                "en": "Perfume Categories Grid",
+                "ar": "شبكة تصنيفات العطور — Luxe"
+            },
+            "icon": "sicon-layout-grid-rearrange",
+            "path": "home.categories-grid",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان القسم",
+                    "value": "تصفّح حسب التصنيف"
+                },
+                {
+                    "type": "string",
+                    "id": "subheading",
+                    "format": "textarea",
+                    "label": "نص فرعي",
+                    "value": "من المركزيات إلى المسكات — اختر مسارك للعطر المثالي"
+                },
+                {
+                    "type": "items",
+                    "id": "categories",
+                    "format": "dropdown-list",
+                    "label": "التصنيفات المعروضة",
+                    "icon": "sicon-keyboard_arrow_down",
+                    "selected": [],
+                    "options": [],
+                    "required": true,
+                    "multichoice": true,
+                    "searchable": true,
+                    "source": "categories",
+                    "minLength": 1,
+                    "maxLength": 12,
+                    "value": []
+                }
+            ]
+        },
+        {
+            "key": "2fb191e9-38a7-43ec-bd7a-ef55466d5fba",
+            "title": {
+                "en": "Full-Width Promo Banner",
+                "ar": "بانر ترويجي بالعرض الكامل — Luxe"
+            },
+            "icon": "sicon-image",
+            "path": "home.promo-banner",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=1200&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "image",
+                    "format": "image",
+                    "label": "صورة الخلفية",
+                    "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&q=85&w=1920",
+                    "required": true
+                },
+                {
+                    "type": "string",
+                    "id": "eyebrow",
+                    "format": "text",
+                    "label": "نص صغير فوق العنوان (اختياري)",
+                    "value": "جديد هذا الموسم"
+                },
+                {
+                    "type": "string",
+                    "id": "title",
+                    "format": "text",
+                    "label": "العنوان الرئيسي",
+                    "value": "إطلالة فاخرة بروائح لا تُنسى",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "subtitle",
+                    "format": "textarea",
+                    "label": "النص التوضيحي",
+                    "value": "اكتشف مجموعات مختارة من أرقى بيوت العطور مع عينات حصرية.",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "btn_text",
+                    "format": "text",
+                    "label": "نص الزر",
+                    "value": "تسوّق الآن"
+                },
+                {
+                    "type": "string",
+                    "id": "btn_url",
+                    "format": "text",
+                    "label": "رابط الزر",
+                    "value": "/store"
+                },
+                {
+                    "type": "boolean",
+                    "id": "is_compact",
+                    "format": "switch",
+                    "label": "ارتفاع أقل (بانر مدمج)",
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "type": "boolean",
+                    "id": "is_tall",
+                    "format": "switch",
+                    "label": "ارتفاع سينمائي (أعلى)",
+                    "value": false,
+                    "selected": false
+                }
+            ]
+        },
+        {
+            "key": "40e0184b-6766-4fcc-b0c1-ccafb675589b",
+            "title": {
+                "en": "Image Gallery",
+                "ar": "معرض صور — Luxe"
+            },
+            "icon": "sicon-image-carousel",
+            "path": "home.gallery-grid",
+            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "heading",
+                    "format": "text",
+                    "label": "عنوان المعرض",
+                    "value": "لقطات من عالم العطور"
+                },
+                {
+                    "type": "boolean",
+                    "id": "use_four_columns",
+                    "format": "switch",
+                    "label": "أربع أعمدة على الشاشات الكبيرة",
+                    "value": false,
+                    "selected": false
+                },
+                {
+                    "id": "cells",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "الصور",
+                    "item_label": "صورة",
+                    "required": true,
+                    "minLength": 2,
+                    "maxLength": 12,
+                    "value": [
+                        {
+                            "cells.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85",
+                            "cells.caption": "روائح دافئة",
+                            "cells.url": ""
+                        },
+                        {
+                            "cells.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
+                            "cells.caption": "زجاجيات فاخرة",
+                            "cells.url": ""
+                        },
+                        {
+                            "cells.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85",
+                            "cells.caption": "تجربة بوتيك",
+                            "cells.url": "/store"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "cells.image",
+                            "type": "string",
+                            "format": "image",
+                            "label": "الصورة"
+                        },
+                        {
+                            "id": "cells.caption",
+                            "type": "string",
+                            "format": "text",
+                            "label": "وصف قصير",
+                            "multilanguage": true
+                        },
+                        {
+                            "id": "cells.url",
+                            "type": "string",
+                            "format": "text",
+                            "label": "رابط (اختياري)"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "key": "045a83f5-a294-4047-99c6-bb6472d54a3a",
+            "title": {
+                "en": "Brand Story / About Products",
+                "ar": "عن منتجاتنا — قصة العلامة — Luxe"
+            },
+            "icon": "sicon-store2",
+            "path": "home.split-story",
+            "image": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=900&q=85",
+            "fields": [
+                {
+                    "type": "string",
+                    "id": "image",
+                    "format": "image",
+                    "label": "صورة جانبية",
+                    "value": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&q=85&w=1200",
+                    "required": true
+                },
+                {
+                    "type": "boolean",
+                    "id": "image_on_left",
+                    "format": "switch",
+                    "label": "الصورة على اليسار (في الوضع LTR)",
+                    "value": true,
+                    "selected": true
+                },
+                {
+                    "type": "string",
+                    "id": "eyebrow",
+                    "format": "text",
+                    "label": "نص صغير فوق العنوان",
+                    "value": "عن Luxe"
+                },
+                {
+                    "type": "string",
+                    "id": "title",
+                    "format": "text",
+                    "label": "العنوان",
+                    "value": "عطور تُختار بذوق رفيع",
+                    "multilanguage": true
+                },
+                {
+                    "type": "string",
+                    "id": "body",
+                    "format": "textarea",
+                    "label": "النص",
+                    "value": "نؤمن أن العطر امتداد للهوية. نلتقط لك أفضل التركيبات من بيوت عالمية ونخزنها بعناية لتصلك كما صممت.",
+                    "multilanguage": true
+                },
+                {
+                    "id": "bullets",
+                    "type": "collection",
+                    "format": "collection",
+                    "label": "نقاط تفتيتية",
+                    "item_label": "نقطة",
+                    "required": false,
+                    "minLength": 0,
+                    "maxLength": 8,
+                    "value": [
+                        {
+                            "bullets.text": "تخزين مبرد عند الحاجة للحفاظ على التركيبة"
+                        },
+                        {
+                            "bullets.text": "تغليف هدايا جاهز دون رسوم إضافية"
+                        },
+                        {
+                            "bullets.text": "استشارات مجانية لاختيار الطبقة العطرية"
+                        }
+                    ],
+                    "fields": [
+                        {
+                            "id": "bullets.text",
+                            "type": "string",
+                            "format": "text",
+                            "label": "النص",
+                            "multilanguage": true
+                        }
+                    ]
+                },
+                {
+                    "type": "string",
+                    "id": "btn_text",
+                    "format": "text",
+                    "label": "نص الزر (اختياري)",
+                    "value": "تعرّف على المزيد"
+                },
+                {
+                    "type": "string",
+                    "id": "btn_url",
+                    "format": "text",
+                    "label": "رابط الزر",
+                    "value": "/pages/about-us"
+                }
+            ]
         }
     ],
     "support_url": "https://salla.com/",

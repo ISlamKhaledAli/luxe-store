@@ -1,0 +1,29 @@
+{#
+| قصة العلامة / عن المنتجات — يعادل «عن منتجاتنا» |
+#}
+<section class="luxe-section luxe-split-story" data-reveal>
+  <div class="luxe-container">
+    <div class="luxe-split-story__wrap {% if component.image_on_left %}luxe-split-story__wrap--img-start{% endif %}">
+      <figure class="luxe-split-story__fig" data-reveal>
+        <img src="{{ component.image }}" alt="{{ component.title }}" loading="lazy" width="720" height="900">
+      </figure>
+      <div class="luxe-split-story__content" data-reveal>
+        {% if component.eyebrow %}
+          <p class="luxe-split-story__eyebrow">{{ component.eyebrow }}</p>
+        {% endif %}
+        <h2>{{ component.title }}</h2>
+        <div class="luxe-split-story__body">{{ component.body | nl2br }}</div>
+        {% if component.bullets is defined and component.bullets | length > 0 %}
+          <ul class="luxe-split-story__bullets">
+            {% for b in component.bullets %}
+              <li><span class="luxe-split-story__bullet-mark">◆</span> {{ b.text }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if component.btn_text and component.btn_url %}
+          <a href="{{ component.btn_url }}" class="btn btn--secondary">{{ component.btn_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

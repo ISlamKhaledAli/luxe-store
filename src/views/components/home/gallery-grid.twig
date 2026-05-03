@@ -1,0 +1,32 @@
+{#
+| معرض صور — يعادل «معرض الصور» في الدليل |
+#}
+<section class="luxe-section luxe-gallery-block" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{{ component.heading }}</h2>
+    </header>
+    <div class="luxe-gallery-block__grid {% if component.use_four_columns %}luxe-gallery-block__grid--4{% else %}luxe-gallery-block__grid--3{% endif %}">
+      {% for cell in component.cells %}
+        {% set link = cell.url | default('') %}
+        {% if link %}
+          <a href="{{ link }}" class="luxe-gallery-block__cell" data-reveal>
+        {% else %}
+          <div class="luxe-gallery-block__cell" data-reveal>
+        {% endif %}
+        <div class="luxe-gallery-block__media">
+          <img src="{{ cell.image }}" alt="{{ cell.caption | default('') }}" loading="lazy" width="600" height="600">
+          <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
+        </div>
+        {% if cell.caption %}
+          <span class="luxe-gallery-block__cap">{{ cell.caption }}</span>
+        {% endif %}
+        {% if link %}
+          </a>
+        {% else %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

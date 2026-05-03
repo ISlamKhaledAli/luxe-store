@@ -1,0 +1,26 @@
+{#
+| بانر ترويجي كامل العرض — يعادل «البانر الترويجي / بانر ثابت» في الدليل |
+#}
+{% set mode = 'standard' %}
+{% if component.is_tall %}
+  {% set mode = 'tall' %}
+{% elseif component.is_compact %}
+  {% set mode = 'compact' %}
+{% endif %}
+<section class="luxe-promo-banner luxe-promo-banner--{{ mode }}" data-reveal
+         {% if component.image %}style="--promo-bg: url('{{ component.image | e('html_attr') }}');"{% endif %}>
+  <div class="luxe-promo-banner__bg" role="img" aria-hidden="true"></div>
+  <div class="luxe-promo-banner__overlay"></div>
+  <div class="luxe-container luxe-promo-banner__inner">
+    {% if component.eyebrow %}
+      <p class="luxe-promo-banner__eyebrow">{{ component.eyebrow }}</p>
+    {% endif %}
+    <h2 class="luxe-promo-banner__title">{{ component.title }}</h2>
+    {% if component.subtitle %}
+      <p class="luxe-promo-banner__subtitle">{{ component.subtitle }}</p>
+    {% endif %}
+    {% if component.btn_text and component.btn_url %}
+      <a href="{{ component.btn_url }}" class="btn btn--primary luxe-promo-banner__btn">{{ component.btn_text }}</a>
+    {% endif %}
+  </div>
+</section>

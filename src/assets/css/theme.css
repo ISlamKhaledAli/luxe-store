@@ -694,12 +694,12 @@ h3 { font-size: var(--font-size-2xl); }
 }
 /* --- Home Components --- */
 .luxe-hero-slider {
-  margin-block-start: -90px;
+  margin-block-start: calc(-1 * clamp(64px, 10vw, 88px));
 }
 
 .luxe-slide {
-  height: 80vh;
-  min-height: 500px;
+  min-height: clamp(380px, 70vh, 720px);
+  height: clamp(380px, 70vh, 720px);
   position: relative;
   display: flex;
   align-items: center;
@@ -731,7 +731,7 @@ h3 { font-size: var(--font-size-2xl); }
 }
 
 .luxe-slide__text h2 {
-  font-size: var(--font-size-5xl);
+  font-size: clamp(var(--font-size-2xl), 4vw, var(--font-size-5xl));
   margin-block-end: var(--space-4);
 }
 

@@ -1,0 +1,30 @@
+{#
+| شبكة تصنيفات — يعادل «شبكة التصنيفات / استعراض التصنيفات» في دليل بريق |
+| component.categories من اختيار التاجر في لوحة التحكم |
+#}
+<section class="luxe-section luxe-catgrid" data-reveal>
+  <div class="luxe-container">
+    <header class="luxe-section__head">
+      <h2>{{ component.heading }}</h2>
+      {% if component.subheading %}
+        <p class="luxe-catgrid__lead">{{ component.subheading }}</p>
+      {% endif %}
+    </header>
+    <div class="luxe-catgrid__grid">
+      {% for cat in component.categories %}
+        {% set raw = cat.image %}
+        {% set cimg = raw ? (raw.url is defined ? raw.url : raw) : '' %}
+        <a href="{{ cat.url }}" class="luxe-catgrid__card" data-reveal>
+          <div class="luxe-catgrid__media">
+            {% if cimg %}
+              <img src="{{ cimg }}" alt="{{ cat.name }}" loading="lazy" width="400" height="400">
+            {% else %}
+              <div class="luxe-catgrid__placeholder" aria-hidden="true">✦</div>
+            {% endif %}
+          </div>
+          <span class="luxe-catgrid__name">{{ cat.name }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
