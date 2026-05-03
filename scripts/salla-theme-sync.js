@@ -85,16 +85,17 @@ function syncAllTwigs() {
       cwd,
     });
     const combined = `${r.stdout || ""}${r.stderr || ""}`;
-    if (combined) process.stdout.write(combined);
+    if (combined && process.env.SALLA_SYNC_VERBOSE === "1") {
+      process.stdout.write(combined);
+    }
 
-    const looksFailed =
-      r.error ||
-      r.status === null ||
-      r.status !== 0 ||
-      /\bERROR\b/.test(combined) ||
-      /حصل خطأ/.test(combined);
+    const code = r.status;
+    const looksFailed = Boolean(r.error) || code === null || code !== 0;
 
     if (looksFailed) {
+      if (combined) {
+        process.stdout.write(combined);
+      }
       failures++;
       const detail = r.error ? r.error.message : r.status;
       console.log(

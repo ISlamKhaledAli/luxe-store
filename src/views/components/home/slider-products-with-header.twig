@@ -28,7 +28,7 @@
         <salla-products-slider
             {% if component.products|length %}
               source="selected"
-              source-value="[{{ component.products|map((product) => product.id)|join(',') }}]"
+              source-value="[{% for product in component.products %}{{ product.id }}{% if not loop.last %},{% endif %}{% endfor %}]"
             {% else %}
               source="latest"
             {% endif %}

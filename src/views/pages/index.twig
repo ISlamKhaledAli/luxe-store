@@ -6,9 +6,13 @@
 {% set hero_cta = theme.settings.get('luxe_hero_cta_text', 'تسوق الآن') %}
 {% set hero_url = theme.settings.get('luxe_hero_cta_url', '/store') %}
 
-{% set _first = page.components|first %}
-{# تجنّب هيرو ثابت + سلايدر عطور مزدوج (تراكب وتكرار) عندما يكون السلايدر أول عنصر #}
-{% set luxe_skip_static_hero = _first is defined and _first and _first.path is defined and _first.path == 'home.enhanced-slider' and not theme.settings.get('luxe_force_home_static_hero', false) %}
+{% set luxe_skip_static_hero = false %}
+{% if page.components|length %}
+  {% set _fc = page.components|first %}
+  {% if _fc.path is defined and _fc.path == 'home.enhanced-slider' and not theme.settings.get('luxe_force_home_static_hero', false) %}
+    {% set luxe_skip_static_hero = true %}
+  {% endif %}
+{% endif %}
 
 {% block content %}
 <article class="home-page">
