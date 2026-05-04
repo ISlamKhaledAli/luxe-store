@@ -1,11 +1,13 @@
 {#
 | معرض صور — Luxe
+| يدعم مفاتيح luxe_gallery.* (موصى بها) والقديمة gallery.*؛ وصور لوحة التحكم كسلسلة أو { url: ... }
 #}
-{% set rows = component.gallery|default(component.items|default([])) %}
+{% set rows = component.luxe_gallery|default(component.gallery|default(component.items|default([]))) %}
 {% set four_col = component.use_four_columns|default(false) %}
+{% if rows is not iterable %}{% set rows = [] %}{% endif %}
 
 {% if rows|length > 0 %}
-<section class="luxe-section luxe-gallery-block">
+<section class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
     {% set h = component.heading %}
     {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
@@ -17,9 +19,11 @@
     
     <div class="luxe-gallery-block__grid {{ four_col ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set img = item.image|default(item['gallery.image']|default('')) %}
-        {% set cap = item.caption|default(item['gallery.caption']|default('')) %}
-        {% set link = item.url|default(item['gallery.url']|default('')) %}
+        {% set raw_img = item.image|default(item['luxe_gallery.image']|default(item['gallery.image']|default(''))) %}
+        {% set img = raw_img and raw_img.url is defined ? raw_img.url : raw_img %}
+        {% set cap = item.caption|default(item['luxe_gallery.caption']|default(item['gallery.caption']|default(''))) %}
+        {% set raw_link = item.url|default(item['luxe_gallery.url']|default(item['gallery.url']|default(''))) %}
+        {% set link = raw_link and raw_link.url is defined ? raw_link.url : raw_link %}
 
         {% if cap is iterable %}{% set cap = cap.ar|default(cap.en|default('')) %}{% endif %}
         {% if link is iterable %}{% set link = link.ar|default(link.en|default('')) %}{% endif %}
