@@ -1798,14 +1798,13 @@ html {
 /* ============================================================
    إيقاف الحركة والانتقالات الزخرفية (طلب التاجر)
    ============================================================ */
+/* إيقاف الرسوم المتحركة فقط — نترك transition لسلة السحب/القوائم/السلايدر */
 body.luxe-no-motion,
-body.luxe-no-motion * ,
+body.luxe-no-motion *,
 body.luxe-no-motion *::before,
 body.luxe-no-motion *::after {
   animation: none !important;
   animation-duration: 0s !important;
-  transition: none !important;
-  transition-duration: 0s !important;
 }
 
 body.luxe-no-motion {

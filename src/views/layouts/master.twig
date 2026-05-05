@@ -16,10 +16,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-  <!-- Preload hero image on home page only -->
+  <!-- Preload hero image on home page only (رابط نصي أو كائن صورة من إعدادات سلة) -->
   {% if page.type == 'index' %}
-  <link rel="preload" as="image"
-        href="{{ theme.settings.get('luxe_hero_image', '') }}">
+  {% set _hi = theme.settings.get('luxe_hero_image', null) %}
+  {% set _hi_url = '' %}
+  {% if _hi %}
+    {% if _hi.url is defined and _hi.url %}
+      {% set _hi_url = _hi.url %}
+    {% elseif _hi is not iterable %}
+      {% set _hi_url = _hi %}
+    {% endif %}
+  {% endif %}
+  {% if _hi_url %}
+  <link rel="preload" as="image" href="{{ _hi_url }}">
+  {% endif %}
   {% endif %}
 
   <!-- Theme CSS -->

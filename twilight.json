@@ -1,5 +1,5 @@
 {
-    "version": "1.0.72",
+    "version": "1.0.73",
     "name": {
         "ar": "لُكس — عطور",
         "en": "Luxe Parfum"
@@ -60,7 +60,7 @@
             "id": "luxe_hero_image",
             "label": "صورة البانر الرئيسي (رابط)",
             "format": "image",
-            "value": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&q=85&w=1920"
+            "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920"
         },
         {
             "type": "string",
@@ -187,7 +187,7 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.enhanced-slider",
-            "image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "id": "slides",
@@ -202,12 +202,12 @@
                         {
                             "slides.title": "أهلاً بك في عالم العطور",
                             "slides.description": "تشكيلة مختارة من أرقى الروائح والإكسسوارات الفاخرة",
-                            "slides.image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&q=85&w=1920"
+                            "slides.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920"
                         },
                         {
                             "slides.title": "إصدارات موسمية حصرية",
                             "slides.description": "اكتشف الجديد: نفحات دافئة وباردة لتناسب كل أوقاتك",
-                            "slides.image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&q=85&w=1920"
+                            "slides.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920"
                         }
                     ],
                     "fields": [
@@ -270,7 +270,7 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.main-links",
-            "image": "https://images.unsplash.com/photo-1556228720-195a672e2a44?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -444,12 +444,12 @@
             },
             "icon": "sicon-list-play",
             "path": "home.slider-products-with-header",
-            "image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=1200&q=85",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85",
             "fields": [
                 {
                     "type": "string",
                     "icon": "sicon-image",
-                    "value": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&q=85&w=1920",
+                    "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920",
                     "label": "صورة الخلفية",
                     "id": "background",
                     "format": "image",
@@ -536,7 +536,7 @@
             },
             "icon": "sicon-image",
             "path": "home.enhanced-square-banners",
-            "image": "https://images.unsplash.com/photo-1571781926299-c477520fd183?auto=format&fit=crop&w=800&q=85",
+            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85",
             "fields": [
                 {
                     "id": "banners",
@@ -630,7 +630,7 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.brands",
-            "image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -671,7 +671,7 @@
             },
             "icon": "sicon-chat-bubbles",
             "path": "home.custom-testimonials",
-            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -691,13 +691,13 @@
                     "value": [
                         {
                             "items.name": "أحمد العتيبي",
-                            "items.avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200",
+                            "items.avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200",
                             "items.stars": 5,
                             "items.text": "العطر وصل مغلفاً برفاهية، ثبات الرائحة فاق التوقع. متجر يفهم ذوق محبي العطور."
                         },
                         {
                             "items.name": "نورة الدوسري",
-                            "items.avatar": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=200",
+                            "items.avatar": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&q=80&w=200",
                             "items.stars": 5,
                             "items.text": "تشكيلة متنوعة وأسعار شفافة، والاستشارة ساعدتني أختار عطر مناسب للمناسبات."
                         }
@@ -761,7 +761,7 @@
             },
             "icon": "sicon-help-circle",
             "path": "home.faq-perfume",
-            "image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -818,7 +818,7 @@
             },
             "icon": "sicon-star",
             "path": "home.why-luxe",
-            "image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -893,7 +893,7 @@
             },
             "icon": "sicon-text",
             "path": "home.promo-ticker",
-            "image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "id": "lines",
@@ -935,7 +935,7 @@
             },
             "icon": "sicon-book",
             "path": "home.fragrance-journal",
-            "image": "https://images.unsplash.com/photo-1571781926299-c477520fd183?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -955,19 +955,19 @@
                     "maxLength": 6,
                     "value": [
                         {
-                            "posts.image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=900&q=85",
+                            "posts.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
                             "posts.title": "كيف يتطور العطر على البشرة؟",
                             "posts.excerpt": "رحلة من الرأس إلى القاعدة ولماذا يلاحظ البعض اختلاف الرائحة.",
                             "posts.url": "/blog"
                         },
                         {
-                            "posts.image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85",
+                            "posts.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
                             "posts.title": "دليل هدايا لعشاق العطور",
                             "posts.excerpt": "أفكار تغليف وتركيبات مرنة لكل ميزانية.",
                             "posts.url": "/blog"
                         },
                         {
-                            "posts.image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=900&q=85",
+                            "posts.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
                             "posts.title": "الفرق بين ماء العطر والأو دو تواليت",
                             "posts.excerpt": "نِسَب التركيز باختصار ثم أيهما يناسب يومك.",
                             "posts.url": "/blog"
@@ -1012,7 +1012,7 @@
             },
             "icon": "sicon-layout-grid-rearrange",
             "path": "home.categories-grid",
-            "image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -1054,14 +1054,14 @@
             },
             "icon": "sicon-image",
             "path": "home.promo-banner",
-            "image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=1200&q=85",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85",
             "fields": [
                 {
                     "type": "string",
                     "id": "image",
                     "format": "image",
                     "label": "صورة الخلفية",
-                    "value": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&q=85&w=1920",
+                    "value": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920",
                     "required": true
                 },
                 {
@@ -1157,17 +1157,17 @@
                     "maxLength": 12,
                     "value": [
                         {
-                            "items.image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=800&q=85",
+                            "items.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85",
                             "items.caption": "روائح دافئة",
                             "items.url": ""
                         },
                         {
-                            "items.image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=800&q=85",
+                            "items.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85",
                             "items.caption": "زجاجيات فاخرة",
                             "items.url": ""
                         },
                         {
-                            "items.image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=800&q=85",
+                            "items.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=85",
                             "items.caption": "تجربة بوتيك",
                             "items.url": "/store"
                         }
@@ -1210,14 +1210,14 @@
             },
             "icon": "sicon-store2",
             "path": "home.split-story",
-            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
                     "id": "image",
                     "format": "image",
                     "label": "صورة جانبية",
-                    "value": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&q=85&w=1200",
+                    "value": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1200",
                     "required": true
                 },
                 {
@@ -1305,7 +1305,7 @@
             },
             "icon": "sicon-award-ribbon",
             "path": "home.featured-products-grid",
-            "image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -1378,14 +1378,14 @@
             },
             "icon": "sicon-star",
             "path": "home.campaign-countdown",
-            "image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=1200&q=85",
+            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=85",
             "fields": [
                 {
                     "type": "string",
                     "id": "image",
                     "format": "image",
                     "label": "صورة الخلفية",
-                    "value": "https://images.unsplash.com/photo-1571781926299-c477520fd183?auto=format&fit=crop&q=85&w=1920",
+                    "value": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=1920",
                     "required": true
                 },
                 {
@@ -1479,7 +1479,7 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.instagram-mosaic",
-            "image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -1507,19 +1507,19 @@
                     "maxLength": 12,
                     "value": [
                         {
-                            "tiles.image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=600&q=85",
+                            "tiles.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=85",
                             "tiles.url": ""
                         },
                         {
-                            "tiles.image": "https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=600&q=85",
+                            "tiles.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=85",
                             "tiles.url": ""
                         },
                         {
-                            "tiles.image": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&w=600&q=85",
+                            "tiles.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=85",
                             "tiles.url": ""
                         },
                         {
-                            "tiles.image": "https://images.unsplash.com/photo-1571781926299-c477520fd183?auto=format&fit=crop&w=600&q=85",
+                            "tiles.image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=85",
                             "tiles.url": ""
                         }
                     ],
@@ -1562,7 +1562,7 @@
             },
             "icon": "sicon-store2",
             "path": "home.featured-product-spotlight",
-            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1612817288484-6f916006741a?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -1622,7 +1622,7 @@
             },
             "icon": "sicon-layout",
             "path": "home.categories-with-banner",
-            "image": "https://images.unsplash.com/photo-1595425970377-c970070d5a7d?auto=format&fit=crop&w=900&q=85",
+            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=85",
             "fields": [
                 {
                     "type": "string",
@@ -1644,7 +1644,7 @@
                     "id": "banner_image",
                     "format": "image",
                     "label": "صورة البانر الجانبي",
-                    "value": "https://images.unsplash.com/photo-1563172179-7c7bc7ebe8a0?auto=format&fit=crop&q=85&w=900",
+                    "value": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?ixlib=rb-4.0.3&auto=format&fit=crop&q=85&w=900",
                     "required": true
                 },
                 {
