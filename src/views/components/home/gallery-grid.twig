@@ -1,16 +1,16 @@
 {#
 | Variable | Type | Description |
 | component | object | إعدادات المكوّن من twilight.json |
-| component.items[] | array | صفوف المعرض (مجموعة id: items) |
+| component.items[] / items[] | array | صفوف المعرض — أحياناً تُمرَّر items جذرياً (مثل store-features) |
 | position | int | ترتيب المكوّن |
 | نفس أسلوب home.custom-testimonials — تسطيح سلة أو مفاتيح items.* |
 #}
-{% set rows = component.items|default([]) %}
+{% set rows = items is defined ? items|default([]) : component.items|default([]) %}
 {% if rows|length > 0 %}
-<section id="luxe-gallery-{{ position }}" class="luxe-section luxe-gallery-block" data-reveal>
+<section id="luxe-gallery-{{ position|default(0) }}" class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
     <div class="luxe-section__head">
-      {% set h = component.heading %}
+      {% set h = component.heading|default('') %}
       {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
       <h2>{{ h|default('معرض الصور') }}</h2>
     </div>
@@ -21,6 +21,10 @@
         {% set pic = item.image|default(item['items.image']|default('')) %}
         {% if pic.url is defined and pic.url %}
           {% set pic = pic.url %}
+        {% elseif pic.thumbnail is defined and pic.thumbnail %}
+          {% set pic = pic.thumbnail %}
+        {% elseif pic.path is defined and pic.path %}
+          {% set pic = pic.path %}
         {% endif %}
 
         {% set cap = item.caption|default(item['items.caption']|default('')) %}

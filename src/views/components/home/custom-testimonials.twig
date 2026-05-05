@@ -4,7 +4,7 @@
 | component | object | Contains merchant settings for fields from twilight.json `component` section |
 | position | int | Sorting number start from zero |
 #}
-{% set rows = component.items|default([]) %}
+{% set rows = items is defined ? items|default([]) : component.items|default([]) %}
 {% if rows|length > 0 %}
 <section class="luxe-section luxe-section--testimonials">
     <div class="luxe-container">

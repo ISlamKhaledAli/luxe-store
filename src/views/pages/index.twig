@@ -41,7 +41,7 @@
   <div class="luxe-dynamic-sections">
     {% component home %}
     {# معاينة/صفحة بدون عناصر في المُنشئ: عرض معرض + آراء ببيانات افتراضية حتى لا تبقى الصفحة بيضاء #}
-    {% if luxe_home_minimal_test and page.components|length == 0 %}
+    {% if luxe_home_minimal_test and page.components|default([])|length == 0 %}
       {% set luxe_demo_gallery = {
         heading: 'لقطات من عالم العطور',
         use_four_columns: false,
