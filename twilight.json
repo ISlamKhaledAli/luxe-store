@@ -1,5 +1,5 @@
 {
-    "version": "1.0.69",
+    "version": "1.0.70",
     "name": {
         "ar": "لُكس — عطور",
         "en": "Luxe Parfum"
@@ -1128,6 +1128,7 @@
             "icon": "sicon-image-carousel",
             "path": "home.gallery-grid",
             "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
+            "preview_image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
             "fields": [
                 {
                     "type": "string",
@@ -1145,7 +1146,7 @@
                     "selected": false
                 },
                 {
-                    "id": "gallery",
+                    "id": "items",
                     "type": "collection",
                     "format": "collection",
                     "label": "الصور",
@@ -1156,24 +1157,24 @@
                     "maxLength": 12,
                     "value": [
                         {
-                            "gallery.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85",
-                            "gallery.caption": "روائح دافئة",
-                            "gallery.url": ""
+                            "items.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "روائح دافئة",
+                            "items.url": ""
                         },
                         {
-                            "gallery.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
-                            "gallery.caption": "زجاجيات فاخرة",
-                            "gallery.url": ""
+                            "items.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "زجاجيات فاخرة",
+                            "items.url": ""
                         },
                         {
-                            "gallery.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85",
-                            "gallery.caption": "تجربة بوتيك",
-                            "gallery.url": "/store"
+                            "items.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "تجربة بوتيك",
+                            "items.url": "/store"
                         }
                     ],
                     "fields": [
                         {
-                            "id": "gallery.image",
+                            "id": "items.image",
                             "type": "string",
                             "format": "image",
                             "label": "الصورة",
@@ -1181,7 +1182,7 @@
                             "required": true
                         },
                         {
-                            "id": "gallery.caption",
+                            "id": "items.caption",
                             "type": "string",
                             "format": "text",
                             "label": "وصف قصير",
@@ -1190,7 +1191,7 @@
                             "required": false
                         },
                         {
-                            "id": "gallery.url",
+                            "id": "items.url",
                             "type": "string",
                             "format": "text",
                             "label": "رابط (اختياري)",
