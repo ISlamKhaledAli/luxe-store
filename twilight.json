@@ -1,5 +1,5 @@
 {
-    "version": "1.0.73",
+    "version": "1.0.74",
     "name": {
         "ar": "لُكس — عطور",
         "en": "Luxe Parfum"
@@ -347,17 +347,17 @@
                         {
                             "links.icon": "sicon-packed-box",
                             "links.title": "عطور نسائية",
-                            "links.url__type": "offers_link"
+                            "links.url__type": "homepage"
                         },
                         {
                             "links.icon": "sicon-fabric-swatch",
                             "links.title": "عطور رجالية",
-                            "links.url__type": "offers_link"
+                            "links.url__type": "homepage"
                         },
                         {
                             "links.icon": "sicon-cake",
                             "links.title": "عينات وتجارب",
-                            "links.url__type": "offers_link"
+                            "links.url__type": "homepage"
                         }
                     ],
                     "fields": [
@@ -410,13 +410,13 @@
                                 },
                                 {
                                     "label": "صفحة تعريفية",
-                                    "key": "pages",
-                                    "value": "pages"
+                                    "key": "meta",
+                                    "value": "meta"
                                 },
                                 {
-                                    "label": "التخفيضات",
-                                    "key": "offers_link",
-                                    "value": "offers_link"
+                                    "label": "الصفحة الرئيسية",
+                                    "key": "homepage",
+                                    "value": "homepage"
                                 },
                                 {
                                     "label": "رابط خارجي",
@@ -515,9 +515,9 @@
                             "value": "categories"
                         },
                         {
-                            "label": "التخفيضات",
-                            "key": "offers_link",
-                            "value": "offers_link"
+                            "label": "الصفحة الرئيسية",
+                            "key": "homepage",
+                            "value": "homepage"
                         },
                         {
                             "label": "رابط خارجي",
@@ -583,9 +583,9 @@
                                     "value": "categories"
                                 },
                                 {
-                                    "label": "التخفيضات",
-                                    "key": "offers_link",
-                                    "value": "offers_link"
+                                    "label": "الصفحة الرئيسية",
+                                    "key": "homepage",
+                                    "value": "homepage"
                                 },
                                 {
                                     "label": "رابط خارجي",
@@ -1357,9 +1357,9 @@
                             "value": "categories"
                         },
                         {
-                            "label": "التخفيضات",
-                            "key": "offers_link",
-                            "value": "offers_link"
+                            "label": "الصفحة الرئيسية",
+                            "key": "homepage",
+                            "value": "homepage"
                         },
                         {
                             "label": "رابط خارجي",
@@ -1442,12 +1442,12 @@
                     "required": false,
                     "format": "variable-list",
                     "searchable": true,
-                    "source": "offers_link",
+                    "source": "custom",
                     "sources": [
                         {
-                            "label": "صفحة العروض",
-                            "key": "offers_link",
-                            "value": "offers_link"
+                            "label": "الصفحة الرئيسية",
+                            "key": "homepage",
+                            "value": "homepage"
                         },
                         {
                             "label": "تصنيف",
@@ -1681,9 +1681,9 @@
                             "value": "categories"
                         },
                         {
-                            "label": "التخفيضات",
-                            "key": "offers_link",
-                            "value": "offers_link"
+                            "label": "الصفحة الرئيسية",
+                            "key": "homepage",
+                            "value": "homepage"
                         },
                         {
                             "label": "رابط خارجي",

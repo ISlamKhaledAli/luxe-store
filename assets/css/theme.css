@@ -1,3 +1,6 @@
+/*!****************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/css/theme.css ***!
+  \****************************************************************************/
 /* 
   Luxe Store - Salla Theme CSS
   Pure Vanilla CSS with Logical Properties for RTL Support
@@ -1812,6 +1815,9 @@ body.luxe-no-motion {
 }
 
 
+/*!******************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js!./src/assets/css/luxe-perfume-blocks.css ***!
+  \******************************************************************************************/
 /* Perfume-focused homepage blocks + motion (imported via theme.css append) */
 
 .luxe-section {
