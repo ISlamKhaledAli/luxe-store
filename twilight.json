@@ -1,5 +1,5 @@
 {
-    "version": "1.0.74",
+    "version": "1.0.75",
     "name": {
         "ar": "لُكس — عطور",
         "en": "Luxe Parfum"
@@ -391,7 +391,7 @@
                             "required": false,
                             "format": "variable-list",
                             "searchable": true,
-                            "source": "custom",
+                            "source": "categories",
                             "sources": [
                                 {
                                     "label": "منتج",
@@ -417,11 +417,6 @@
                                     "label": "الصفحة الرئيسية",
                                     "key": "homepage",
                                     "value": "homepage"
-                                },
-                                {
-                                    "label": "رابط خارجي",
-                                    "key": "custom",
-                                    "value": "custom"
                                 }
                             ]
                         }
@@ -507,7 +502,7 @@
                     "required": false,
                     "format": "variable-list",
                     "searchable": true,
-                    "source": "custom",
+                    "source": "categories",
                     "sources": [
                         {
                             "label": "تصنيف",
@@ -518,11 +513,6 @@
                             "label": "الصفحة الرئيسية",
                             "key": "homepage",
                             "value": "homepage"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
                         }
                     ]
                 }
@@ -575,7 +565,7 @@
                             "required": false,
                             "format": "variable-list",
                             "searchable": true,
-                            "source": "custom",
+                            "source": "categories",
                             "sources": [
                                 {
                                     "label": "تصنيف",
@@ -586,11 +576,6 @@
                                     "label": "الصفحة الرئيسية",
                                     "key": "homepage",
                                     "value": "homepage"
-                                },
-                                {
-                                    "label": "رابط خارجي",
-                                    "key": "custom",
-                                    "value": "custom"
                                 }
                             ]
                         },
@@ -1153,7 +1138,7 @@
                     "item_label": "صورة",
                     "icon": "sicon-list-add",
                     "required": true,
-                    "minLength": 2,
+                    "minLength": 1,
                     "maxLength": 12,
                     "value": [
                         {
@@ -1349,7 +1334,7 @@
                     "required": false,
                     "format": "variable-list",
                     "searchable": true,
-                    "source": "custom",
+                    "source": "categories",
                     "sources": [
                         {
                             "label": "تصنيف",
@@ -1360,11 +1345,6 @@
                             "label": "الصفحة الرئيسية",
                             "key": "homepage",
                             "value": "homepage"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
                         }
                     ]
                 }
@@ -1442,7 +1422,7 @@
                     "required": false,
                     "format": "variable-list",
                     "searchable": true,
-                    "source": "custom",
+                    "source": "categories",
                     "sources": [
                         {
                             "label": "الصفحة الرئيسية",
@@ -1453,11 +1433,6 @@
                             "label": "تصنيف",
                             "key": "categories",
                             "value": "categories"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
                         }
                     ]
                 },
@@ -1673,7 +1648,7 @@
                     "required": false,
                     "format": "variable-list",
                     "searchable": true,
-                    "source": "custom",
+                    "source": "categories",
                     "sources": [
                         {
                             "label": "تصنيف",
@@ -1684,11 +1659,6 @@
                             "label": "الصفحة الرئيسية",
                             "key": "homepage",
                             "value": "homepage"
-                        },
-                        {
-                            "label": "رابط خارجي",
-                            "key": "custom",
-                            "value": "custom"
                         }
                     ]
                 },
