@@ -1,18 +1,12 @@
 {#
-  معرض صور — يطابق أسلوب Twilight: collection بحقول بسيطة (image, caption, url)
-  وطبقة الصور item.image.url كما في توثيق Photos slider.
+  معرض صور — حقول المجموعة بصيغة سلة: items.image / items.caption / items.url
+  (نفس أسلوب slides.* في الثيمات الرسمية و items.* في الـ testimonials)
 
-  | Variable | Type | Description |
-  | component.heading | ?string | عنوان القسم |
-  | component.use_four_columns | bool | أربع أعمدة |
-  | component.items[] | array | الصور |
-  | component.items[].image | string|{url, alt} | الصورة |
-  | component.items[].caption | ?string | وصف (متعدد اللغات اختياري) |
-  | component.items[].url | ?string | رابط اختياري |
-  | position | int | ترتيب المكوّن |
+  | component.items[] | عناصر المجموعة id: items في twilight.json |
+  | component.items[].items.image | أو مفتاح مسطح items.image على كل عنصر |
 
-  مراجع: https://docs.salla.dev/421921m0 — https://docs.salla.dev/doc-422586
-  دليل Twilight: https://salla.dev/blog/all-in-one-twilight-guide-for-salla-developers/
+  معاينة المكوّن في لوحة الثيم: مفتاح "image" على المكوّن في twilight.json
+  https://salla.dev/blog/image-preview-for-salla-themes-components/
 #}
 {% set rows = component.items|default([]) %}
 {% if rows|length == 0 and items is defined and items is iterable %}
@@ -38,23 +32,49 @@
     {% set four = component.use_four_columns|default(false) %}
     <div class="luxe-gallery-block__grid {{ four ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set img = item.image|default('') %}
-        {% set src = img.url is defined ? img.url : img %}
-        {% set alt = img.alt is defined ? img.alt : '' %}
+        {% set row = item.items|default(null) %}
 
-        {% set cap = item.caption|default('') %}
+        {% set raw = item.image|default(item['items.image']|default('')) %}
+        {% if not raw and row is not null and row.image is defined %}
+          {% set raw = row.image %}
+        {% endif %}
+
+        {% set src = '' %}
+        {% if raw %}
+          {% if raw.url is defined %}
+            {% set src = raw.url %}
+          {% elseif raw is iterable and raw|length > 0 %}
+            {% set _first = raw|first %}
+            {% set src = _first.url is defined ? _first.url : (_first is iterable ? '' : _first) %}
+          {% else %}
+            {% set src = raw %}
+          {% endif %}
+        {% endif %}
+
+        {% set cap = item.caption|default(item['items.caption']|default('')) %}
+        {% if not cap and row is not null and row.caption is defined %}
+          {% set cap = row.caption %}
+        {% endif %}
         {% if cap is iterable %}
           {% set cap = cap.ar|default(cap.en|default('')) %}
         {% endif %}
-        {% if not alt and cap %}
-          {% set alt = cap %}
-        {% endif %}
 
-        {% set href = item.url|default('') %}
+        {% set href = item.url|default(item['items.url']|default('')) %}
+        {% if not href and row is not null and row.url is defined %}
+          {% set href = row.url %}
+        {% endif %}
         {% if href is iterable %}
           {% set href = href.ar|default(href.en|default('')) %}
         {% endif %}
         {% set href = (href ~ '')|trim %}
+
+        {% set alt = '' %}
+        {% if raw and raw.alt is defined %}
+          {% set alt = raw.alt %}
+        {% endif %}
+        {% if not alt and cap %}
+          {% set alt = cap %}
+        {% endif %}
 
         {% if src %}
           {% if href %}

@@ -1,5 +1,5 @@
 {
-    "version": "1.0.67",
+    "version": "1.0.68",
     "name": {
         "ar": "لُكس — عطور",
         "en": "Luxe Parfum"
@@ -1127,7 +1127,7 @@
             },
             "icon": "sicon-image-carousel",
             "path": "home.gallery-grid",
-            "image": "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=900&q=85",
+            "image": "https://cdn.salla.network/images/themes/raed/preview-images/square-images.png?v=1.1",
             "fields": [
                 {
                     "type": "string",
@@ -1156,24 +1156,24 @@
                     "maxLength": 12,
                     "value": [
                         {
-                            "image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85",
-                            "caption": "روائح دافئة",
-                            "url": ""
+                            "items.image": "https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "روائح دافئة",
+                            "items.url": ""
                         },
                         {
-                            "image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
-                            "caption": "زجاجيات فاخرة",
-                            "url": ""
+                            "items.image": "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "زجاجيات فاخرة",
+                            "items.url": ""
                         },
                         {
-                            "image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85",
-                            "caption": "تجربة بوتيك",
-                            "url": "/store"
+                            "items.image": "https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85",
+                            "items.caption": "تجربة بوتيك",
+                            "items.url": "/store"
                         }
                     ],
                     "fields": [
                         {
-                            "id": "image",
+                            "id": "items.image",
                             "type": "string",
                             "format": "image",
                             "label": "الصورة",
@@ -1181,7 +1181,7 @@
                             "required": true
                         },
                         {
-                            "id": "caption",
+                            "id": "items.caption",
                             "type": "string",
                             "format": "text",
                             "label": "وصف قصير",
@@ -1190,7 +1190,7 @@
                             "required": false
                         },
                         {
-                            "id": "url",
+                            "id": "items.url",
                             "type": "string",
                             "format": "text",
                             "label": "رابط (اختياري)",
