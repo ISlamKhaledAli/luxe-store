@@ -1,7 +1,7 @@
 {#
 | Variable      | Type   | Description                                                      |
 |---------------|--------|------------------------------------------------------------------|
-| items[]       | array  | List of features                                                 |
+| items[]       | array  | List of features (root var من مكوّن سلة؛ وإلا component.items) |
 | items[].icon  | string | SallaIcons css class `sicon-*`                                   |
 | items[].title | string | Title of the feature                                             |
 | items[].text  | string | Subtitle for the feature                                         |
@@ -9,7 +9,8 @@
 #}
 <section class="luxe-section luxe-section--features">
     <div class="luxe-container luxe-features-grid">
-      {% for item in component.items %}
+      {% set feature_items = items is defined ? items : component.items|default([]) %}
+      {% for item in feature_items %}
           <div class="luxe-feature-item">
             <div class="luxe-feature-item__icon">
               <i class="{{ item.icon }}"></i>

@@ -23,7 +23,10 @@
     <div class="luxe-spotlight__grid {% if not component.image_on_left %}luxe-spotlight__grid--img-end{% endif %}">
       <figure class="luxe-spotlight__fig">
         <a href="{{ p.url }}">
-          <img src="{{ p.image.url }}" alt="{{ p.name }}" loading="lazy" width="640" height="800">
+          {% set spot_img = p.image ? p.image.url|default('') : '' %}
+          {% if spot_img %}
+          <img src="{{ spot_img }}" alt="{{ p.name }}" loading="lazy" width="640" height="800">
+          {% endif %}
         </a>
       </figure>
       <div class="luxe-spotlight__body">

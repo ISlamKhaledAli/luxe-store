@@ -21,6 +21,12 @@
     </div>
 
     {% set display_all = component.display_all_url %}
+    {% if display_all is iterable and display_all|length > 0 %}
+      {% set _f = display_all|first %}
+      {% set display_all = _f.url is defined ? _f.url : (_f is iterable ? '' : _f) %}
+    {% elseif display_all.url is defined %}
+      {% set display_all = display_all.url %}
+    {% endif %}
     {% if display_all is iterable %}
       {% set display_all = '' %}
     {% endif %}

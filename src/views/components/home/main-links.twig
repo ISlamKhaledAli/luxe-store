@@ -42,6 +42,12 @@
                   {% set ltitle = link.title|default(link['links.title']|default('')) %}
                   {% set lhref = link.url|default(link['links.url']|default('/store')) %}
                   {% set licon = link.icon|default(link['links.icon']|default('sicon-store2')) %}
+                  {% if lhref is iterable and lhref|length > 0 %}
+                    {% set _lf = lhref|first %}
+                    {% set lhref = _lf.url is defined ? _lf.url : (_lf is iterable ? '/store' : _lf) %}
+                  {% elseif lhref.url is defined %}
+                    {% set lhref = lhref.url %}
+                  {% endif %}
                   {% if lhref is iterable %}{% set lhref = '/store' %}{% endif %}
                   {% if ltitle|trim %}
                     <div class="swiper-slide slide--one-sixth">

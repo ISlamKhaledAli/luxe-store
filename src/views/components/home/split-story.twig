@@ -16,12 +16,20 @@
         {% if component.bullets is defined and component.bullets | length > 0 %}
           <ul class="luxe-split-story__bullets">
             {% for b in component.bullets %}
-              <li><span class="luxe-split-story__bullet-mark">◆</span> {{ b.text }}</li>
+              <li><span class="luxe-split-story__bullet-mark">◆</span> {{ b.text|default(b['bullets.text']|default('')) }}</li>
             {% endfor %}
           </ul>
         {% endif %}
-        {% if component.btn_text and component.btn_url %}
-          <a href="{{ component.btn_url }}" class="btn btn--secondary">{{ component.btn_text }}</a>
+        {% set story_btn = component.btn_url %}
+        {% if story_btn is iterable and story_btn|length > 0 %}
+          {% set _sf = story_btn|first %}
+          {% set story_btn = _sf.url is defined ? _sf.url : (_sf is iterable ? '' : _sf) %}
+        {% elseif story_btn.url is defined %}
+          {% set story_btn = story_btn.url %}
+        {% endif %}
+        {% if story_btn is iterable %}{% set story_btn = '' %}{% endif %}
+        {% if component.btn_text and story_btn %}
+          <a href="{{ story_btn }}" class="btn btn--secondary">{{ component.btn_text }}</a>
         {% endif %}
       </div>
     </div>

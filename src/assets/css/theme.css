@@ -861,6 +861,13 @@ h3 { font-size: var(--font-size-2xl); }
   opacity: 1;
 }
 
+.luxe-brand-card__name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-text);
+}
+
 .merge-with-top-component {
   margin-block-start: clamp(-2rem, -4vw, -1rem);
   position: relative;

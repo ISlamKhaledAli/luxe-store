@@ -349,8 +349,10 @@ function initQuickView() {
             content.innerHTML = '<div class="loading">جاري التحميل...</div>';
 
             try {
-                // In Salla, you'd usually fetch this from an endpoint or have a hidden template
-                // Mocking the fetch:
+                if (typeof salla === 'undefined' || !salla.product || typeof salla.product.getDetails !== 'function') {
+                    content.innerHTML = '<p class="loading">معاينة محلية: تفاصيل المنتج تظهر على المتجر المفعّل.</p>';
+                    return;
+                }
                 const response = await salla.product.getDetails(productId);
                 content.innerHTML = `
                     <div class="qv-product">

@@ -2,6 +2,12 @@
 | بانر ترويجي كامل العرض — يعادل «البانر الترويجي / بانر ثابت» في الدليل |
 #}
 {% set _btn = component.btn_url %}
+{% if _btn is iterable and _btn|length > 0 %}
+  {% set _f = _btn|first %}
+  {% set _btn = _f.url is defined ? _f.url : (_f is iterable ? '' : _f) %}
+{% elseif _btn.url is defined %}
+  {% set _btn = _btn.url %}
+{% endif %}
 {% if _btn is iterable %}
   {% set _btn = '' %}
 {% endif %}
@@ -20,10 +26,14 @@
       <p class="luxe-promo-banner__eyebrow">{{ component.eyebrow }}</p>
     {% endif %}
     {% if component.title %}
-    <h2 class="luxe-promo-banner__title">{{ component.title }}</h2>
+    {% set pbt = component.title %}
+    {% if pbt is iterable %}{% set pbt = pbt.ar|default(pbt.en|default('')) %}{% endif %}
+    <h2 class="luxe-promo-banner__title">{{ pbt }}</h2>
     {% endif %}
     {% if component.subtitle %}
-      <p class="luxe-promo-banner__subtitle">{{ component.subtitle }}</p>
+      {% set pbs = component.subtitle %}
+      {% if pbs is iterable %}{% set pbs = pbs.ar|default(pbs.en|default('')) %}{% endif %}
+      <p class="luxe-promo-banner__subtitle">{{ pbs }}</p>
     {% endif %}
     {% if component.btn_text and _btn %}
       <a href="{{ _btn }}" class="btn btn--primary luxe-promo-banner__btn">{{ component.btn_text }}</a>

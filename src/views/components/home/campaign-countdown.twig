@@ -13,9 +13,13 @@
     {% if component.badge %}
       <p class="luxe-promo-banner__eyebrow">{{ component.badge }}</p>
     {% endif %}
-    <h2 class="luxe-promo-banner__title">{{ component.title }}</h2>
+    {% set ct = component.title %}
+    {% if ct is iterable %}{% set ct = ct.ar|default(ct.en|default('')) %}{% endif %}
+    <h2 class="luxe-promo-banner__title">{{ ct }}</h2>
     {% if component.subtitle %}
-      <p class="luxe-promo-banner__subtitle">{{ component.subtitle }}</p>
+      {% set cs = component.subtitle %}
+      {% if cs is iterable %}{% set cs = cs.ar|default(cs.en|default('')) %}{% endif %}
+      <p class="luxe-promo-banner__subtitle">{{ cs }}</p>
     {% endif %}
     {% if component.show_countdown and component.end_at %}
       <div class="luxe-campaign__timer" data-luxe-campaign-end="{{ component.end_at|e('html_attr') }}" aria-label="{{ 'home.flash_sale'|trans|default('ينتهي العرض') }}">
@@ -38,10 +42,16 @@
       </div>
     {% endif %}
     {% set _btn = component.btn_url %}
-{% if _btn is iterable %}
-  {% set _btn = '' %}
-{% endif %}
-{% if component.btn_text and _btn %}
+    {% if _btn is iterable and _btn|length > 0 %}
+      {% set _f = _btn|first %}
+      {% set _btn = _f.url is defined ? _f.url : (_f is iterable ? '' : _f) %}
+    {% elseif _btn.url is defined %}
+      {% set _btn = _btn.url %}
+    {% endif %}
+    {% if _btn is iterable %}
+      {% set _btn = '' %}
+    {% endif %}
+    {% if component.btn_text and _btn %}
       <a href="{{ _btn }}" class="btn btn--primary luxe-promo-banner__btn">{{ component.btn_text }}</a>
     {% endif %}
   </div>

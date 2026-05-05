@@ -13,10 +13,19 @@
 <section class="luxe-section container luxe-banners">
     <div class="luxe-banners__grid {{ component.banners|length <= 3 ? 'grid-cols-' ~ component.banners|length : 'grid-cols-3' }}">
         {% for index, banner in component.banners %}
-            <a href="{{ banner.url }}" class="luxe-banner-item" style="background-image: url('{{ banner.image }}')">
+            {% set bimg = banner.image|default(banner['banners.image']|default('')) %}
+            {% set bhref = banner.url|default(banner['banners.url']|default('#')) %}
+            {% if bhref is iterable and bhref|length > 0 %}
+              {% set _bf = bhref|first %}
+              {% set bhref = _bf.url is defined ? _bf.url : (_bf is iterable ? '#' : _bf) %}
+            {% elseif bhref.url is defined %}
+              {% set bhref = bhref.url %}
+            {% endif %}
+            {% if bhref is iterable %}{% set bhref = '#' %}{% endif %}
+            <a href="{{ bhref|default('#') }}" class="luxe-banner-item" style="background-image: url('{{ bimg|e('html_attr') }}')">
                 <article class="luxe-banner-item__content">
-                    <h3 class="luxe-banner-item__title">{{ banner.title }}</h3>
-                    <p class="luxe-banner-item__desc">{{ banner.description }}</p>
+                    <h3 class="luxe-banner-item__title">{{ banner.title|default(banner['banners.title']|default('')) }}</h3>
+                    <p class="luxe-banner-item__desc">{{ banner.description|default(banner['banners.description']|default('')) }}</p>
                 </article>
             </a>
         {% endfor %}

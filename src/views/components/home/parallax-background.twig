@@ -1,22 +1,25 @@
 {#
 | Variable    | Type   | Description                                                      |
 |-------------|--------|------------------------------------------------------------------|
-| image       | string | Image url                                                        |
-| url         | string | Link url                                                         |
-| title       | string | Section title                                                    |
-| link_text   | String | Link title                                                       |
-| is_opacity  | Bool   | Should set overlay on the background or not                      |
+| image / url / title / link_text / is_opacity | … | حقول الجذر من المكوّن المدمج أو ضمن component |
 | position    | Int    | Sorting number start from zero                                   |
 #}
 
-<section class="luxe-section luxe-section--parallax luxe-parallax" style="background-image: url('{{ component.image }}');">
-    <div class="luxe-parallax__overlay" style="opacity: {{ component.is_opacity ? '0.6' : '0' }}"></div>
+{% set px_image = image is defined ? image : component.image|default('') %}
+{% set px_url = url is defined ? url : component.url|default('') %}
+{% set px_title = title is defined ? title : component.title|default('') %}
+{% set px_link_text = link_text is defined ? link_text : component.link_text|default('') %}
+{% set px_opacity = is_opacity is defined ? is_opacity : component.is_opacity|default(false) %}
+{% if px_image %}
+<section class="luxe-section luxe-section--parallax luxe-parallax" style="background-image: url('{{ px_image|e('html_attr') }}');">
+    <div class="luxe-parallax__overlay" style="opacity: {{ px_opacity ? '0.6' : '0' }}"></div>
     <div class="luxe-container luxe-parallax__content">
-        {% if component.title %}
-            <h2>{{ component.title }}</h2>
+        {% if px_title %}
+            <h2>{{ px_title }}</h2>
         {% endif %}
-        {% if component.url and component.link_text %}
-            <a href="{{ component.url }}" class="btn btn--primary">{{ component.link_text }}</a>
+        {% if px_url and px_link_text %}
+            <a href="{{ px_url }}" class="btn btn--primary">{{ px_link_text }}</a>
         {% endif %}
     </div>
 </section>
+{% endif %}

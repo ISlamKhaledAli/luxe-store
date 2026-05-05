@@ -2,6 +2,12 @@
 | تصنيفات مختارة + بانر جانبي قابل للربط |
 #}
 {% set burl = component.banner_url %}
+{% if burl is iterable and burl|length > 0 %}
+  {% set _f = burl|first %}
+  {% set burl = _f.url is defined ? _f.url : (_f is iterable ? '' : _f) %}
+{% elseif burl.url is defined %}
+  {% set burl = burl.url %}
+{% endif %}
 {% if burl is iterable %}
   {% set burl = '' %}
 {% endif %}

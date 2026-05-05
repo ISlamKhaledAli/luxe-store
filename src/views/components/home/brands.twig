@@ -7,16 +7,23 @@
 #}
 <section class="luxe-section luxe-section--brands">
     <div class="luxe-container">
-        {% if component.title %}
+        {% set brand_title = component.title %}
+        {% if brand_title is iterable %}{% set brand_title = brand_title.ar|default(brand_title.en|default('')) %}{% endif %}
+        {% if brand_title %}
           <div class="luxe-section__head">
-            <h2>{{ component.title }}</h2>
+            <h2>{{ brand_title }}</h2>
           </div>
         {% endif %}
 
         <div class="luxe-brands-grid">
             {% for brand in component.brands %}
+                {% set logo_src = brand.logo.url|default(brand.logo|default('')) %}
                 <a href="{{ brand.url }}" class="luxe-brand-card">
-                    <img loading="lazy" src="{{ brand.logo }}" alt="{{ brand.name }}"/>
+                    {% if logo_src %}
+                    <img loading="lazy" src="{{ logo_src }}" alt="{{ brand.name }}"/>
+                    {% else %}
+                    <span class="luxe-brand-card__name">{{ brand.name }}</span>
+                    {% endif %}
                 </a>
             {% endfor %}
         </div>

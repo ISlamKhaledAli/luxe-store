@@ -1,12 +1,15 @@
 {#
 | Variable    | Type   | Description                                                      |
-| youtube_id  | string |                                                                  |
+| youtube_id    | string | معرف اليوتيوب (جذر الصفحة من المكوّن المدمج، أو component.youtube_id) |
 | position    | Int    | Sorting number start from zero                                   |
 #}
+{% set luxe_youtube_id = youtube_id is defined ? youtube_id : component.youtube_id|default('') %}
+{% if luxe_youtube_id %}
 <section class="luxe-section luxe-section--video">
   <div class="luxe-container">
     <div class="luxe-video-wrapper">
-      <lite-youtube videoid="{{ component.youtube_id }}" params="rel=0"></lite-youtube>
+      <lite-youtube videoid="{{ luxe_youtube_id }}" params="rel=0"></lite-youtube>
     </div>
   </div>
 </section>
+{% endif %}

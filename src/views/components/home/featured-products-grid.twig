@@ -32,7 +32,12 @@
     {% endif %}
 
     {% set url = component.display_all_url %}
-    {% if url is iterable and url|length > 0 %}{% set url = url|first.url|default(url|first) %}{% endif %}
+    {% if url is iterable and url|length > 0 %}
+      {% set _u = url|first %}
+      {% set url = _u.url is defined ? _u.url : (_u is iterable ? '' : _u) %}
+    {% elseif url.url is defined %}
+      {% set url = url.url %}
+    {% endif %}
     {% if url is iterable %}{% set url = '' %}{% endif %}
 
     {% if url and url != '#' %}
