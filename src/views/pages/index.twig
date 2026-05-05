@@ -40,6 +40,27 @@
   <!-- ② الصفحة الرئيسية من مُنشِّئ سلة — يجب استخدام {% component home %} حتى تُعرض العناصر التي تضيفها من لوحة الثيم -->
   <div class="luxe-dynamic-sections">
     {% component home %}
+    {# معاينة/صفحة بدون عناصر في المُنشئ: عرض معرض + آراء ببيانات افتراضية حتى لا تبقى الصفحة بيضاء #}
+    {% if luxe_home_minimal_test and page.components|length == 0 %}
+      {% set luxe_demo_gallery = {
+        heading: 'لقطات من عالم العطور',
+        use_four_columns: false,
+        items: [
+          { 'items.image': 'https://images.unsplash.com/photo-1587017539504-67cfbddac569?auto=format&fit=crop&w=800&q=85', 'items.caption': 'روائح دافئة', 'items.url': '' },
+          { 'items.image': 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=800&q=85', 'items.caption': 'زجاجيات فاخرة', 'items.url': '' },
+          { 'items.image': 'https://images.unsplash.com/photo-1615634260167-c8cdede054de?auto=format&fit=crop&w=800&q=85', 'items.caption': 'تجربة بوتيك', 'items.url': '/store' }
+        ]
+      } %}
+      {% component 'home.gallery-grid' with { component: luxe_demo_gallery, position: 0 } %}
+      {% set luxe_demo_reviews = {
+        heading: 'آراء عشاق الروائح',
+        items: [
+          { 'items.name': 'أحمد العتيبي', 'items.avatar': 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200', 'items.stars': 5, 'items.text': 'العطر وصل مغلفاً برفاهية، ثبات الرائحة فاق التوقع.' },
+          { 'items.name': 'نورة الدوسري', 'items.avatar': 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=200', 'items.stars': 5, 'items.text': 'تشكيلة متنوعة وأسعار شفافة.' }
+        ]
+      } %}
+      {% component 'home.custom-testimonials' with { component: luxe_demo_reviews, position: 1 } %}
+    {% endif %}
   </div>
 
   <!-- ③ DEFAULT SECTIONS (Fallback/Fixed) -->
