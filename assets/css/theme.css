@@ -1795,14 +1795,23 @@ html {
     inset 0 3px 6px rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 600px) {
-  .luxe-crest {
-    width: 48px;
-    height: 48px;
-    font-size: 1.1rem;
-    inset-inline-end: calc(var(--space-4) + 56px);
-  }
+/* ============================================================
+   إيقاف الحركة والانتقالات الزخرفية (طلب التاجر)
+   ============================================================ */
+body.luxe-no-motion,
+body.luxe-no-motion * ,
+body.luxe-no-motion *::before,
+body.luxe-no-motion *::after {
+  animation: none !important;
+  animation-duration: 0s !important;
+  transition: none !important;
+  transition-duration: 0s !important;
 }
+
+body.luxe-no-motion {
+  scroll-behavior: auto;
+}
+
 
 /* Perfume-focused homepage blocks + motion (imported via theme.css append) */
 
