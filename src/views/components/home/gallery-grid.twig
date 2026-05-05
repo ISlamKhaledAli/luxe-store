@@ -1,105 +1,78 @@
 {#
-| معرض صور — Luxe
-| - بيانات الـ collection قد تُمرَّر كـ component.luxe_gallery أو كمتغير جذر luxe_gallery (سلة/معاينة)
-| - كل عنصر قد يكون بحقل مسطح luxe_gallery.* أو متداخل item.luxe_gallery.*
-| - صورة من لوحة التحكم: سلسلة أو { url: ... }
-#}
-{% set rows = [] %}
-{% if component.luxe_gallery is defined and component.luxe_gallery is iterable and component.luxe_gallery|length > 0 %}
-  {% set rows = component.luxe_gallery %}
-{% elseif luxe_gallery is defined and luxe_gallery is iterable and luxe_gallery|length > 0 %}
-  {% set rows = luxe_gallery %}
-{% elseif component.gallery is defined and component.gallery is iterable and component.gallery|length > 0 %}
-  {% set rows = component.gallery %}
-{% elseif gallery is defined and gallery is iterable and gallery|length > 0 %}
-  {% set rows = gallery %}
-{% elseif component.items is defined and component.items is iterable and component.items|length > 0 %}
-  {% set rows = component.items %}
-{% endif %}
-{% if rows is not iterable %}{% set rows = [] %}{% endif %}
+  معرض صور — يطابق أسلوب Twilight: collection بحقول بسيطة (image, caption, url)
+  وطبقة الصور item.image.url كما في توثيق Photos slider.
 
-{% set four_col = component.use_four_columns|default(false) %}
-{% if use_four_columns is defined %}
-  {% set four_col = use_four_columns %}
+  | Variable | Type | Description |
+  | component.heading | ?string | عنوان القسم |
+  | component.use_four_columns | bool | أربع أعمدة |
+  | component.items[] | array | الصور |
+  | component.items[].image | string|{url, alt} | الصورة |
+  | component.items[].caption | ?string | وصف (متعدد اللغات اختياري) |
+  | component.items[].url | ?string | رابط اختياري |
+  | position | int | ترتيب المكوّن |
+
+  مراجع: https://docs.salla.dev/421921m0 — https://docs.salla.dev/doc-422586
+  دليل Twilight: https://salla.dev/blog/all-in-one-twilight-guide-for-salla-developers/
+#}
+{% set rows = component.items|default([]) %}
+{% if rows|length == 0 and items is defined and items is iterable %}
+  {% set rows = items %}
+{% endif %}
+{% if rows is not iterable %}
+  {% set rows = [] %}
 {% endif %}
 
 {% if rows|length > 0 %}
-<section class="luxe-section luxe-gallery-block" data-reveal>
+<section id="luxe-gallery-{{ position }}" class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
-    {% set h = component.heading|default('') %}
-    {% if heading is defined and heading is not empty %}
-      {% set h = heading %}
+    {% set title = component.heading|default('') %}
+    {% if title is iterable %}
+      {% set title = title.ar|default(title.en|default('')) %}
     {% endif %}
-    {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
-    {% if h %}
+    {% if title %}
     <header class="luxe-section__head">
-      <h2>{{ h }}</h2>
+      <h2>{{ title }}</h2>
     </header>
     {% endif %}
 
-    <div class="luxe-gallery-block__grid {{ four_col ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
+    {% set four = component.use_four_columns|default(false) %}
+    <div class="luxe-gallery-block__grid {{ four ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set lg = item.luxe_gallery|default(null) %}
-
-        {% set raw_img = item.image|default('') %}
-        {% if not raw_img and lg is not null and lg.image is defined %}
-          {% set raw_img = lg.image %}
-        {% endif %}
-        {% if not raw_img %}
-          {% set raw_img = item['luxe_gallery.image']|default(item['gallery.image']|default('')) %}
-        {% endif %}
-        {% set img = raw_img and raw_img.url is defined ? raw_img.url : raw_img %}
+        {% set img = item.image|default('') %}
+        {% set src = img.url is defined ? img.url : img %}
+        {% set alt = img.alt is defined ? img.alt : '' %}
 
         {% set cap = item.caption|default('') %}
-        {% if not cap and lg is not null and lg.caption is defined %}
-          {% set cap = lg.caption %}
+        {% if cap is iterable %}
+          {% set cap = cap.ar|default(cap.en|default('')) %}
         {% endif %}
-        {% if not cap %}
-          {% set cap = item['luxe_gallery.caption']|default(item['gallery.caption']|default('')) %}
-        {% endif %}
-        {% if cap is iterable %}{% set cap = cap.ar|default(cap.en|default('')) %}{% endif %}
-
-        {% set raw_link = item.url|default('') %}
-        {% if not raw_link and lg is not null and lg.url is defined %}
-          {% set raw_link = lg.url %}
-        {% endif %}
-        {% if not raw_link %}
-          {% set raw_link = item['luxe_gallery.url']|default(item['gallery.url']|default('')) %}
-        {% endif %}
-        {% set link = raw_link %}
-        {% if raw_link.url is defined %}
-          {% set link = raw_link.url %}
-        {% endif %}
-        {% if link is iterable and (link.ar is defined or link.en is defined) %}
-          {% set link = link.ar|default(link.en|default('')) %}
-        {% elseif link is iterable and link|length > 0 %}
-          {% set _lf = link|first %}
-          {% set link = _lf.url is defined ? _lf.url : (_lf is iterable ? '' : _lf) %}
-        {% elseif link is iterable %}
-          {% set link = '' %}
+        {% if not alt and cap %}
+          {% set alt = cap %}
         {% endif %}
 
-        {% if img %}
-          {% set link_trimmed = (link ~ '')|trim %}
-          {% if link_trimmed %}
-            <a href="{{ link_trimmed }}" class="luxe-gallery-block__cell">
+        {% set href = item.url|default('') %}
+        {% if href is iterable %}
+          {% set href = href.ar|default(href.en|default('')) %}
+        {% endif %}
+        {% set href = (href ~ '')|trim %}
+
+        {% if src %}
+          {% if href %}
+          <a href="{{ href }}" class="luxe-gallery-block__cell">
           {% else %}
-            <div class="luxe-gallery-block__cell">
+          <div class="luxe-gallery-block__cell">
           {% endif %}
-
-          <div class="luxe-gallery-block__media">
-            <img src="{{ img }}" alt="{{ cap }}" loading="lazy">
-            <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
-          </div>
-
-          {% if cap %}
-            <span class="luxe-gallery-block__cap">{{ cap }}</span>
-          {% endif %}
-
-          {% if link_trimmed %}
-            </a>
-          {% else %}
+            <div class="luxe-gallery-block__media">
+              <img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async">
+              <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
             </div>
+            {% if cap %}
+            <span class="luxe-gallery-block__cap">{{ cap }}</span>
+            {% endif %}
+          {% if href %}
+          </a>
+          {% else %}
+          </div>
           {% endif %}
         {% endif %}
       {% endfor %}
