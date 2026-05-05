@@ -1,87 +1,49 @@
 {#
-| معرض صور — لا تُستخدم component.* قبل التحقق من التعريف (تجنّب Twig/500 في المعاينة)
+| Variable | Type | Description |
+| component | object | إعدادات المكوّن من twilight.json |
+| component.items[] | array | صفوف المعرض (مجموعة id: items) |
+| position | int | ترتيب المكوّن |
+| نفس أسلوب home.custom-testimonials — تسطيح سلة أو مفاتيح items.* |
 #}
-{% set cmp = component is defined ? component : null %}
-{% set rows = [] %}
-{% if cmp is not null %}
-  {% set rows = cmp.items|default([]) %}
-  {% if rows|length == 0 %}
-    {% set rows = cmp.gallery|default([]) %}
-  {% endif %}
-{% endif %}
-{% if rows|length == 0 and items is defined and items is iterable %}
-  {% set rows = items %}
-{% endif %}
-{% if rows is not iterable %}
-  {% set rows = [] %}
-{% endif %}
-
+{% set rows = component.items|default([]) %}
 {% if rows|length > 0 %}
-<section id="luxe-gallery-{{ position|default(0) }}" class="luxe-section luxe-gallery-block" data-reveal>
+<section id="luxe-gallery-{{ position }}" class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
-    {% set title = cmp is not null ? cmp.heading|default('') : '' %}
-    {% if title is iterable %}
-      {% set title = title.ar|default(title.en|default('')) %}
-    {% endif %}
-    {% if title %}
-    <header class="luxe-section__head">
-      <h2>{{ title }}</h2>
-    </header>
-    {% endif %}
+    <div class="luxe-section__head">
+      {% set h = component.heading %}
+      {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
+      <h2>{{ h|default('معرض الصور') }}</h2>
+    </div>
 
-    {% set four = cmp is not null ? cmp.use_four_columns|default(false) : false %}
+    {% set four = component.use_four_columns|default(false) %}
     <div class="luxe-gallery-block__grid {{ four ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set raw = item.image|default(item['items.image']|default(item['gallery.image']|default(''))) %}
-        {% set src = '' %}
-        {% if raw %}
-          {% if raw.url is defined and raw.url %}
-            {% set src = raw.url %}
-          {% elseif raw.thumbnail is defined and raw.thumbnail %}
-            {% set src = raw.thumbnail %}
-          {% elseif raw.full_url is defined and raw.full_url %}
-            {% set src = raw.full_url %}
-          {% elseif raw.source is defined and raw.source %}
-            {% set src = raw.source %}
-          {% elseif raw.path is defined and raw.path %}
-            {% set src = raw.path %}
-          {% elseif raw is not iterable %}
-            {% set src = raw %}
-          {% endif %}
+        {% set pic = item.image|default(item['items.image']|default('')) %}
+        {% if pic.url is defined and pic.url %}
+          {% set pic = pic.url %}
         {% endif %}
 
-        {% set cap = item.caption|default(item['items.caption']|default(item['gallery.caption']|default(''))) %}
-        {% if cap is iterable %}
-          {% set cap = cap.ar|default(cap.en|default('')) %}
-        {% endif %}
+        {% set cap = item.caption|default(item['items.caption']|default('')) %}
+        {% if cap is iterable %}{% set cap = cap.ar|default(cap.en|default('')) %}{% endif %}
 
-        {% set href = item.url|default(item['items.url']|default(item['gallery.url']|default(''))) %}
-        {% if href is iterable %}
-          {% set href = href.ar|default(href.en|default('')) %}
-        {% endif %}
-        {% set href = (href ~ '')|trim %}
+        {% set link = item.url|default(item['items.url']|default('')) %}
+        {% if link is iterable %}{% set link = link.ar|default(link.en|default('')) %}{% endif %}
+        {% set link = (link ~ '')|trim %}
 
-        {% set alt = '' %}
-        {% if raw and raw.alt is defined and raw.alt %}
-          {% set alt = raw.alt %}
-        {% elseif cap %}
-          {% set alt = cap %}
-        {% endif %}
-
-        {% if src %}
-          {% if href %}
-          <a href="{{ href }}" class="luxe-gallery-block__cell">
+        {% if pic %}
+          {% if link %}
+          <a href="{{ link }}" class="luxe-gallery-block__cell">
           {% else %}
           <div class="luxe-gallery-block__cell">
           {% endif %}
             <div class="luxe-gallery-block__media">
-              <img src="{{ src }}" alt="{{ alt }}" loading="lazy" decoding="async">
+              <img src="{{ pic }}" alt="{{ cap|default('') }}" loading="lazy" decoding="async">
               <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
             </div>
             {% if cap %}
             <span class="luxe-gallery-block__cap">{{ cap }}</span>
             {% endif %}
-          {% if href %}
+          {% if link %}
           </a>
           {% else %}
           </div>
