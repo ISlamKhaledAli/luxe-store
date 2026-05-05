@@ -1,50 +1,102 @@
 {#
 | معرض صور — Luxe
-| يدعم مفاتيح luxe_gallery.* (موصى بها) والقديمة gallery.*؛ وصور لوحة التحكم كسلسلة أو { url: ... }
+| - بيانات الـ collection قد تُمرَّر كـ component.luxe_gallery أو كمتغير جذر luxe_gallery (سلة/معاينة)
+| - كل عنصر قد يكون بحقل مسطح luxe_gallery.* أو متداخل item.luxe_gallery.*
+| - صورة من لوحة التحكم: سلسلة أو { url: ... }
 #}
-{% set rows = component.luxe_gallery|default(component.gallery|default(component.items|default([]))) %}
-{% set four_col = component.use_four_columns|default(false) %}
+{% set rows = [] %}
+{% if component.luxe_gallery is defined and component.luxe_gallery is iterable and component.luxe_gallery|length > 0 %}
+  {% set rows = component.luxe_gallery %}
+{% elseif luxe_gallery is defined and luxe_gallery is iterable and luxe_gallery|length > 0 %}
+  {% set rows = luxe_gallery %}
+{% elseif component.gallery is defined and component.gallery is iterable and component.gallery|length > 0 %}
+  {% set rows = component.gallery %}
+{% elseif gallery is defined and gallery is iterable and gallery|length > 0 %}
+  {% set rows = gallery %}
+{% elseif component.items is defined and component.items is iterable and component.items|length > 0 %}
+  {% set rows = component.items %}
+{% endif %}
 {% if rows is not iterable %}{% set rows = [] %}{% endif %}
+
+{% set four_col = component.use_four_columns|default(false) %}
+{% if use_four_columns is defined %}
+  {% set four_col = use_four_columns %}
+{% endif %}
 
 {% if rows|length > 0 %}
 <section class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
-    {% set h = component.heading %}
+    {% set h = component.heading|default('') %}
+    {% if heading is defined and heading is not empty %}
+      {% set h = heading %}
+    {% endif %}
     {% if h is iterable %}{% set h = h.ar|default(h.en|default('')) %}{% endif %}
     {% if h %}
     <header class="luxe-section__head">
       <h2>{{ h }}</h2>
     </header>
     {% endif %}
-    
+
     <div class="luxe-gallery-block__grid {{ four_col ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set raw_img = item.image|default(item['luxe_gallery.image']|default(item['gallery.image']|default(''))) %}
-        {% set img = raw_img and raw_img.url is defined ? raw_img.url : raw_img %}
-        {% set cap = item.caption|default(item['luxe_gallery.caption']|default(item['gallery.caption']|default(''))) %}
-        {% set raw_link = item.url|default(item['luxe_gallery.url']|default(item['gallery.url']|default(''))) %}
-        {% set link = raw_link and raw_link.url is defined ? raw_link.url : raw_link %}
+        {% set lg = item.luxe_gallery|default(null) %}
 
+        {% set raw_img = item.image|default('') %}
+        {% if not raw_img and lg is not null and lg.image is defined %}
+          {% set raw_img = lg.image %}
+        {% endif %}
+        {% if not raw_img %}
+          {% set raw_img = item['luxe_gallery.image']|default(item['gallery.image']|default('')) %}
+        {% endif %}
+        {% set img = raw_img and raw_img.url is defined ? raw_img.url : raw_img %}
+
+        {% set cap = item.caption|default('') %}
+        {% if not cap and lg is not null and lg.caption is defined %}
+          {% set cap = lg.caption %}
+        {% endif %}
+        {% if not cap %}
+          {% set cap = item['luxe_gallery.caption']|default(item['gallery.caption']|default('')) %}
+        {% endif %}
         {% if cap is iterable %}{% set cap = cap.ar|default(cap.en|default('')) %}{% endif %}
-        {% if link is iterable %}{% set link = link.ar|default(link.en|default('')) %}{% endif %}
+
+        {% set raw_link = item.url|default('') %}
+        {% if not raw_link and lg is not null and lg.url is defined %}
+          {% set raw_link = lg.url %}
+        {% endif %}
+        {% if not raw_link %}
+          {% set raw_link = item['luxe_gallery.url']|default(item['gallery.url']|default('')) %}
+        {% endif %}
+        {% set link = raw_link %}
+        {% if raw_link.url is defined %}
+          {% set link = raw_link.url %}
+        {% endif %}
+        {% if link is iterable and (link.ar is defined or link.en is defined) %}
+          {% set link = link.ar|default(link.en|default('')) %}
+        {% elseif link is iterable and link|length > 0 %}
+          {% set _lf = link|first %}
+          {% set link = _lf.url is defined ? _lf.url : (_lf is iterable ? '' : _lf) %}
+        {% elseif link is iterable %}
+          {% set link = '' %}
+        {% endif %}
 
         {% if img %}
-          {% if link %}
-            <a href="{{ link }}" class="luxe-gallery-block__cell">
+          {% set link_trimmed = (link ~ '')|trim %}
+          {% if link_trimmed %}
+            <a href="{{ link_trimmed }}" class="luxe-gallery-block__cell">
           {% else %}
             <div class="luxe-gallery-block__cell">
           {% endif %}
-          
+
           <div class="luxe-gallery-block__media">
             <img src="{{ img }}" alt="{{ cap }}" loading="lazy">
             <span class="luxe-gallery-block__shine" aria-hidden="true"></span>
           </div>
-          
+
           {% if cap %}
             <span class="luxe-gallery-block__cap">{{ cap }}</span>
           {% endif %}
-          
-          {% if link %}
+
+          {% if link_trimmed %}
             </a>
           {% else %}
             </div>
