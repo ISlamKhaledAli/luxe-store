@@ -1,14 +1,18 @@
 {#
-  معرض صور — حقول المجموعة بصيغة سلة: items.image / items.caption / items.url
-  (نفس أسلوب slides.* في الثيمات الرسمية و items.* في الـ testimonials)
+  معرض صور Luxe
+  - المجموعة id: gallery (تجنّب تعارض اسم items مع منصة سلة/Twig)
+  - يدعم مفاتيح مسطّحة gallery.* أو متداخل item.gallery.*
+  - صورة من نوع image في سلة: url / full_url / source / نص مباشر
 
-  | component.items[] | عناصر المجموعة id: items في twilight.json |
-  | component.items[].items.image | أو مفتاح مسطح items.image على كل عنصر |
-
-  معاينة المكوّن في لوحة الثيم: مفتاح "image" على المكوّن في twilight.json
   https://salla.dev/blog/image-preview-for-salla-themes-components/
 #}
-{% set rows = component.items|default([]) %}
+{% set rows = component.gallery|default([]) %}
+{% if rows|length == 0 %}
+  {% set rows = component.items|default([]) %}
+{% endif %}
+{% if rows|length == 0 and gallery is defined and gallery is iterable %}
+  {% set rows = gallery %}
+{% endif %}
 {% if rows|length == 0 and items is defined and items is iterable %}
   {% set rows = items %}
 {% endif %}
@@ -32,36 +36,47 @@
     {% set four = component.use_four_columns|default(false) %}
     <div class="luxe-gallery-block__grid {{ four ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {% set row = item.items|default(null) %}
+        {% set nest = item.gallery|default(item.items|default(null)) %}
 
-        {% set raw = item.image|default(item['items.image']|default('')) %}
-        {% if not raw and row is not null and row.image is defined %}
-          {% set raw = row.image %}
+        {% set raw = item.image|default(item['gallery.image']|default(item['items.image']|default(''))) %}
+        {% if not raw and nest is not null and nest.image is defined %}
+          {% set raw = nest.image %}
         {% endif %}
 
         {% set src = '' %}
         {% if raw %}
-          {% if raw.url is defined %}
+          {% if raw.url is defined and raw.url %}
             {% set src = raw.url %}
-          {% elseif raw is iterable and raw|length > 0 %}
-            {% set _first = raw|first %}
-            {% set src = _first.url is defined ? _first.url : (_first is iterable ? '' : _first) %}
+          {% elseif raw.full_url is defined and raw.full_url %}
+            {% set src = raw.full_url %}
+          {% elseif raw.source is defined and raw.source %}
+            {% set src = raw.source %}
+          {% elseif raw.path is defined and raw.path %}
+            {% set src = raw.path %}
+          {% elseif raw is iterable and raw|length > 0 and raw.ar is not defined %}
+            {% set _f = raw|first %}
+            {% if _f.url is defined and _f.url %}
+              {% set src = _f.url %}
+            {% elseif _f is not iterable %}
+              {% set src = _f %}
+            {% endif %}
           {% else %}
             {% set src = raw %}
           {% endif %}
         {% endif %}
+        {% if src is iterable %}{% set src = '' %}{% endif %}
 
-        {% set cap = item.caption|default(item['items.caption']|default('')) %}
-        {% if not cap and row is not null and row.caption is defined %}
-          {% set cap = row.caption %}
+        {% set cap = item.caption|default(item['gallery.caption']|default(item['items.caption']|default(''))) %}
+        {% if not cap and nest is not null and nest.caption is defined %}
+          {% set cap = nest.caption %}
         {% endif %}
         {% if cap is iterable %}
           {% set cap = cap.ar|default(cap.en|default('')) %}
         {% endif %}
 
-        {% set href = item.url|default(item['items.url']|default('')) %}
-        {% if not href and row is not null and row.url is defined %}
-          {% set href = row.url %}
+        {% set href = item.url|default(item['gallery.url']|default(item['items.url']|default(''))) %}
+        {% if not href and nest is not null and nest.url is defined %}
+          {% set href = nest.url %}
         {% endif %}
         {% if href is iterable %}
           {% set href = href.ar|default(href.en|default('')) %}
@@ -69,8 +84,11 @@
         {% set href = (href ~ '')|trim %}
 
         {% set alt = '' %}
-        {% if raw and raw.alt is defined %}
+        {% if raw and raw.alt is defined and raw.alt %}
           {% set alt = raw.alt %}
+        {% endif %}
+        {% if raw and not alt and raw.title is defined and raw.title %}
+          {% set alt = raw.title %}
         {% endif %}
         {% if not alt and cap %}
           {% set alt = cap %}
