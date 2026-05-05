@@ -1,13 +1,13 @@
 {#
-| مكوّن معرض صور — نفس أسلوب home.custom-testimonials (component.items + item['items.*'])
-| صور التقييمات تستخدم items.avatar كصورة؛ هنا items.image بنفس المنصة.
-|
-| معاينة المصوّر في لوحة الثيم: image + preview_image في twilight.json
-| https://salla.dev/blog/image-preview-for-salla-themes-components/
+| معرض صور — لا تُستخدم component.* قبل التحقق من التعريف (تجنّب Twig/500 في المعاينة)
 #}
-{% set rows = component.items|default([]) %}
-{% if rows|length == 0 and component.gallery is defined %}
-  {% set rows = component.gallery|default([]) %}
+{% set cmp = component is defined ? component : null %}
+{% set rows = [] %}
+{% if cmp is not null %}
+  {% set rows = cmp.items|default([]) %}
+  {% if rows|length == 0 %}
+    {% set rows = cmp.gallery|default([]) %}
+  {% endif %}
 {% endif %}
 {% if rows|length == 0 and items is defined and items is iterable %}
   {% set rows = items %}
@@ -17,9 +17,9 @@
 {% endif %}
 
 {% if rows|length > 0 %}
-<section id="luxe-gallery-{{ position }}" class="luxe-section luxe-gallery-block" data-reveal>
+<section id="luxe-gallery-{{ position|default(0) }}" class="luxe-section luxe-gallery-block" data-reveal>
   <div class="luxe-container">
-    {% set title = component.heading|default('') %}
+    {% set title = cmp is not null ? cmp.heading|default('') : '' %}
     {% if title is iterable %}
       {% set title = title.ar|default(title.en|default('')) %}
     {% endif %}
@@ -29,10 +29,9 @@
     </header>
     {% endif %}
 
-    {% set four = component.use_four_columns|default(false) %}
+    {% set four = cmp is not null ? cmp.use_four_columns|default(false) : false %}
     <div class="luxe-gallery-block__grid {{ four ? 'luxe-gallery-block__grid--4' : 'luxe-gallery-block__grid--3' }}">
       {% for item in rows %}
-        {# صورة: سلسلة أو كائن من رفع الملفات (راجع testimonials: صورة كسلسلة مباشرة) #}
         {% set raw = item.image|default(item['items.image']|default(item['gallery.image']|default(''))) %}
         {% set src = '' %}
         {% if raw %}
